@@ -1,0 +1,3 @@
+press_homepage:
+    path:     /
+    defaults: { _controller: PressBundle:Default:index }
