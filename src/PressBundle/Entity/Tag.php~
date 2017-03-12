@@ -33,6 +33,12 @@ class Tag
      * @ORM\ManyToMany(targetEntity="Article", mappedBy="tags", cascade={"persist"})
      */
     private $articles;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="owner", referencedColumnName="id", nullable=true)
+     */
+    private $owner;
 
 
     // Constructeur

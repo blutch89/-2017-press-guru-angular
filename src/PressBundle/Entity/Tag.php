@@ -33,6 +33,12 @@ class Tag
      * @ORM\ManyToMany(targetEntity="Article", mappedBy="tags", cascade={"persist"})
      */
     private $articles;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="owner", referencedColumnName="id", nullable=true)
+     */
+    private $owner;
 
 
     // Constructeur
@@ -88,5 +94,28 @@ class Tag
         $this->articles->removeElement($article);
         
         return $this;
+    }
+
+    /**
+     * Set owner
+     *
+     * @param \UserBundle\Entity\User $owner
+     * @return Tag
+     */
+    public function setOwner(\UserBundle\Entity\User $owner = null)
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Get owner
+     *
+     * @return \UserBundle\Entity\User 
+     */
+    public function getOwner()
+    {
+        return $this->owner;
     }
 }

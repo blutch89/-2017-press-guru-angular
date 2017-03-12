@@ -62,6 +62,12 @@ class Article
     */
     private $tags;
     
+    /**
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="owner", referencedColumnName="id", nullable=true)
+     */
+    private $owner;
+    
     // Constructeur
     public function __construct() {
         $this->tags = new ArrayCollection();
@@ -208,5 +214,28 @@ class Article
     public function getArchived()
     {
         return $this->archived;
+    }
+
+    /**
+     * Set owner
+     *
+     * @param \UserBundle\Entity\User $owner
+     * @return Article
+     */
+    public function setOwner(\UserBundle\Entity\User $owner = null)
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Get owner
+     *
+     * @return \UserBundle\Entity\User 
+     */
+    public function getOwner()
+    {
+        return $this->owner;
     }
 }
