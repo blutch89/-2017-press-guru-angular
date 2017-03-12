@@ -4,11 +4,12 @@ namespace PressBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Article
  *
- * @ORM\Table(name="article")
+ * @ORM\Table(name="articles")
  * @ORM\Entity(repositoryClass="PressBundle\Repository\ArticleRepository")
  */
 class Article
@@ -26,6 +27,7 @@ class Article
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $title;
 
@@ -46,7 +48,8 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="link", type="string", length=255)
+     * @ORM\Column(name="link", type="text")
+     * @Assert\NotBlank()
      */
     private $link;
     

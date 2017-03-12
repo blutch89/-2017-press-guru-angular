@@ -4,11 +4,12 @@ namespace PressBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Tag
  *
- * @ORM\Table(name="tag")
+ * @ORM\Table(name="tags")
  * @ORM\Entity(repositoryClass="PressBundle\Repository\TagRepository")
  */
 class Tag
@@ -25,7 +26,14 @@ class Tag
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @ORM\Column(name="name", type="string", length=30, unique=true)
+     * @Assert\NotBlank(message="L'étiquette doit être remplie et comprise entre 2 et 30 caractères")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 30,
+     *      minMessage = "L'étiquette doit être remplie et comprise entre 2 et 30 caractères",
+     *      maxMessage = "L'étiquette doit être remplie et comprise entre 2 et 30 caractères"
+     * )
      */
     private $name;
     

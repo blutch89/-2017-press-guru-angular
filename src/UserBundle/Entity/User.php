@@ -7,6 +7,7 @@ use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use PressBundle\Entity\Tag;
 use PressBundle\Entity\Article;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -36,6 +37,12 @@ class User extends BaseUser {
         parent::__construct ();
         
         $this->articles = new ArrayCollection();
+    }
+    
+    // Permet d'utiliser l'email en tant que username
+    public function setEmail($email) {
+         parent::setEmail($email);
+         $this->setUsername($email);
     }
     
     public function getArticles() {
