@@ -1,0 +1,24 @@
+body {
+    background-color: #F4F4F6;
+    font-size: 1.6em;
+}
+
+/* Header */
+#navbar-header {
+    background-color: #F4F4F6;
+}
+
+/* Barre de menu latéral */
+.smaller-nav li {
+    height: 25px;
+}
+
+.side-nav {
+    margin-bottom: 40px;
+}
+
+.nav-title {
+/*    margin-top: 10%;*/
+    margin-bottom: 0px;
+    font-size: 1.4em;
+}

@@ -12,10 +12,10 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt|error)|css|images|js)/
             security: false
-#        frontend:
+        frontend:
 #            entry_point: ucs.security.authentication_entry_point
-#            pattern: ^/
-#            anonymous: true
+            pattern: ^/
+            anonymous: true
 #            provider: main
 #            form_login:
 #                failure_handler: ucs.security.authentication_failure_handler
