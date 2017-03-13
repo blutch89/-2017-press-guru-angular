@@ -23,12 +23,12 @@ class User extends BaseUser {
     protected $id;
     
     /**
-     * @ORM\OneToMany(targetEntity="PressBundle\Entity\Article", mappedBy="owner")
+     * @ORM\OneToMany(targetEntity="PressBundle\Entity\Article", mappedBy="owner", cascade={"persist"})
      */
     private $articles;
     
     /**
-     * @ORM\OneToMany(targetEntity="PressBundle\Entity\Tag", mappedBy="owner")
+     * @ORM\OneToMany(targetEntity="PressBundle\Entity\Tag", mappedBy="owner", cascade={"persist"})
      */
     private $tags;
     
@@ -37,6 +37,7 @@ class User extends BaseUser {
         parent::__construct ();
         
         $this->articles = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
     
     // Permet d'utiliser l'email en tant que username
