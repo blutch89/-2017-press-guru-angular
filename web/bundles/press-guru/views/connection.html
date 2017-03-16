@@ -2,33 +2,38 @@
     <div class="col-xs-12 col-sm-12 col-md-5">
         <div class="panel panel-default">
             <div class="panel-body">
-                <p class="connection-title">Se connecter</h1>
-                <hr class="connection-separator" />
-                <form name="connectionForm" ng-submit="processLoginForm()" novalidate>
-                    <div class="input-group input-group-lg" ng-class="{'has-error': connectionForm.email.$touched && connectionForm.email.$invalid }">
-                        <input type="text" id="email" name="email" class="form-control" placeholder="E-mail"
-                               ng-model="connectionFormData._username" required="required" ng-minlength="3" ng-maxlength="30" />
-                        <span id="email-helpblock" class="help-block" ng-show="connectionForm.email.$touched && connectionForm.email.$invalid">
-                            Ce champs est requis et doit être compris entre 3 et 30 caractères.
-                        </span>
+                <div class="connection-interior">
+                    <p class="connection-title">Se connecter</h1>
+                    <hr class="connection-separator" />
+                    <div class="alert alert-danger" role="alert" ng-show="loginErrorMsg">
+                        {{ loginErrorMsg }}
                     </div>
-                    <br />
-                    <div class="input-group input-group-lg" ng-class="{'has-error': connectionForm.password.$touched && connectionForm.password.$invalid }">
-                        <input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe"
-                               ng-model="connectionFormData._password" required="required" ng-minlength="4" ng-maxlength="30" />
-                        <span id="password-helpblock" class="help-block" ng-show="connectionForm.password.$touched && connectionForm.password.$invalid">
-                            Ce champs est requis et doit être compris entre 4 et 30 caractères.
-                        </span>
-                    </div>
-                    
-                    <div class="checkbox">
-                        <label class="control-label">
-                            <input type="checkbox" id="remember_me" name="_remember_me" value="on" ng-model="connectionFormData._remember_me" /> Se souvenir de moi
-                        </label>
-                    </div>
+                    <form name="connectionForm" ng-submit="processLoginForm()" novalidate>
+                        <div class="form-group" ng-class="{'has-error': connectionForm.email.$touched && connectionForm.email.$invalid }">
+                            <input type="text" id="email" name="email" class="form-control input-lg" placeholder="E-mail"
+                                   ng-model="loginFormData._username" required="required" ng-minlength="3" ng-maxlength="30" />
+                            <span id="email-helpblock" class="help-block" ng-show="connectionForm.email.$touched && connectionForm.email.$invalid">
+                                Ce champs est requis et doit être compris entre 3 et 30 caractères.
+                            </span>
+                        </div>
+                        
+                        <div class="form-group" ng-class="{'has-error': connectionForm.password.$touched && connectionForm.password.$invalid }">
+                            <input type="password" id="password" name="password" class="form-control input-lg" placeholder="Mot de passe"
+                                   ng-model="loginFormData._password" required="required" ng-minlength="4" ng-maxlength="30" />
+                            <span id="password-helpblock" class="help-block" ng-show="connectionForm.password.$touched && connectionForm.password.$invalid">
+                                Ce champs est requis et doit être compris entre 4 et 30 caractères.
+                            </span>
+                        </div>
 
-                    <input type="submit" id="_submit" name="_submit" value="Se connecter" class="btn btn-default" ng-disabled="connectionForm.$invalid" />
-                </form>
+                        <div class="checkbox">
+                            <label class="control-label">
+                                <input type="checkbox" id="remember_me" name="_remember_me" value="on" ng-model="loginFormData._remember_me" /> Se souvenir de moi
+                            </label>
+                        </div>
+                        <br />
+                        <input type="submit" id="_submit" name="_submit" value="Se connecter" class="btn btn-danger btn-lg connection-submit" ng-disabled="connectionForm.$invalid" />
+                    </form>
+                </div>
             </div>
         </div>
     </div>

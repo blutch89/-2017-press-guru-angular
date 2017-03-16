@@ -24,6 +24,11 @@ body {
 
 
 /* Page connexion */
+.connection-interior {
+    width: 80%;
+    margin: 0 auto;
+}
+
 .connection-title {
     font-size: 2em;
     text-align: center;
@@ -31,7 +36,10 @@ body {
 
 .connection-separator {
     background-color: #DDD;
-    width: 80%;
+}
+
+.connection-submit {
+    width: 100%;
 }
 
 @media (min-width: 1400px) {
