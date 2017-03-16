@@ -13,26 +13,26 @@ security:
             pattern: ^/(_(profiler|wdt|error)|css|images|js)/
             security: false
         frontend:
-#            entry_point: ucs.security.authentication_entry_point
+            entry_point: ucs.security.authentication_entry_point
             pattern: ^/
             anonymous: true
-#            provider: main
-#            form_login:
-#                failure_handler: ucs.security.authentication_failure_handler
-#                success_handler: ucs.security.authentication_success_handler
-#                login_path: fos_user_security_login
-#                check_path: fos_user_security_check
-#                require_previous_session: false
-#            logout:
-#                path:       fos_user_security_logout
-#                target:     /
-#                success_handler: ucs.security.logout_success_handler
-#            remember_me:
-#                key: %secret%
-#        default:
-#            anonymous: ~
-#            provider: main
-#            context: _security_frontend
+            provider: main
+            form_login:
+                failure_handler: ucs.security.authentication_failure_handler
+                success_handler: ucs.security.authentication_success_handler
+                login_path: fos_user_security_login
+                check_path: fos_user_security_check
+                require_previous_session: false
+            logout:
+                path:       fos_user_security_logout
+                target:     /
+                success_handler: ucs.security.logout_success_handler
+            remember_me:
+                key: %secret%
+        default:
+            anonymous: ~
+            provider: main
+            context: _security_frontend
 #
 #    access_control:
 #        - { path: ^/frontend-api, roles: ROLE_USER }

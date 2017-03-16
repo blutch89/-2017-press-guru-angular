@@ -1,5 +1,5 @@
 angular.module('pressGuruApp')
-    .controller('ConnectionController', function ($scope, $location) {
+    .controller('ConnectionController', function ($scope, $location, authentificationService, userService) {
         connectionController = this;
     
         // Variables propre au login
@@ -10,6 +10,8 @@ angular.module('pressGuruApp')
         $scope.processLoginForm = function() {
             authentificationService.loginRequest($scope.loginFormData, function successCalllback(response) {
                 if (response.data.success == true) {
+                    userService.saveUser(response.data["user-id"], response.data["username"]);
+
                     $location.path("/");
                 } else {
                     $scope.loginErrorMsg = "L'utilisateur ou le mot de passe est incorrect.";

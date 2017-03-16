@@ -1,4 +1,10 @@
 services:
-#    press.example:
-#        class: PressBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+#Login, inscription et logout
+    ucs.security.authentication_success_handler:
+        class: PressBundle\Handler\AuthenticationSuccessHandler
+    ucs.security.authentication_failure_handler:
+        class: PressBundle\Handler\AuthenticationFailureHandler
+    ucs.security.authentication_entry_point:
+        class: PressBundle\EntryPoint\AuthenticationEntryPoint
+    ucs.security.logout_success_handler:
+        class: PressBundle\Handler\LogoutSuccessHandler
