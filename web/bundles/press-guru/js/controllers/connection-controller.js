@@ -2,5 +2,10 @@ angular.module('pressGuruApp')
     .controller('ConnectionController', function ($scope, $location) {
         connectionController = this;
     
-        $scope.test = "bluf";
+        // Données de formulaires
+        $scope.connectionFormData = {};
+    
+        $scope.processLoginForm = function() {
+            
+        };
     });

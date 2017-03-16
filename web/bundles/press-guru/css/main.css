@@ -22,8 +22,20 @@ body {
     font-size: 1.4em;
 }
 
+
+/* Page connexion */
+.connection-title {
+    font-size: 2em;
+    text-align: center;
+}
+
+.connection-separator {
+    background-color: #DDD;
+    width: 80%;
+}
+
 @media (min-width: 1400px) {
-  .container {
-    width: 1400px;
-  }
+    .container {
+        width: 1400px;
+    }
 }
