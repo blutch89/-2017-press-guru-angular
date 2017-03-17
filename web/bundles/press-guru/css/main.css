@@ -4,6 +4,10 @@ body {
 }
 
 /* Header */
+header {
+    margin-bottom: 40px;
+}
+
 #navbar-header {
     background-color: #F4F4F6;
 }
@@ -26,7 +30,6 @@ body {
 /* Page connexion */
 .connection-interior {
     width: 80%;
-    margin: 0 auto;
 }
 
 .connection-title {

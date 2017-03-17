@@ -5,6 +5,8 @@ angular.module('pressGuruApp')
         // Variables propre au login
         $scope.loginFormData = {};
         $scope.loginErrorMsg = "";
+        $scope.registrationFormData = {};
+        $scope.registrationErrorMsg = "";
     
         // Fonction permettant de loguer un utilisateur
         $scope.processLoginForm = function() {
@@ -19,5 +21,10 @@ angular.module('pressGuruApp')
             }, function errorCallback(response) {
                 $scope.loginErrorMsg = "L'utilisateur ou le mot de passe est incorrect.";
             });
+        };
+        
+        // Fonction permettant de s'enregistrer
+        $scope.processRegistrationForm = function() {
+            console.log("registration");
         };
     });
