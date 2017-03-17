@@ -21,6 +21,11 @@
                 <option name="message">Le mot de passe doit être compris entre 4 et 30 caractères</option>
             </constraint>
         </property>
+        <property name="email">
+            <constraint name="Email">
+                <option name="message">L'adresse email "{{ value }}" n'est pas valide.</option>
+            </constraint>
+        </property>
     </class>
 
     <class name="FOS\UserBundle\Model\User">

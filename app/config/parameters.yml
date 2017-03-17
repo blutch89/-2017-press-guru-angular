@@ -10,3 +10,8 @@ parameters:
     mailer_user: null
     mailer_password: null
     secret: ThisTokenIsNotSoSecretChangeIt
+    
+#    Email de confirmation
+    confirm_email.from: gigon.thomas@gmail.com
+    confirm_email.subject: Veuillez activer votre compte chez Press Guru
+    confirm_email.activation_link: http://localhost/press-guru/web/app_dev.php#/confirm-account/

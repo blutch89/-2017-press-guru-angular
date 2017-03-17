@@ -4,7 +4,7 @@ angular.module('pressGuruApp')
             this.executePostForm(appParametersService.paths.prefix + "login_check", datas, successFunction, errorFunction);
         };
 
-        this.registerRequest = function (datas, successFunction, errorFunction) {
+        this.registerRequest = function (datas, successFunction, errorFunction) {console.log(appParametersService.paths.prefix + "register");
             this.executePostForm(appParametersService.paths.prefix + "register", datas, successFunction, errorFunction);
         };
     

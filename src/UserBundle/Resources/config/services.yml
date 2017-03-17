@@ -1,4 +1,4 @@
 services:
-#    user.example:
-#        class: UserBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    user.mailer:
+        class: UserBundle\Services\Mailer
+        arguments: ["@mailer", "@templating", "%confirm_email.from%", "%confirm_email.subject%",  "%confirm_email.activation_link%"]
