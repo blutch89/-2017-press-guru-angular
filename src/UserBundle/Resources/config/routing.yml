@@ -1,1 +1,4 @@
-
+user_register:
+    path: /register
+    defaults: { _controller: UserBundle:Registration:register }
+    methods: POST

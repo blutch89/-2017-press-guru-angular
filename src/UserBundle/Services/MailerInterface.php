@@ -3,6 +3,6 @@ namespace UserBundle\Services;
 
 use UserBundle\Entity\User;
 
-interface MailerInterface {}
+interface MailerInterface {
     public function sendConfirmationEmailMessage(User $user);
 }

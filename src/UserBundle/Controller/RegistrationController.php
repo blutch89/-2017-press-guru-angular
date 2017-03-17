@@ -64,7 +64,7 @@ class RegistrationController extends Controller
         } catch(UniqueConstraintViolationException $e){     // S'il existe déjà
             return $this->sendErrorMessage("Cet utilisateur existe déjà.");
         } catch (\Exception $e) {                           // Toute autre exception
-            return $this->sendErrorMessage("Une erreur inconnue s'est produite lors de l'enregistrement de l'utilisateur.");
+            return $this->sendErrorMessage("Une erreur inconnue s'est produite lors de l'enregistrement de l'utilisateur.";
         }
     }
 

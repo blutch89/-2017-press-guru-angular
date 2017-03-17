@@ -2,6 +2,7 @@
 namespace UserBundle\Services;
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\TwigBundle\TwigEngine;
 use UserBundle\Entity\User;
 
 class Mailer implements MailerInterface {
@@ -12,7 +13,7 @@ class Mailer implements MailerInterface {
     private $subject;
     private $activationLink;
 
-    public function __construct($mailer, EngineInterface $templating, $from, $subject, $activationLink) {
+    public function __construct($mailer, TwigEngine $templating, $from, $subject, $activationLink) {
         $this->mailer = $mailer;
         $this->templating = $templating;
         $this->from = $from;
