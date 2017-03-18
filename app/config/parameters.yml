@@ -6,12 +6,12 @@ parameters:
     database_user: root
     database_password: 1234
     mailer_transport: smtp
-    mailer_host: 127.0.0.1
-    mailer_user: null
-    mailer_password: null
+    mailer_host: smtp.gmail.com
+    mailer_user: gigon.thomas.send@gmail.com
+    mailer_password: Lopaq0254
     secret: ThisTokenIsNotSoSecretChangeIt
     
 #    Email de confirmation
-    confirm_email.from: gigon.thomas@gmail.com
+    confirm_email.from: admin@localhost
     confirm_email.subject: Veuillez activer votre compte chez Press Guru
     confirm_email.activation_link: http://localhost/press-guru/web/app_dev.php#/confirm-account/

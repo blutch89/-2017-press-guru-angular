@@ -26,7 +26,7 @@ class LoadBasicsDatas implements FixtureInterface, ContainerAwareInterface
 
         // --------- USERS ------------
         $user1 = $userManager->createUser();
-        $user1->setEmail("gigon.thomas.b@gmail.com");
+        $user1->setEmail("gigon.thoma@gmail.com");
         $user1->setPlainPassword("1234");
         $user1->setEnabled(true);
         $user1->setRoles(array('ROLE_USER'));

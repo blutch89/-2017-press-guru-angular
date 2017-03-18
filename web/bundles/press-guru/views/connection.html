@@ -43,36 +43,41 @@
                 <div class="connection-interior center-block">
                     <p class="connection-title">S'inscrire</h1>
                     <hr class="connection-separator" />
-                    <div class="alert alert-danger" role="alert" ng-show="registrationErrorMsg">
-                        {{ registrationErrorMsg }}
+                    <div class="alert alert-success" role="alert" ng-show="confirmationSended">
+                        <p>Un email de confirmation vous a été envoyé</p>
                     </div>
-                    <form name="registrationForm" ng-submit="processRegistrationForm()" novalidate>
-                        <div class="form-group" ng-class="{'has-error': registrationForm.email.$touched && registrationForm.email.$invalid }">
-                            <input type="email" id="email" name="email"  class="form-control input-lg" placeholder="E-mail"
-                                   ng-model="registrationFormData.email" required="required" ng-minlength="3" ng-maxlength="30" />
-                            <span id="email-helpblock" class="help-block" ng-show="registrationForm.email.$touched && registrationForm.email.$invalid">
-                                Ce champs doit être une adresse e-mail.
-                            </span>
+                    <div ng-hide="confirmationSended">
+                        <div class="alert alert-danger" role="alert" ng-show="registrationErrorMsg">
+                            {{ registrationErrorMsg }}
                         </div>
+                        <form name="registrationForm" ng-submit="processRegistrationForm()" novalidate>
+                            <div class="form-group" ng-class="{'has-error': registrationForm.email.$touched && registrationForm.email.$invalid }">
+                                <input type="email" id="email" name="email"  class="form-control input-lg" placeholder="E-mail"
+                                       ng-model="registrationFormData.email" required="required" ng-minlength="3" ng-maxlength="30" />
+                                <span id="email-helpblock" class="help-block" ng-show="registrationForm.email.$touched && registrationForm.email.$invalid">
+                                    Ce champs doit être une adresse e-mail.
+                                </span>
+                            </div>
 
-                        <div class="form-group" ng-class="{'has-error': registrationForm.first.$touched && registrationForm.first.$invalid }">
-                            <input type="password" id="first" name="first"  class="form-control input-lg" placeholder="Mot de passe"
-                                   ng-model="registrationFormData.first" required="required" ng-minlength="4" ng-maxlength="100" />
-                            <span id="first-helpblock" class="help-block" ng-show="registrationForm.first.$touched && registrationForm.first.$invalid">
-                                Ce champs est requis et doit être compris entre 4 et 100 caractères.
-                            </span>
-                        </div>
+                            <div class="form-group" ng-class="{'has-error': registrationForm.first.$touched && registrationForm.first.$invalid }">
+                                <input type="password" id="first" name="first"  class="form-control input-lg" placeholder="Mot de passe"
+                                       ng-model="registrationFormData.first" required="required" ng-minlength="4" ng-maxlength="100" />
+                                <span id="first-helpblock" class="help-block" ng-show="registrationForm.first.$touched && registrationForm.first.$invalid">
+                                    Ce champs est requis et doit être compris entre 4 et 100 caractères.
+                                </span>
+                            </div>
 
-                        <div class="form-group" ng-class="{'has-error': registrationForm.second.$touched && registrationForm.second.$invalid }">
-                            <input type="password" id="second" name="second"  class="form-control input-lg" placeholder="Retapez le mot de passe"
-                                   ng-model="registrationFormData.second" required="required" ng-minlength="4" ng-maxlength="100" />
-                            <span id="second-helpblock" class="help-block" ng-show="registrationForm.second.$touched && registrationForm.second.$invalid">
-                                Ce champs est requis et doit être compris entre 4 et 100 caractères.
-                            </span>
-                        </div>
-                        <br />
-                        <input type="submit" id="_submit" name="_submit" value="S'inscrire" class="btn btn-primary btn-lg connection-submit" ng-disabled="registrationForm.$invalid" />
-                    </form>
+                            <div class="form-group" ng-class="{'has-error': registrationForm.second.$touched && registrationForm.second.$invalid }">
+                                <input type="password" id="second" name="second"  class="form-control input-lg" placeholder="Retapez le mot de passe"
+                                       ng-model="registrationFormData.second" required="required" ng-minlength="4" ng-maxlength="100" />
+                                <span id="second-helpblock" class="help-block" ng-show="registrationForm.second.$touched && registrationForm.second.$invalid">
+                                    Ce champs est requis et doit être compris entre 4 et 100 caractères.
+                                </span>
+                            </div>
+                            <br />
+                            <input type="submit" id="_submit" name="_submit" value="S'inscrire" class="btn btn-primary btn-lg connection-submit" ng-disabled="registrationForm.$invalid" />
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

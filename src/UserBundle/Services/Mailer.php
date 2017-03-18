@@ -24,7 +24,7 @@ class Mailer implements MailerInterface {
     public function sendConfirmationEmailMessage(User $user) {
         $body = $this->templating->render(
             "UserBundle::email.txt.twig",
-            array("activation-link", $this->activationLink.$user->getConfirmationToken())
+            array("activation_link" => $this->activationLink.$user->getConfirmationToken())
         );
         $this->sendEmailMessage($this->subject, $user->getEmail(), $body);
     }

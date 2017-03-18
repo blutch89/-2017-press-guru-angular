@@ -2,11 +2,12 @@ angular.module('pressGuruApp')
     .controller('ConnectionController', function ($scope, $location, authentificationService, userService) {
         connectionController = this;
     
-        // Variables propre au login
+        // Variables propre au login et register
         $scope.loginFormData = {};
         $scope.loginErrorMsg = "";
         $scope.registrationFormData = {};
         $scope.registrationErrorMsg = "";
+        $scope.confirmationSended = false;
     
         // Fonction permettant de loguer un utilisateur
         $scope.processLoginForm = function() {
@@ -26,8 +27,8 @@ angular.module('pressGuruApp')
         // Fonction permettant de s'enregistrer
         $scope.processRegistrationForm = function() {      
             authentificationService.registerRequest($scope.registrationFormData, function successCalllback(response) {
-                if (response.data.success == true) {        // Si réussi à s'enregistrer, log l'utilisateur
-                    $scope.registrationErrorMsg = "Email envoyé";
+                if (response.data.success == true) {
+                    $scope.confirmationSended = true;
                 } else {
                     $scope.registrationErrorMsg = response.data.error;
                 }
