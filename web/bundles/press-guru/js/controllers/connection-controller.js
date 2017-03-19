@@ -17,7 +17,11 @@ angular.module('pressGuruApp')
 
                     $location.path("/");
                 } else {
-                    $scope.loginErrorMsg = "L'utilisateur ou le mot de passe est incorrect.";
+                    if (response.data.error == "Account disabled") {
+                        $scope.loginErrorMsg = "L'utilisateur n'est pas encore activé.";
+                    } else {
+                        $scope.loginErrorMsg = "L'utilisateur ou le mot de passe est incorrect.";
+                    }
                 }
             }, function errorCallback(response) {
                 $scope.loginErrorMsg = "L'utilisateur ou le mot de passe est incorrect.";

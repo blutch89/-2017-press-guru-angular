@@ -31,33 +31,35 @@
                         </button>
                         <a class="navbar-brand" href="#">Press Guru</a>
                     </div>
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">gigon.thomas.b@gmail.com <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a ng-click="logout()">Déconnexion</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-plus"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Ajouter un article</a></li>
-                                    <li><a href="#">Créer une étiquette</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                    <div ng-show="authentificationService.isConnected">
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">gigon.thomas.b@gmail.com <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a ng-click="logout()">Déconnexion</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-plus"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Ajouter un article</a></li>
+                                        <li><a href="#">Créer une étiquette</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </nav>
         </header>
-        
+
         <div class="container">
             <div class="row">
-                <nav id="nav-right" class="col-xs-12 col-sm-3">
+                <nav id="nav-right" class="col-xs-12 col-sm-3" ng-show="authentificationService.isConnected">
                     <p class="nav-title">Articles</p>
                     <ul class="nav nav-pills nav-stacked smaller-nav side-nav">
                         <li role="presentation"><a href="#">Tous les articles (23)</a></li>
@@ -66,7 +68,7 @@
                         <li role="presentation"><a href="#">A partager (4)</a></li>
                         <li role="presentation"><a href="#">Gérer/afficher les étiquettes</a></li>
                     </ul>
-                    
+
                     <p class="nav-title">RSS</p>
                     <ul class="nav nav-pills nav-stacked smaller-nav">
                         <li role="presentation"><a href="#">Sciences - Espace (3)</a></li>
@@ -75,11 +77,10 @@
                         <li role="presentation"><a href="#">Gérer/afficher les flux</a></li>
                     </ul>
                 </nav>
-                <div ng-view="" class="col-xs-12 col-sm-9"></div>
+                <div ng-view="" class="col-xs-12" ng-class="{'col-sm-9': authentificationService.isConnected, 'col-sm-12': !authentificationService.isConnected}"></div>
             </div>
         </div>
     </div>
-
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
@@ -93,6 +94,8 @@
         'bundles/press-guru/js/app.js'
         'bundles/press-guru/js/services/app-parameters-service.js'
         'bundles/press-guru/js/services/authentification-service.js'
+        'bundles/press-guru/js/services/http-response-interceptor.js'
+        'bundles/press-guru/js/services/api-service.js'
         'bundles/press-guru/js/services/user-service.js'
     	'bundles/press-guru/js/controllers/main-controller.js'
         'bundles/press-guru/js/controllers/index-controller.js'

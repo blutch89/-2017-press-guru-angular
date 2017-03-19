@@ -1,5 +1,6 @@
 angular.module('pressGuruApp')
-    .controller('IndexController', function ($scope, $location) {
+    .controller('IndexController', function ($scope, $location, apiService) {
         indexController = this;
-        $location.path("/connection");
+        
+        apiService.test(function(){}, function(){});
     });

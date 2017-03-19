@@ -1,5 +1,5 @@
 angular.module('pressGuruApp')
-    .service("appParametersService", function() {
+    .service("appParametersService", function () {
         var appParametersService = this;
 
         // Paths
@@ -9,4 +9,7 @@ angular.module('pressGuruApp')
         paths.api = paths.prefix + "frontend-api/";
 
         this.paths = paths;
+    
+        // Url de connexion
+        this.connctionPage = "/connection";
 });

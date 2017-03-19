@@ -17,10 +17,13 @@ class AuthenticationFailureHandler implements AuthenticationFailureHandlerInterf
     /**
      * {@inheritdoc}
      */
-    public function onAuthenticationFailure( Request $request, AuthenticationException $exception )
+    public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
-        $response = new JsonResponse(['success' => false], 401);    // TODO: supprimer la partie "data"
-        $response->headers->set('Content-Type', 'application/json');
+        if ($exception->getMessage() == "User account is disabled.") {
+            $response = new JsonResponse(['success' => false, "error" => "Account disabled"], 401);
+        } else {
+            $response = new JsonResponse(['success' => false], 401);    // TODO: supprimer la partie "data"
+        }
 
         return $response;
     }

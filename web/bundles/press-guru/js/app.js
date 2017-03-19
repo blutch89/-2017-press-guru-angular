@@ -1,6 +1,6 @@
 angular
     .module('pressGuruApp', ['ngRoute', 'ui.bootstrap'])
-    .config(function ($routeProvider) {
+    .config(["$routeProvider", "$httpProvider", function ($routeProvider, $httpProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'bundles/press-guru/views/index.html',
@@ -13,4 +13,6 @@ angular
             .otherwise({
                 redirectTo: '/'
             });
-    });
+
+        $httpProvider.interceptors.push('httpResponseInterceptor');
+    }]);

@@ -1,6 +1,7 @@
 angular.module('pressGuruApp')
-    .controller('MainController', function ($scope, $location, authentificationService) {
+    .controller('MainController', function ($scope, $location, authentificationService, appParametersService) {
         mainController = this;
+        $scope.authentificationService = authentificationService;
 
         // Déconnecte l'utilisateur
         $scope.logout = function() {
@@ -14,5 +15,4 @@ angular.module('pressGuruApp')
     			
     		});
     	};
-        
     });

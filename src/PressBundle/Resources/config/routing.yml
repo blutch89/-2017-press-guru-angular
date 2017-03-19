@@ -1,3 +1,7 @@
 press_homepage:
     path:     /
     defaults: { _controller: PressBundle:Default:index }
+    
+press_test:
+    path:     /frontend-api/test
+    defaults: { _controller: PressBundle:Default:test }

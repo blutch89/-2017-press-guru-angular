@@ -33,6 +33,6 @@ security:
             anonymous: ~
             provider: main
             context: _security_frontend
-#
-#    access_control:
-#        - { path: ^/frontend-api, roles: ROLE_USER }
+
+    access_control:
+        - { path: ^/frontend-api, roles: ROLE_USER }
