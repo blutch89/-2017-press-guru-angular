@@ -3,7 +3,7 @@
 namespace PressBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DefaultController extends Controller
 {
@@ -14,6 +14,8 @@ class DefaultController extends Controller
     
     // TODO: Supprimer cette fonction
     public function testAction() {
-        return new Response("test");
+        return new JsonResponse([
+                'success' => true
+            ], 200);
     }
 }

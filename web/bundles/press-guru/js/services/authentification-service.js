@@ -1,8 +1,5 @@
 angular.module('pressGuruApp')
-    .service("authentificationService", function ($http, $location, appParametersService) {
-        // Flag si connecté ou non
-        this.isConnected = false;
-    
+    .service("authentificationService", function ($http, $location, appParametersService) {    
         this.loginRequest = function (datas, successFunction, errorFunction) {
             this.executePostForm(appParametersService.paths.prefix + "login_check", datas, successFunction, errorFunction);
         };

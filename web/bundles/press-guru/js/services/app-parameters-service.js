@@ -10,6 +10,6 @@ angular.module('pressGuruApp')
 
         this.paths = paths;
     
-        // Url de connexion
-        this.connctionPage = "/connection";
+        // Flag de connexion
+        this.isConnected = false;
 });
