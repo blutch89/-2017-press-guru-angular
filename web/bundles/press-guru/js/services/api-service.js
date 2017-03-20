@@ -6,6 +6,8 @@ angular.module('pressGuruApp')
             this.executeRestApi(appParametersService.paths.api + "test",
             	successFunction, errorFunction);
         };
+    
+        
 
 
 

@@ -2,3 +2,8 @@ user_register:
     path: /register
     defaults: { _controller: UserBundle:Registration:register }
     methods: POST
+    
+user_confirm:
+    path: /confirm/{token}
+    defaults: { _controller: UserBundle:Registration:confirm }
+    methods: GET
