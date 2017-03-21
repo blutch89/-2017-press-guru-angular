@@ -3,6 +3,10 @@ angular.module('pressGuruApp')
         mainController = this;
         $scope.appParametersService = appParametersService;
 
+        $scope.isItConnectionPage = function() {
+            return $location.path();
+        };
+        
         // Déconnecte l'utilisateur
         $scope.logout = function() {
     		authentificationService.logoutRequest(function successCallback(response) {
