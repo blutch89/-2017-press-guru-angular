@@ -11,7 +11,8 @@ angular.module('pressGuruApp')
         this.paths = paths;
     
         // Connexion pages
-        var connectionPages = [
-            "/connection"   
+        this.connectionPages = [
+            "/connection",
+            "/registration-confirmation"
         ];
 });

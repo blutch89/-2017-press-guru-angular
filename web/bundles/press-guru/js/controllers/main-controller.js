@@ -11,7 +11,6 @@ angular.module('pressGuruApp')
         $scope.logout = function() {
     		authentificationService.logoutRequest(function successCallback(response) {
     			if (response.data.success == true) {
-                    appParametersService.isConnected = false;
 	    			$location.path("/connection");
 	    		} else {
 
@@ -20,4 +19,19 @@ angular.module('pressGuruApp')
     			
     		});
     	};
+    
+        // Utile pour savoir si oui ou non on affiche les menus et les en-tête
+        $scope.checkIfMustBeHidden = function() {
+            var path = $location.path();
+            
+            for (var index in appParametersService.connectionPages) {
+                var url = appParametersService.connectionPages[index];                                                   
+                                                                   
+                if (path.substr(0, url.length) == url) {
+                    return true;
+                }
+            }
+            
+            return false;                              
+        }
     });
