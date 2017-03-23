@@ -9,7 +9,7 @@ angular.module('pressGuruApp')
         };
     
         this.activeAccount = function (token, successFunction, errorFunction) {
-            this.executeRestApi(appParametersService.paths.prefix + "confirm/" + token)
+            this.executeRestApi(appParametersService.paths.prefix + "confirm/" + token, successFunction, errorFunction)
         };
     
         this.logoutRequest = function(successFunction, errorFunction) {

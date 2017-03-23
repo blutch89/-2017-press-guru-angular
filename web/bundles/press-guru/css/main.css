@@ -45,6 +45,15 @@ header {
     width: 100%;
 }
 
+/* Page registration confirmation */
+.confirm-text {
+    font-size: 1.2em;
+}
+
+.confirm-icon {
+    font-size: 6em;
+}
+
 @media (min-width: 1400px) {
     .container {
         width: 1400px;

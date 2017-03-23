@@ -79,13 +79,12 @@ class RegistrationController extends Controller
         $user = $userManager->findUserByConfirmationToken($token);
         
         if ($user == null) {
-            return $this->sendErrorMessage($token."L'utilisateur lié à ce lien n'existe pas.");
+            return $this->sendErrorMessage("L'utilisateur lié à ce lien n'existe pas ou a déjà été activé.");
         }
         
         // Activation du compte
         $user->setConfirmationToken(null);
         $user->setEnabled(true);
-        $user->setLastLogin(new \DateTime());
         
         try {
             // Met à jour l'utilisateur
