@@ -51,7 +51,7 @@ class RegistrationController extends Controller
         }
 
         try {
-            // Persist l'utilisateur
+            // Met à jour l'utilisateur
             $userManager->updateUser($user, true);
             
             // Averti l'utilisateur par email avec un lien d'activation de l'utilisateur
@@ -61,10 +61,42 @@ class RegistrationController extends Controller
             return new JsonResponse([
                 'success' => true
             ], 200);
-        } catch(UniqueConstraintViolationException $e){     // S'il existe déjà
+        } catch (UniqueConstraintViolationException $e) {     // S'il existe déjà
             return $this->sendErrorMessage("Cet utilisateur existe déjà.");
         } catch (\Exception $e) {                           // Toute autre exception
             return $this->sendErrorMessage("Une erreur inconnue s'est produite lors de l'enregistrement de l'utilisateur.");
+        }
+    }
+    
+    public function confirmAction($token) {
+        $userManager = $this->container->get('fos_user.user_manager');
+        
+        // Tests
+        if ($token == null) {
+            return $this->sendErrorMessage("Le lien que vous avez utilisé n'est pas valide.");
+        }
+        
+        $user = $userManager->findUserByConfirmationToken($token);
+        
+        if ($user == null) {
+            return $this->sendErrorMessage($token."L'utilisateur lié à ce lien n'existe pas.");
+        }
+        
+        // Activation du compte
+        $user->setConfirmationToken(null);
+        $user->setEnabled(true);
+        $user->setLastLogin(new \DateTime());
+        
+        try {
+            // Met à jour l'utilisateur
+            $userManager->updateUser($user);
+            
+            // Retourne la réponse
+            return new JsonResponse([
+                'success' => true
+            ], 200);
+        } catch(\Exception $e) {
+            return $this->sendErrorMessage("Une erreur inconnue s'est produite lors de l'activation de l'utilisateur.");
         }
     }
 
