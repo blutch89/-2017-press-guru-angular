@@ -2,6 +2,10 @@ press_homepage:
     path:     /
     defaults: { _controller: PressBundle:Default:index }
     
+press_articles_add:
+    path: /frontend-api/articles/add
+    defaults: {_controller: PressBundle:Articles:add }
+    
 press_test:
     path:     /frontend-api/test
     defaults: { _controller: PressBundle:Default:test }

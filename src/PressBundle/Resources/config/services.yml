@@ -8,3 +8,6 @@ services:
         class: PressBundle\EntryPoint\AuthenticationEntryPoint
     ucs.security.logout_success_handler:
         class: PressBundle\Handler\LogoutSuccessHandler
+        
+    press.site_extractor:
+        class: PressBundle\Services\SiteExtractor

@@ -1,6 +1,11 @@
 angular.module('pressGuruApp')
     .service("apiService", function($http, $location, appParametersService) {
     	apiService = this;
+    
+        this.addArticle = function(datas, successFunction, errorFunction) {
+            this.executePostForm(appParametersService.paths.api + "articles/add", datas,
+            	successFunction, errorFunction);
+        };
 
         this.test = function(successFunction, errorFunction) {
             this.executeRestApi(appParametersService.paths.api + "test",
