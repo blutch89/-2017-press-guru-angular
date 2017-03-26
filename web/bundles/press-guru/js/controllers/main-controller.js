@@ -2,6 +2,9 @@ angular.module('pressGuruApp')
     .controller('MainController', function ($scope, $location, authentificationService, appParametersService) {
         mainController = this;
         $scope.appParametersService = appParametersService;
+    
+        // A modifier
+        $scope.addArticleUrl = "";
 
         $scope.isItConnectionPage = function() {
             return $location.path();
