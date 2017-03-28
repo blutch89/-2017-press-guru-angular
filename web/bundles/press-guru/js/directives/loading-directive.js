@@ -5,17 +5,11 @@ angular.module('pressGuruApp')
         restrict: 'A',
         transclude: true,
         replace: true,
-        scope: {
-            loading: "=loading"
-        },
+        scope: true,
         compile: function compile(element, attrs, transclude) {
             var spinner = new Spinner().spin();
-            var loadingContainer = element.find("div")[0];
-//            var loadingContainer = element.find(".loading-container")[0];
-            loadingContainer.appendChild(spinner.el);
-        },
-        controller: function($scope) {
-            console.log($scope);
+            var loadingContainer = $(element).find(".loading-container")[0];
+            $(loadingContainer).html(spinner.el);
         }
     };
   });

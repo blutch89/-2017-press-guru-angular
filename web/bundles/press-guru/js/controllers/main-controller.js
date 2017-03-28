@@ -2,26 +2,9 @@ angular.module('pressGuruApp')
     .controller('MainController', function ($scope, $location, authentificationService, appParametersService, apiService) {
         mainController = this;
         $scope.appParametersService = appParametersService;
-    
-        $scope.loading = true;
-    
-        // Variables liées à l'ajout d'articles
-        $scope.addArticleDatas = {};
 
         $scope.isItConnectionPage = function() {
             return $location.path();
-        };
-    
-        $scope.processAddArticleForm = function() {
-            apiService.addArticle($scope.addArticleDatas, function successCallback(response) {
-                if (response.data.success == true) {
-                    console.log("ajout ok");
-                } else {
-                    console.log("ajout erreur: " + response.data.error);
-                }
-            }, function errorCallback(response) {
-                console.log("ajout erreur: " + response.data.error);
-            });
         };
         
         // Déconnecte l'utilisateur

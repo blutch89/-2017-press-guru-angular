@@ -83,29 +83,39 @@
     </div>
     
     <!-- Dialogs -->
-    <div class="modal fade" id="add-article" tabindex="-1" role="dialog" aria-labelledby="add-article-label">
+    <div class="modal fade" id="add-article" tabindex="-1" role="dialog" aria-labelledby="add-article-label" ng-controller="AddArticleController">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="resetDatas()"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="add-article-label">Ajout d'article</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Entrer l'url de l'article dans ce champs pour l'ajouter</p>
-                    <form name="addArticleForm" novalidate>
-                        <div class="form-group" ng-class="{'has-error': addArticleForm.url.$touched && addArticleForm.url.$invalid }">
-                            <input name="url" type="url" class="form-control" placeholder="Url" required ng-model="addArticleDatas.url" />
-                            <span id="url-help-block" class="help-block" ng-show="addArticleForm.url.$touched && addArticleForm.url.$invalid">
-                                Ce champs est requis et doit être une url.
-                            </span>
+                    <div ng-show="!success">
+                        <div class="alert alert-danger" role="alert" ng-show="addArticleErrorMsg">
+                            <p ng-bind="addArticleErrorMsg"></p>
                         </div>
-                    </form>
+                        <p>Entrer l'url de l'article dans ce champs pour l'ajouter</p>
+                        <form name="addArticleForm" novalidate>
+                            <div class="form-group" ng-class="{'has-error': addArticleForm.url.$touched && addArticleForm.url.$invalid }">
+                                <input name="url" type="url" class="form-control" placeholder="Url" required ng-model="addArticleDatas.url" />
+                                <span id="url-help-block" class="help-block" ng-show="addArticleForm.url.$touched && addArticleForm.url.$invalid">
+                                    Ce champs est requis et doit être une url.
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                    <div ng-show="success">
+                        <p class="confirm-text text-center">
+                            <span class="glyphicon glyphicon-ok text-success confirm-icon"></span><br />
+                            L'article a bien été ajouté
+                        </p>
+                    </div>
+                    <div loading="loading"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                    <div loading>
-                        <button type="button" class="btn btn-primary" ng-click="processAddArticleForm()" ng-disabled="addArticleForm.$invalid">Ajouter</button>
-                    </div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="resetDatas()">Fermer</button>
+                    <button type="button" class="btn btn-primary" ng-click="processAddArticleForm()" ng-disabled="addArticleForm.$invalid || loading" ng-hide="success">Ajouter</button>
                 </div>
             </div>
         </div>
@@ -129,6 +139,7 @@
         'bundles/press-guru/js/services/user-service.js'
         'bundles/press-guru/js/directives/loading-directive.js'
     	'bundles/press-guru/js/controllers/main-controller.js'
+        'bundles/press-guru/js/controllers/add-article-controller.js'
         'bundles/press-guru/js/controllers/index-controller.js'
         'bundles/press-guru/js/controllers/connection-controller.js'
         'bundles/press-guru/js/controllers/registration-confirmation-controller.js' %}
