@@ -11,8 +11,12 @@ use PressBundle\Services\SiteExtractorInterface;
 use PressBundle\Entity\Article;
 
 class ArticlesController extends Controller {
+    
     public function addAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
         $siteExtractor = $this->get("press.site_extractor");
+        $user = $this->get('security.context')->getToken()->getUser();
+        $validator = $this->get('validator');
         
         // Paramètres de requête
         $url = $request->request->get("url");
@@ -25,13 +29,31 @@ class ArticlesController extends Controller {
         try {
             // Extraction des informations du site
             $infos = $siteExtractor->extractAllDatas($url);
-
-            // TODO: enregistrer l'article en base de données
+            
+            // Création de l'article
             $article = new Article();
-            // ...
+            $article->setTitle($infos["title"]);
+            $article->setDescription($infos["description"]);
+            $article->setPicture($infos["image"]);
+            $article->setLink($url);
+            $article->setArchived(false);
+            $article->setOwner($user);
+            
+            // Validations
+            $validationErrors = $validator->validate($article);
+            
+            if (count($validationErrors) > 0) {
+                return $this->sendErrorMessage($validationErrors[0]->getMessage());
+            }
+            
+            // Sauvegarde
+            $em->persist($article);
+            $em->flush();
+            
+            return new JsonResponse(["success" => true], 200);
         } catch (\Exception $e) {
             if (strpos($e->getMessage(), "failed to open stream") !== false) {
-                return $this->sendErrorMessage("Le lien spécifié est introuvable.");
+                return $this->sendErrorMessage("L'url spécifiée est introuvable.");
             }
             
             return $this->sendErrorMessage("Une erreur inconnue s'est produite.");

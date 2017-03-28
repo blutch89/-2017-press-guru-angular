@@ -3,7 +3,9 @@ angular.module('pressGuruApp')
         mainController = this;
         $scope.appParametersService = appParametersService;
     
-        // A modifier
+        $scope.loading = true;
+    
+        // Variables liées à l'ajout d'articles
         $scope.addArticleDatas = {};
 
         $scope.isItConnectionPage = function() {

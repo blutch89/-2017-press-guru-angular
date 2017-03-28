@@ -5,12 +5,14 @@ namespace PressBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Article
  *
  * @ORM\Table(name="articles")
  * @ORM\Entity(repositoryClass="PressBundle\Repository\ArticleRepository")
+ * @UniqueEntity(fields={"link"}, message="Cet article existe déjà")
  */
 class Article
 {
@@ -61,6 +63,11 @@ class Article
     private $archived;
     
     /**
+     * @ORM\Column(name="creation_date", type="datetime")
+     */
+    private $creation_date;
+    
+    /**
     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="articles", cascade={"persist"})
     */
     private $tags;
@@ -74,6 +81,7 @@ class Article
     // Constructeur
     public function __construct() {
         $this->tags = new ArrayCollection();
+        $this->creation_date = new \DateTime();
     }
 
 
@@ -240,5 +248,28 @@ class Article
     public function getOwner()
     {
         return $this->owner;
+    }
+
+    /**
+     * Set creation_date
+     *
+     * @param \DateTime $creationDate
+     * @return Article
+     */
+    public function setCreationDate($creationDate)
+    {
+        $this->creation_date = $creationDate;
+
+        return $this;
+    }
+
+    /**
+     * Get creation_date
+     *
+     * @return \DateTime 
+     */
+    public function getCreationDate()
+    {
+        return $this->creation_date;
     }
 }
