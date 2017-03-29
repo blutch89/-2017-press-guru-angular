@@ -65,7 +65,7 @@ class Article
     /**
      * @ORM\Column(name="creation_date", type="datetime")
      */
-    private $creation_date;
+    private $creationDate;
     
     /**
     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="articles", cascade={"persist"})
@@ -81,7 +81,7 @@ class Article
     // Constructeur
     public function __construct() {
         $this->tags = new ArrayCollection();
-        $this->creation_date = new \DateTime();
+        $this->creationDate = new \DateTime();
     }
 
 
@@ -258,7 +258,7 @@ class Article
      */
     public function setCreationDate($creationDate)
     {
-        $this->creation_date = $creationDate;
+        $this->creationDate = $creationDate;
 
         return $this;
     }
@@ -270,6 +270,6 @@ class Article
      */
     public function getCreationDate()
     {
-        return $this->creation_date;
+        return $this->creationDate;
     }
 }

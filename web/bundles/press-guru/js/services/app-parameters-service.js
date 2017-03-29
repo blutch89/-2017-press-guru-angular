@@ -10,6 +10,17 @@ angular.module('pressGuruApp')
 
         this.paths = paths;
     
+        // Intervals
+        var intervals = {};
+        intervals.refreshArticlesPageInterval = 0;
+//        intervals.refreshGamePageInterval = 0;
+        intervals.clearAllPageIntervals = function() {
+            clearInterval(intervals.refreshArticlesPageInterval);
+//            clearInterval(intervals.refreshGamePageInterval);
+        };
+    
+        this.intervals = intervals;
+    
         // Connexion pages
         this.connectionPages = [
             "/connection",

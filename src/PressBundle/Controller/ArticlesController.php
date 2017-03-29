@@ -12,6 +12,19 @@ use PressBundle\Entity\Article;
 
 class ArticlesController extends Controller {
     
+    public function getAllAction() {
+        $em = $this->getDoctrine()->getManager();
+        $articlesRepository = $em->getRepository("PressBundle:Article");
+        $user = $this->get('security.context')->getToken()->getUser();
+        
+        $articles = $articlesRepository->getArticlesFromUser($user->getId());
+
+        return new JsonResponse([
+            "success" => true,
+            "articles" => $articles
+        ], 200);
+    }
+    
     public function addAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $siteExtractor = $this->get("press.site_extractor");
@@ -56,7 +69,7 @@ class ArticlesController extends Controller {
                 return $this->sendErrorMessage("L'url spécifiée est introuvable.");
             }
             
-            return $this->sendErrorMessage("Une erreur inconnue s'est produite.");
+            return $this->sendErrorMessage("Une erreur inconnue s'est produite.//".$e->getMessage());
         }
     }
     

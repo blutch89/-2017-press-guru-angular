@@ -2,13 +2,37 @@ angular.module('pressGuruApp')
     .service("apiService", function($http, $location, appParametersService) {
     	apiService = this;
     
+        // Ces flags servent à éviter de surcharger le client de requêtes AJAX de type refresh.
+    	// Si la requête précédente n'est pas terminée, la suivante ne se lancera pas
+    	this.refreshPagesFlags = {
+    		getArticles: true,
+//    		getGame: true,
+    		setRequestAsCompleted: function() {
+    			apiService.refreshPagesFlags.getArticles = true;
+//            	apiService.refreshPagesFlags.getGame = true;
+    		}
+    	};
+    
+        this.getArticles = function(successFunction, errorFunction) {
+            // Check si la précédente requête s'est terminée. Si non, quitte la fonction
+        	if (! this.refreshPagesFlags.getArticles) {
+        		return;
+        	}
+
+        	// Indique que la requête est en cours
+        	this.refreshPagesFlags.getArticles = false;
+            
+            this.executeRestApi(appParametersService.paths.api + "articles/get/all", function successCallback(response) {
+                successFunction(response);
+                apiService.refreshPagesFlags.setRequestAsCompleted();
+            }, function errorCallback(response) {
+                errorFunction(response);
+                apiService.refreshPagesFlags.setRequestAsCompleted();
+            });
+        };
+    
         this.addArticle = function(datas, successFunction, errorFunction) {
             this.executePostForm(appParametersService.paths.api + "articles/add", datas,
-            	successFunction, errorFunction);
-        };
-
-        this.test = function(successFunction, errorFunction) {
-            this.executeRestApi(appParametersService.paths.api + "test",
             	successFunction, errorFunction);
         };
     
