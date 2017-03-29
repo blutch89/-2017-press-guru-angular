@@ -82,7 +82,7 @@
         </div>
     </div>
     
-    <!-- Dialogs -->
+    <!-- Dialog AddArticle -->
     <div class="modal fade" id="add-article" tabindex="-1" role="dialog" aria-labelledby="add-article-label" ng-controller="AddArticleController">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -92,17 +92,20 @@
                 </div>
                 <div class="modal-body">
                     <div ng-show="!success">
+                        <loading value="addArticleLoading"></loading>
                         <div class="alert alert-danger" role="alert" ng-show="addArticleErrorMsg">
                             <p ng-bind="addArticleErrorMsg"></p>
                         </div>
                         <p>Entrer l'url de l'article dans ce champs pour l'ajouter</p>
                         <form name="addArticleForm" novalidate>
-                            <div class="form-group" ng-class="{'has-error': addArticleForm.url.$touched && addArticleForm.url.$invalid }">
-                                <input name="url" type="url" class="form-control" placeholder="Url" required ng-model="addArticleDatas.url" />
-                                <span id="url-help-block" class="help-block" ng-show="addArticleForm.url.$touched && addArticleForm.url.$invalid">
-                                    Ce champs est requis et doit être une url.
-                                </span>
-                            </div>
+                            <fieldset ng-disabled="loading">
+                                <div class="form-group" ng-class="{'has-error': addArticleForm.url.$touched && addArticleForm.url.$invalid }">
+                                    <input name="url" type="url" class="form-control" placeholder="Url" required ng-model="addArticleDatas.url" />
+                                    <span id="url-help-block" class="help-block" ng-show="addArticleForm.url.$touched && addArticleForm.url.$invalid">
+                                        Ce champs est requis et doit être une url.
+                                    </span>
+                                </div>
+                            </fieldset>
                         </form>
                     </div>
                     <div ng-show="success">
@@ -111,7 +114,6 @@
                             L'article a bien été ajouté
                         </p>
                     </div>
-                    <div loading="loading"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="resetDatas()">Fermer</button>

@@ -9,29 +9,32 @@
                         {{ loginErrorMsg }}
                     </div>
                     <form name="connectionForm" ng-submit="processLoginForm()" novalidate>
-                        <div class="form-group" ng-class="{'has-error': connectionForm.email.$touched && connectionForm.email.$invalid }">
-                            <input type="email" id="email" name="email" class="form-control input-lg" placeholder="E-mail"
-                                   ng-model="loginFormData._username" required="required" />
-                            <span id="email-helpblock" class="help-block" ng-show="connectionForm.email.$touched && connectionForm.email.$invalid">
-                                Ce champs doit être une adresse e-mail.
-                            </span>
-                        </div>
-                        
-                        <div class="form-group" ng-class="{'has-error': connectionForm.password.$touched && connectionForm.password.$invalid }">
-                            <input type="password" id="password" name="password" class="form-control input-lg" placeholder="Mot de passe"
-                                   ng-model="loginFormData._password" required="required" ng-minlength="4" ng-maxlength="30" />
-                            <span id="password-helpblock" class="help-block" ng-show="connectionForm.password.$touched && connectionForm.password.$invalid">
-                                Ce champs est requis et doit être compris entre 4 et 30 caractères.
-                            </span>
-                        </div>
+                        <loading value="loginLoading"></loading>
+                        <fieldset ng-disabled="loginLoading">
+                            <div class="form-group" ng-class="{'has-error': connectionForm.email.$touched && connectionForm.email.$invalid }">
+                                <input type="email" id="email" name="email" class="form-control input-lg" placeholder="E-mail"
+                                       ng-model="loginFormData._username" required="required" />
+                                <span id="email-helpblock" class="help-block" ng-show="connectionForm.email.$touched && connectionForm.email.$invalid">
+                                    Ce champs doit être une adresse e-mail.
+                                </span>
+                            </div>
 
-                        <div class="checkbox">
-                            <label class="control-label">
-                                <input type="checkbox" id="remember_me" name="_remember_me" value="on" ng-model="loginFormData._remember_me" /> Se souvenir de moi
-                            </label>
-                        </div>
-                        <br />
-                        <input type="submit" id="_submit" name="_submit" value="Se connecter" class="btn btn-danger btn-lg connection-submit" ng-disabled="connectionForm.$invalid" />
+                            <div class="form-group" ng-class="{'has-error': connectionForm.password.$touched && connectionForm.password.$invalid }">
+                                <input type="password" id="password" name="password" class="form-control input-lg" placeholder="Mot de passe"
+                                       ng-model="loginFormData._password" required="required" ng-minlength="4" ng-maxlength="30" />
+                                <span id="password-helpblock" class="help-block" ng-show="connectionForm.password.$touched && connectionForm.password.$invalid">
+                                    Ce champs est requis et doit être compris entre 4 et 30 caractères.
+                                </span>
+                            </div>
+
+                            <div class="checkbox">
+                                <label class="control-label">
+                                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" ng-model="loginFormData._remember_me" /> Se souvenir de moi
+                                </label>
+                            </div>
+                            <br />
+                            <input type="submit" id="_submit" name="_submit" value="Se connecter" class="btn btn-danger btn-lg connection-submit" ng-disabled="connectionForm.$invalid" />
+                        </fieldset>
                     </form>
                 </div>
             </div>
@@ -50,32 +53,35 @@
                         <div class="alert alert-danger" role="alert" ng-show="registrationErrorMsg">
                             {{ registrationErrorMsg }}
                         </div>
-                        <form name="registrationForm" ng-submit="processRegistrationForm()" novalidate>
-                            <div class="form-group" ng-class="{'has-error': registrationForm.email.$touched && registrationForm.email.$invalid }">
-                                <input type="email" id="email" name="email"  class="form-control input-lg" placeholder="E-mail"
-                                       ng-model="registrationFormData.email" required="required" ng-minlength="3" ng-maxlength="30" />
-                                <span id="email-helpblock" class="help-block" ng-show="registrationForm.email.$touched && registrationForm.email.$invalid">
-                                    Ce champs doit être une adresse e-mail.
-                                </span>
-                            </div>
+                        <form name="registrationForm" ng-submit="processRegistrationForm()" novalidate ng-disabled="registrationLoading">
+                            <loading value="registrationLoading"></loading>
+                            <fieldset ng-disabled="registrationLoading">
+                                <div class="form-group" ng-class="{'has-error': registrationForm.email.$touched && registrationForm.email.$invalid }">
+                                    <input type="email" id="email" name="email"  class="form-control input-lg" placeholder="E-mail"
+                                           ng-model="registrationFormData.email" required="required" ng-minlength="3" ng-maxlength="30" />
+                                    <span id="email-helpblock" class="help-block" ng-show="registrationForm.email.$touched && registrationForm.email.$invalid">
+                                        Ce champs doit être une adresse e-mail.
+                                    </span>
+                                </div>
 
-                            <div class="form-group" ng-class="{'has-error': registrationForm.first.$touched && registrationForm.first.$invalid }">
-                                <input type="password" id="first" name="first"  class="form-control input-lg" placeholder="Mot de passe"
-                                       ng-model="registrationFormData.first" required="required" ng-minlength="4" ng-maxlength="100" />
-                                <span id="first-helpblock" class="help-block" ng-show="registrationForm.first.$touched && registrationForm.first.$invalid">
-                                    Ce champs est requis et doit être compris entre 4 et 100 caractères.
-                                </span>
-                            </div>
+                                <div class="form-group" ng-class="{'has-error': registrationForm.first.$touched && registrationForm.first.$invalid }">
+                                    <input type="password" id="first" name="first"  class="form-control input-lg" placeholder="Mot de passe"
+                                           ng-model="registrationFormData.first" required="required" ng-minlength="4" ng-maxlength="100" />
+                                    <span id="first-helpblock" class="help-block" ng-show="registrationForm.first.$touched && registrationForm.first.$invalid">
+                                        Ce champs est requis et doit être compris entre 4 et 100 caractères.
+                                    </span>
+                                </div>
 
-                            <div class="form-group" ng-class="{'has-error': registrationForm.second.$touched && registrationForm.second.$invalid }">
-                                <input type="password" id="second" name="second"  class="form-control input-lg" placeholder="Retapez le mot de passe"
-                                       ng-model="registrationFormData.second" required="required" ng-minlength="4" ng-maxlength="100" />
-                                <span id="second-helpblock" class="help-block" ng-show="registrationForm.second.$touched && registrationForm.second.$invalid">
-                                    Ce champs est requis et doit être compris entre 4 et 100 caractères.
-                                </span>
-                            </div>
-                            <br />
-                            <input type="submit" id="_submit" name="_submit" value="S'inscrire" class="btn btn-primary btn-lg connection-submit" ng-disabled="registrationForm.$invalid" />
+                                <div class="form-group" ng-class="{'has-error': registrationForm.second.$touched && registrationForm.second.$invalid }">
+                                    <input type="password" id="second" name="second"  class="form-control input-lg" placeholder="Retapez le mot de passe"
+                                           ng-model="registrationFormData.second" required="required" ng-minlength="4" ng-maxlength="100" />
+                                    <span id="second-helpblock" class="help-block" ng-show="registrationForm.second.$touched && registrationForm.second.$invalid">
+                                        Ce champs est requis et doit être compris entre 4 et 100 caractères.
+                                    </span>
+                                </div>
+                                <br />
+                                <input type="submit" id="_submit" name="_submit" value="S'inscrire" class="btn btn-primary btn-lg connection-submit" ng-disabled="registrationForm.$invalid" />
+                            </fieldset>
                         </form>
                     </div>
                 </div>

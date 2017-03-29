@@ -1,15 +1,16 @@
 angular.module('pressGuruApp')
   .directive('loading', function () {
     return {
-        template: '<div><div ng-show="loading" class="loading-container"></div><div ng-hide="loading" ng-transclude></div></div>',
-        restrict: 'A',
+        template: '<div ng-show="loading" class="loading-container"></div>',
+        restrict: 'E',
         transclude: true,
         replace: true,
-        scope: true,
+        scope: {
+            loading: '=value'
+        },
         compile: function compile(element, attrs, transclude) {
             var spinner = new Spinner().spin();
-            var loadingContainer = $(element).find(".loading-container")[0];
-            $(loadingContainer).html(spinner.el);
+            $(element).html(spinner.el);
         }
     };
   });
