@@ -56,6 +56,13 @@ class Article
     private $link;
     
     /**
+     * @var string
+     *
+     * @ORM\Column(name="domain_name", type="string", length=255)
+     */
+    private $domainName;
+    
+    /**
      * @var boolean
      *
      * @ORM\Column(name="archived", type="boolean")
@@ -82,6 +89,13 @@ class Article
     public function __construct() {
         $this->tags = new ArrayCollection();
         $this->creationDate = new \DateTime();
+    }
+    
+    private function calculateDomainName() {
+        $arrLink = parse_url($this->link);
+        $host = $arrLink["host"];
+        
+        return $host;
     }
 
 
@@ -173,6 +187,7 @@ class Article
     public function setLink($link)
     {
         $this->link = $link;
+        $this->domainName = $this->calculateDomainName();
 
         return $this;
     }
@@ -185,6 +200,18 @@ class Article
     public function getLink()
     {
         return $this->link;
+    }
+    
+    public function setDomainName($domainName)
+    {
+        $this->domainName = $domainName;
+
+        return $this;
+    }
+    
+    public function getDomainName()
+    {
+        return $this->domainName;
     }
     
     public function getTags() {

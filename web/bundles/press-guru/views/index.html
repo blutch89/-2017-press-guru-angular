@@ -2,7 +2,6 @@
     <div class="artile-container">
         <p ng-bind="value['title']" class="article-title"></p>
         <div class="article-image" style="background-image: url('{{ value['picture']}}');"></div>
-<!--        <img ng-src="{{ value['picture'] }}" style="width: 100%;" />-->
-        <p class="article-domain-name">domain_name.com</p>
+        <p class="article-domain-name" ng-bind="value['domainName']"></p>
     </div>
 </div>

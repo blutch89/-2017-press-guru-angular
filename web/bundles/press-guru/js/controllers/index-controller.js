@@ -22,5 +22,5 @@ angular.module('pressGuruApp')
         };
     
         this.refreshPage();
-//        appParametersService.intervals.refreshArticlesPageInterval = setInterval(this.refreshPage, 2000);
+        appParametersService.intervals.refreshArticlesPageInterval = setInterval(this.refreshPage, 2000);
     });
