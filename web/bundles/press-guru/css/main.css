@@ -54,6 +54,41 @@ header {
     font-size: 6em;
 }
 
+/* Page index */
+.article-border-container {
+    height: 300px;          /* Trouver un moyen de gérer mieux ça */
+    margin-bottom: 20px;
+}
+
+.artile-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    background-color: #ffffff;
+    margin-right: 1.5%;
+}
+
+.article-title {
+    font-size: 1.2em;
+    padding: 4%;
+}
+
+.article-image {
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    height: 100%;   /* La hauteur est réglée au final par flex */ 
+    overflow: hidden;
+}
+
+.article-domain-name {
+    font-size: 0.8em;
+    color: #777;
+    padding: 4%;
+    margin: 0px;
+}
+
 @media (min-width: 1400px) {
     .container {
         width: 1400px;
