@@ -10,4 +10,10 @@ press_articles_add:
     path: /frontend-api/articles/add
     defaults: {_controller: PressBundle:Articles:add }
     
+press_articles_archive:
+    path: /frontend-api/articles/archive/{articleId}
+    defaults: {_controller: PressBundle:Articles:archive }
+    requirements:
+        articleId: \d+
+    
 

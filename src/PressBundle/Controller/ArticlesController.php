@@ -70,7 +70,30 @@ class ArticlesController extends Controller {
                 return $this->sendErrorMessage("L'url spécifiée est introuvable.");
             }
             
-            return $this->sendErrorMessage("Une erreur inconnue s'est produite.//".$e->getMessage());
+            return $this->sendErrorMessage("Une erreur inconnue s'est produite.");
+        }
+    }
+    
+    public function archiveAction($articleId) {
+        $em = $this->getDoctrine()->getManager();
+        $articleRepository = $this->getDoctrine()->getRepository("PressBundle:Article");
+        
+        // Tests
+        if ($articleId == null) {
+            return $this->sendErrorMessage("Impossible d'archiver l'article");
+        }
+        
+        try {
+            // Archive l'article
+            $article = $articleRepository->find($articleId);
+            $article->setArchived(true);
+            
+            // Sauvegarde
+            $em->flush();
+            
+            return new JsonResponse(["success" => true], 200);
+        } catch (\Exception $e) {
+            return $this->sendErrorMessage("Impossible d'archiver l'article");
         }
     }
     

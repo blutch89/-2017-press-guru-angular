@@ -88,15 +88,24 @@ header {
     overflow: hidden;
 }
 
+.article-footer {
+    padding: 4%;
+    display: flex;
+    justify-content: space-between;
+}
+
 .article-domain-name {
     font-size: 0.8em;
     color: #777;
-    padding: 4%;
     margin: 0px;
 }
 
 .article-favicon {
     width: 20px;
+}
+
+.article-actions {
+    color: #777;
 }
 
 @media (min-width: 1400px) {
