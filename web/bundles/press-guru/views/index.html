@@ -1,7 +1,16 @@
+<div class="alert-message alert alert-dismissable alert-danger" role="alert" ng-hide="isAlertClosed">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true" ng-click="closeAlertMessage()">&times;</button>
+    {{ alertMessage }}
+</div>
+
 <div class="col-xs-12 col-md-6 col-lg-4 article-border-container" ng-repeat="(index, value) in articles">
     <div class="article-container">
         <p class="article-title"><a href="{{ value['link'] }}" target="_blank">{{ value['title'] }}</a></p>
         <div class="article-image" style="background-image: url('{{ value['picture']}}');"></div>
         <p class="article-domain-name"><img ng-src="{{ value['favicon'] }}" class="article-favicon" /> {{ value['domainName'] }}</p>
     </div>
+</div>
+
+<div class="col-xs-12 col-sm-12" ng-show="articles[0] == null">
+    <p>Vous n'avez aucun article enregistré</p>
 </div>
