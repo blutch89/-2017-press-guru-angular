@@ -37,7 +37,6 @@ angular.module('pressGuruApp')
         $scope.closeAlertMessage = function() {
             $scope.alertMessage = "";
         	$scope.isAlertClosed = true;
-            $scope.alertType = "";
         };
         
         // Recharge la page
