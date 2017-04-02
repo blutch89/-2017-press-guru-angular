@@ -1,7 +1,7 @@
 <div class="col-xs-12 col-md-6 col-lg-4 article-border-container" ng-repeat="(index, value) in articles">
     <div class="artile-container">
-        <p ng-bind="value['title']" class="article-title"></p>
+        <p class="article-title"><a href="{{ value['link'] }}" target="_blank">{{ value['title'] }}</a></p>
         <div class="article-image" style="background-image: url('{{ value['picture']}}');"></div>
-        <p class="article-domain-name" ng-bind="value['domainName']"></p>
+        <p class="article-domain-name"><img ng-src="{{ value['favicon'] }}" class="article-favicon" /> {{ value['domainName'] }}</p>
     </div>
 </div>

@@ -74,6 +74,11 @@ header {
     padding: 4%;
 }
 
+.article-title a {
+    text-decoration: none;
+    color: #000000;
+}
+
 .article-image {
     background-size: cover;
     background-position: center center;
@@ -87,6 +92,10 @@ header {
     color: #777;
     padding: 4%;
     margin: 0px;
+}
+
+.article-favicon {
+    width: 25px;
 }
 
 @media (min-width: 1400px) {

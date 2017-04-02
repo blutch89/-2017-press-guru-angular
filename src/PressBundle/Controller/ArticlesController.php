@@ -49,6 +49,7 @@ class ArticlesController extends Controller {
             $article->setDescription($infos["description"]);
             $article->setPicture($infos["image"]);
             $article->setLink($url);
+            $article->setFavicon($infos["favicon"]);
             $article->setArchived(false);
             $article->setOwner($user);
             

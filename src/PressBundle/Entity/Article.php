@@ -63,6 +63,13 @@ class Article
     private $domainName;
     
     /**
+     * @var string
+     *
+     * @ORM\Column(name="favicon", type="text")
+     */
+    private $favicon;
+    
+    /**
      * @var boolean
      *
      * @ORM\Column(name="archived", type="boolean")
@@ -212,6 +219,18 @@ class Article
     public function getDomainName()
     {
         return $this->domainName;
+    }
+    
+    public function setFavicon($favicon)
+    {
+        $this->favicon = $favicon;
+
+        return $this;
+    }
+    
+    public function getFavicon()
+    {
+        return $this->favicon;
     }
     
     public function getTags() {
