@@ -65,7 +65,7 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="favicon", type="text")
+     * @ORM\Column(name="favicon", type="text", nullable=true)
      */
     private $favicon;
     
