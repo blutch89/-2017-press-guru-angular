@@ -29,7 +29,7 @@ class Article
      * @var string
      *
      * @ORM\Column(name="title", type="text")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="L'article ne contient aucun titre")
      */
     private $title;
 
@@ -43,7 +43,7 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="picture", type="string", length=255, nullable=true)
+     * @ORM\Column(name="picture", type="text", nullable=true)
      */
     private $picture;
 
