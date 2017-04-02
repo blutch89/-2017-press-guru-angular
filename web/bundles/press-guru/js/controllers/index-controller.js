@@ -1,9 +1,7 @@
 angular.module('pressGuruApp')
     .controller('IndexController', function ($scope, $location, apiService, appParametersService) {
         indexController = this;
-    
-        // Suppression de tous les timers
-        appParametersService.intervals.clearAllPageIntervals();
+        appParametersService.currentController = this;
         
         // Variables
         $scope.articles = {};
@@ -22,5 +20,4 @@ angular.module('pressGuruApp')
         };
     
         this.refreshPage();
-        appParametersService.intervals.refreshArticlesPageInterval = setInterval(this.refreshPage, 2000);
     });

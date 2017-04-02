@@ -1,5 +1,5 @@
 angular.module('pressGuruApp')
-    .controller('AddArticleController', function ($scope, apiService) {
+    .controller('AddArticleController', function ($scope, apiService, appParametersService) {
         addArticleController = this;
     
         // Variables liées à l'ajout d'articles
@@ -17,6 +17,9 @@ angular.module('pressGuruApp')
                 if (response.data.success == true) {
                     $scope.addArticleLoading = false;
                     $scope.success = true;
+                    
+                    // Refresh la page en cours
+                    appParametersService.currentController.refreshPage();
                 } else {
                     $scope.addArticleErrorMsg = response.data.error;
                     $scope.addArticleLoading = false;
