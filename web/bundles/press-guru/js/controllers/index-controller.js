@@ -1,6 +1,6 @@
 angular.module('pressGuruApp')
     .controller('IndexController', function ($scope, $location, apiService, appParametersService) {
-        indexController = this;
+        var indexController = this;
         appParametersService.currentController = this;
         
         // Variables
@@ -19,11 +19,41 @@ angular.module('pressGuruApp')
                     indexController.refreshPage();
                     $scope.createAlert("Article archivé", "success");
                 } else {
-                    $scope.createAlert("Impossible d'archiver l'article");
+                    $scope.createAlert("Impossible d'archiver l'article", "danger");
                 }
             }, function errorCallback(response) {
-                $scope.createAlert("Impossible d'archiver l'article");
+                $scope.createAlert("Impossible d'archiver l'article", "danger");
             });
+        };
+    
+        // Supprime un article
+        $scope.removeArticle = function(articleId) {
+            bootbox.confirm({
+                message: "Êtes-vous vraiment sûr de vouloir supprimer cet article ?",
+                buttons: {
+                    cancel: {
+                        label: 'Non',
+                        className: 'btn-default'
+                    },
+                    confirm: {
+                        label: 'Oui',
+                        className: 'btn-primary'
+                    }
+                },
+                callback: function(result) {
+                    if (result === true) {
+                        apiService.removeArticle(articleId, function successCallback(response) {
+                            if (response.data.success == true) {
+                                indexController.refreshPage();
+                                $scope.createAlert("Article supprimé", "success");
+                            } else {
+                                $scope.createAlert("Impossible de supprimer l'article", "danger");
+                            }
+                        }, function errorCallback(response) {
+                            $scope.createAlert("Impossible de supprime l'article", "danger");
+                        });
+                    }
+                }});
         };
     
         // Crée un message d'alerte

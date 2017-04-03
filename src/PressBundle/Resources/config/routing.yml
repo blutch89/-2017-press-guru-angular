@@ -15,5 +15,11 @@ press_articles_archive:
     defaults: {_controller: PressBundle:Articles:archive }
     requirements:
         articleId: \d+
+        
+press_articles_delete:
+    path: /frontend-api/articles/delete/{articleId}
+    defaults: {_controller: PressBundle:Articles:delete }
+    requirements:
+        articleId: \d+
     
 

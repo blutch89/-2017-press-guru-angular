@@ -15,7 +15,7 @@
                 <div class="article-actions">
                     <span class="glyphicon glyphicon-ok" title="Archiver" ng-click="archiveArticle(value['id'])"></span>&nbsp;
                     <span class="glyphicon glyphicon-tags" title="Modifier les étiquettes"></span>&nbsp;
-                    <span class="glyphicon glyphicon-trash" title="Supprimer"></span>
+                    <span class="glyphicon glyphicon-trash" title="Supprimer" ng-click="removeArticle(value['id'])"></span>
                 </div>
             </div>
         </div>
@@ -25,3 +25,23 @@
 <div class="col-xs-12 col-sm-12" ng-show="articles[0] == null">
     <p>Vous n'avez aucun article enregistré</p>
 </div>
+
+<!-- Dialog delete confirmation -->
+<!--
+<div class="modal fade" id="remove-article" tabindex="-1" role="dialog" aria-labelledby="remove-article-label">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="remove-article-label">Suppression d'article</h4>
+            </div>
+            <div class="modal-body">
+                <p>Êtes-vous vraiment sûr de vouloir supprimer cet article ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="removeArticle()">Oui</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Non</button>
+            </div>
+        </div>
+    </div>
+</div>
+-->

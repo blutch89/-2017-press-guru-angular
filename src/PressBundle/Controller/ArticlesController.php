@@ -97,6 +97,29 @@ class ArticlesController extends Controller {
         }
     }
     
+    public function deleteAction($articleId) {
+        $em = $this->getDoctrine()->getManager();
+        $articleRepository = $this->getDoctrine()->getRepository("PressBundle:Article");
+        
+        // Tests
+        if ($articleId == null) {
+            return $this->sendErrorMessage("Impossible de supprimer l'article");
+        }
+        
+        try {
+            // Archive l'article
+            $article = $articleRepository->find($articleId);
+            $em->remove($article);
+            
+            // Sauvegarde
+            $em->flush();
+            
+            return new JsonResponse(["success" => true], 200);
+        } catch (\Exception $e) {
+            return $this->sendErrorMessage("Impossible d'archiver l'article");
+        }
+    }
+    
     private function sendErrorMessage($errorMessage) {
         return new JsonResponse([
             'success' => false,
