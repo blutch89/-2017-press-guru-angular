@@ -14,7 +14,7 @@
                 <p class="article-domain-name"><img ng-src="{{ value['favicon'] }}" class="article-favicon" /> {{ value['domainName'] }}</p>
                 <div class="article-actions">
                     <span class="glyphicon glyphicon-ok" title="Archiver" ng-click="archiveArticle(value['id'])"></span>&nbsp;
-                    <span class="glyphicon glyphicon-tags" title="Modifier les étiquettes"></span>&nbsp;
+                    <span class="glyphicon glyphicon-tags" title="Modifier les étiquettes" data-toggle="modal" data-target="#editLabelsDialog"></span>&nbsp;
                     <span class="glyphicon glyphicon-trash" title="Supprimer" ng-click="removeArticle(value['id'])"></span>
                 </div>
             </div>
@@ -26,22 +26,20 @@
     <p>Vous n'avez aucun article enregistré</p>
 </div>
 
-<!-- Dialog delete confirmation -->
-<!--
-<div class="modal fade" id="remove-article" tabindex="-1" role="dialog" aria-labelledby="remove-article-label">
+<!-- Dialog modification étiquettes -->
+<div class="modal fade" id="editLabelsDialog" tabindex="-1" role="dialog" aria-labelledby="editLabelsDialogLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="remove-article-label">Suppression d'article</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fermer"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="editLabelsDialogLabel">Modification des étiquettes</h4>
             </div>
             <div class="modal-body">
-                <p>Êtes-vous vraiment sûr de vouloir supprimer cet article ?</p>
+                test
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" ng-click="removeArticle()">Oui</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Non</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
             </div>
         </div>
     </div>
 </div>
--->
