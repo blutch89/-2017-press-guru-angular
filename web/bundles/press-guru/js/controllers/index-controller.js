@@ -11,7 +11,7 @@ angular.module('pressGuruApp')
         $scope.isAlertClosed = true;
         $scope.alertType = "";
     
-        // Fonctions
+        // Fonctions    
         // Archive un article
         $scope.archiveArticle = function(articleId) {
             apiService.archiveArticle(articleId, function successCallback(response) {
@@ -67,6 +67,12 @@ angular.module('pressGuruApp')
         $scope.closeAlertMessage = function() {
             $scope.alertMessage = "";
         	$scope.isAlertClosed = true;
+        };
+    
+        // Affiche la fenêtre d'édition d'étiquettes
+        $scope.displayLabelsDialog = function(articleId) {
+            $("#editLabelsDialog").modal("show");
+            appParametersService.editLabelsDialogController.loadLabelsDialogDatas(articleId);
         };
         
         // Recharge la page

@@ -13,16 +13,8 @@ angular.module('pressGuruApp')
         // Contrôleurs
         this.currentController = null;
     
-//        // Intervals
-//        var intervals = {};
-//        intervals.refreshArticlesPageInterval = 0;
-//        intervals.refreshGamePageInterval = 0;
-//        intervals.clearAllPageIntervals = function() {
-//            clearInterval(intervals.refreshArticlesPageInterval);
-//            clearInterval(intervals.refreshGamePageInterval);
-//        };
-//    
-//        this.intervals = intervals;
+        // Variables partagées
+        this.editLabelsDialogController = null;
     
         // Connexion pages
         this.connectionPages = [

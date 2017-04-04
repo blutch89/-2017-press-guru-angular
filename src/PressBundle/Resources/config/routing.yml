@@ -16,6 +16,12 @@ press_articles_archive:
     requirements:
         articleId: \d+
         
+press_articles_loadLabelsDialogDatas:
+    path: /frontend-api/articles/load-labels-dialog-datas/{articleId}
+    defaults: {_controller: PressBundle:Articles:loadLabelsDialogDatas }
+    requirements:
+        articleId: \d+
+        
 press_articles_delete:
     path: /frontend-api/articles/delete/{articleId}
     defaults: {_controller: PressBundle:Articles:delete }

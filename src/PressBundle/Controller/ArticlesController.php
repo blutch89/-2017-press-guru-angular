@@ -97,6 +97,33 @@ class ArticlesController extends Controller {
         }
     }
     
+    public function loadLabelsDialogDatasAction($articleId) {
+        $em = $this->getDoctrine()->getManager();
+        $articleRepository = $this->getDoctrine()->getRepository("PressBundle:Article");
+        
+        // Tests
+        if ($articleId == null) {
+            return $this->sendErrorMessage("Impossible de charges les informations de l'article");
+        }
+        
+        try {
+            $article = $articleRepository->find($articleId);
+            
+            // Charge les étiquettes de l'article
+            $tags = $article->getTags();
+            $tagsToReturn = array();
+            
+            foreach ($tags as $tag) {
+                $tagsToReturn[] = ["id" => $tag->getId(), "name" => $tag->getName()];
+            }
+            
+            
+            return new JsonResponse(["success" => true, "article-labels" => $tagsToReturn], 200);
+        } catch (\Exception $e) {
+            return $this->sendErrorMessage("Impossible d'archiver l'article");
+        }
+    }
+    
     public function deleteAction($articleId) {
         $em = $this->getDoctrine()->getManager();
         $articleRepository = $this->getDoctrine()->getRepository("PressBundle:Article");

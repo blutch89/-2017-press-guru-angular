@@ -13,11 +13,15 @@ angular.module('pressGuruApp')
     
         this.archiveArticle = function(articleId, successFunction, errorFunction) {
             this.executeRestApi(appParametersService.paths.api + "articles/archive/" + articleId, successFunction, errorFunction);
-        }
+        };
+        
+        this.loadLabelsDialogDatas = function(articleId, successFunction, errorFunction) {
+            this.executeRestApi(appParametersService.paths.api + "articles/load-labels-dialog-datas/" + articleId, successFunction, errorFunction);
+        };
         
         this.removeArticle = function(articleId, successFunction, errorFunction) {
             this.executeRestApi(appParametersService.paths.api + "articles/delete/" + articleId, successFunction, errorFunction);
-        }
+        };
     
         
 
