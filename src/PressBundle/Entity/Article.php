@@ -249,6 +249,12 @@ class Article
         
         return $this;
     }
+    
+    public function removeAllTag() {
+        $this->tags = array();
+        
+        return $this;
+    }
 
     /**
      * Set archived

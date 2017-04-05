@@ -21,6 +21,10 @@ press_articles_loadLabelsDialogDatas:
     defaults: {_controller: PressBundle:Articles:loadLabelsDialogDatas }
     requirements:
         articleId: \d+
+
+press_articles_edit_labels:
+    path: /frontend-api/articles/edit-labels
+    defaults: {_controller: PressBundle:Articles:editLabels }
         
 press_articles_delete:
     path: /frontend-api/articles/delete/{articleId}

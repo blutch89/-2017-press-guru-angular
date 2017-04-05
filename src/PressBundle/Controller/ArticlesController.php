@@ -100,27 +100,77 @@ class ArticlesController extends Controller {
     public function loadLabelsDialogDatasAction($articleId) {
         $em = $this->getDoctrine()->getManager();
         $articleRepository = $this->getDoctrine()->getRepository("PressBundle:Article");
+        $tagsRepository = $this->getDoctrine()->getRepository("PressBundle:Tag");
         
         // Tests
         if ($articleId == null) {
-            return $this->sendErrorMessage("Impossible de charges les informations de l'article");
+            return $this->sendErrorMessage("Impossible de charger les informations de l'article");
         }
         
         try {
             $article = $articleRepository->find($articleId);
             
             // Charge les étiquettes de l'article
-            $tags = $article->getTags();
-            $tagsToReturn = array();
+            $articleTags = $article->getTags();
+            $articleTagsToReturn = array();
             
-            foreach ($tags as $tag) {
-                $tagsToReturn[] = ["id" => $tag->getId(), "name" => $tag->getName()];
+            foreach ($articleTags as $tag) {
+                $articleTagsToReturn[] = "" . $tag->getId();
             }
             
+            // Charge toutes les étiquettes
+            $allTags = $tagsRepository->getAllTagsSorted();
+            $allTagsToReturn = array();
             
-            return new JsonResponse(["success" => true, "article-labels" => $tagsToReturn], 200);
+            foreach ($allTags as $tag) {
+                $allTagsToReturn[] = ["id" => "" . $tag["id"], "name" => $tag["name"]];
+            }            
+            
+            return new JsonResponse([
+                "success" => true,
+                "article-labels" => $articleTagsToReturn,
+                "all-labels" => $allTagsToReturn], 200);
         } catch (\Exception $e) {
-            return $this->sendErrorMessage("Impossible d'archiver l'article");
+            return $this->sendErrorMessage("Impossible de charger les informations de l'article");
+        }
+    }
+    
+    public function editLabelsAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $articleRepository = $this->getDoctrine()->getRepository("PressBundle:Article");
+        $tagsRepository = $this->getDoctrine()->getRepository("PressBundle:Tag");
+        
+        // Paramètres de requête
+        $articleId = $request->request->get("article-id");
+        $articleLabels = $request->request->get("article-labels");
+        
+        // Tests
+        if (! is_numeric($articleId)) {
+            return $this->sendErrorMessage("Impossible de modifier l'article");
+        }
+        
+        if ($articleLabels == null) {
+            $articleLabels = array();
+        }
+        
+        try {
+            $article = $articleRepository->find($articleId);
+            
+            // Modifie les étiquettes de l'article
+            $article->removeAllTag();
+            
+            foreach ($articleLabels as $labelId) {
+                $label = $tagsRepository->find($labelId);
+                $article->addTag($label);
+            }
+            
+            // Sauvegarde
+            $em->flush();
+            
+            return new JsonResponse([
+                "success" => true], 200);
+        } catch (\Exception $e) {
+            return $this->sendErrorMessage("Impossible de modifier l'article");
         }
     }
     

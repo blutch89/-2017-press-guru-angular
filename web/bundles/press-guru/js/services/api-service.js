@@ -18,6 +18,10 @@ angular.module('pressGuruApp')
         this.loadLabelsDialogDatas = function(articleId, successFunction, errorFunction) {
             this.executeRestApi(appParametersService.paths.api + "articles/load-labels-dialog-datas/" + articleId, successFunction, errorFunction);
         };
+    
+        this.editArticleLabels = function(articleId, articleLabels, successFunction, errorFunction) {
+            this.executePostForm(appParametersService.paths.api + "articles/edit-labels", {"article-id": articleId, "article-labels": articleLabels}, successFunction, errorFunction);
+        };
         
         this.removeArticle = function(articleId, successFunction, errorFunction) {
             this.executeRestApi(appParametersService.paths.api + "articles/delete/" + articleId, successFunction, errorFunction);

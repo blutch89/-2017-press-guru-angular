@@ -35,12 +35,26 @@
                 <h4 class="modal-title" id="editLabelsDialogLabel">Modification des étiquettes</h4>
             </div>
             <div class="modal-body">
-                <select multiple class="form-control" ng-model="articleLabels">
-                    <option ng-repeat="label in allLabels" value="{{ label.id }}">{{ label.name }}</option>
-                </select>
+                <loading value="editLabelsLoading"></loading>
+                <div class="alert alert-danger" role="alert" ng-show="editLabelsErrorMsg">
+                    <p ng-bind="editLabelsErrorMsg"></p>
+                </div>
+                <div ng-show="!success">
+                    <p>Pour ajouter plusieurs étiquettes, presser la touche "Ctrl" + click</p>
+                    <select multiple class="form-control" ng-model="articleLabels">
+                        <option ng-repeat="label in allLabels" value="{{ label.id }}">{{ label.name }}</option>
+                    </select>
+                </div>
+                <div ng-show="success">
+                    <p class="confirm-text text-center">
+                        <span class="glyphicon glyphicon-ok text-success confirm-icon"></span><br />
+                        L'article a bien été modifié
+                    </p>
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="resetDatas()">Fermer</button>
+                <button type="button" class="btn btn-primary" ng-click="processEditLabels()" ng-disabled="loading" ng-hide="success">Modifier</button>
             </div>
         </div>
     </div>
