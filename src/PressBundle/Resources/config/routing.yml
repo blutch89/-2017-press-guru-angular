@@ -6,6 +6,12 @@ press_articles_get_all:
     path:     /frontend-api/articles/get/all
     defaults: { _controller: PressBundle:Articles:getAll }
     
+press_articles_get_category:
+    path:     /frontend-api/articles/get/{categoryId}
+    defaults: { _controller: PressBundle:Articles:getFromCategory }
+    requirements:
+        categoryId: \d+
+    
 press_articles_add:
     path: /frontend-api/articles/add
     defaults: {_controller: PressBundle:Articles:add }

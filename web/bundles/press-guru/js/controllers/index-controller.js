@@ -1,5 +1,5 @@
 angular.module('pressGuruApp')
-    .controller('IndexController', function ($scope, $location, apiService, appParametersService) {
+    .controller('IndexController', function ($scope, $location, apiService, appParametersService, $routeParams) {
         var indexController = this;
         appParametersService.currentController = this;
         
@@ -77,15 +77,28 @@ angular.module('pressGuruApp')
         
         // Recharge la page
         this.refreshPage = function() {
-            apiService.getArticles(function successCallback(response) {
+            // Paramètres
+            var categoryId = $routeParams.categoryId;
+            
+            // Fonctions callback
+            var successFunction = function successCallback(response) {
                 if (response.data.success == true) {
                     $scope.articles = response.data.articles;
                 } else {
                     $scope.createAlert("Une erreur est survenue lors du chargement de la page", "danger");
                 }
-            }, function errorCallback(response) {
+            };
+            
+            var errorFunction = function errorCallback(response) {
                 $scope.createAlert("Une erreur est survenue lors du chargement de la page", "danger");
-            });
+            };
+            
+            // Téléchargement des articles
+            if (categoryId == undefined) {  // Si on doit afficher tous les articles
+                apiService.getArticles(successFunction, errorFunction);
+            } else {                        // Si on doit afficher les articles d'une catégorie
+                apiService.getArticlesFromCategory(categoryId, successFunction, errorFunction);
+            }
         };
     
         this.refreshPage();

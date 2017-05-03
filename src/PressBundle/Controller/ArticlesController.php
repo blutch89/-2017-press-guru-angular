@@ -25,6 +25,10 @@ class ArticlesController extends Controller {
         ], 200);
     }
     
+    public function getFromCategoryAction($categoryId) {
+        // TODO
+    }
+    
     public function addAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $siteExtractor = $this->get("press.site_extractor");
