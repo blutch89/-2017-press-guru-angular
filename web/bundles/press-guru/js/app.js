@@ -6,7 +6,7 @@ angular
                 templateUrl: 'bundles/press-guru/views/index.html',
                 controller: 'IndexController'
             })
-            .when('/articles/category/:categoryId', {
+            .when('/articles/tag/:tagId', {
                 templateUrl: 'bundles/press-guru/views/index.html',
                 controller: 'IndexController'
             })

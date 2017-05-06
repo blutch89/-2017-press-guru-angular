@@ -24,4 +24,19 @@ class ArticleRepository extends EntityRepository {
         return $query->getArrayResult();
     }
     
+    public function getArticlesFromTag($tagId, $userId) {
+        $query = $this->createQueryBuilder("a")
+            ->leftJoin("a.owner", "o")
+            ->leftJoin("a.tags", "t")
+            ->where("o.id = :userId")
+            ->andWhere("t.id = :tagId")
+            ->andWhere("a.archived = 0")
+            ->orderBy("a.creationDate", "DESC")
+            ->setParameter("userId", $userId)
+            ->setParameter("tagId", $tagId)
+            ->getQuery();
+
+        return $query->getArrayResult();
+    }
+    
 }

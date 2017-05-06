@@ -25,8 +25,23 @@ class ArticlesController extends Controller {
         ], 200);
     }
     
-    public function getFromCategoryAction($categoryId) {
-        // TODO
+    public function getFromTagAction($tagId) {
+        $em = $this->getDoctrine()->getManager();
+        $articlesRepository = $em->getRepository("PressBundle:Article");
+        $tagsRepository = $em->getRepository("PressBundle:Tag");
+        $user = $this->get('security.context')->getToken()->getUser();
+        
+        // Stock les articles du tag en paramètre
+        $articles = $articlesRepository->getArticlesFromTag($tagId, $user->getId());
+        
+        // Stock le nom du tag d'après son id
+        $tagName = $tagsRepository->find($tagId)->getName();
+        
+        return new JsonResponse([
+            "success" => true,
+            "articles" => $articles,
+            "tag-name" => $tagName
+        ], 200);
     }
     
     public function addAction(Request $request) {

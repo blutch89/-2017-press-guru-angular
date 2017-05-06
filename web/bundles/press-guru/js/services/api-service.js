@@ -6,8 +6,8 @@ angular.module('pressGuruApp')
             this.executeRestApi(appParametersService.paths.api + "articles/get/all", successFunction, errorFunction);
         };
     
-        this.getArticlesFromCategory = function(categoryId, successFunction, errorFunction) {
-            this.executeRestApi(appParametersService.paths.api + "articles/get/" + categoryId, successFunction, errorFunction);
+        this.getArticlesFromTag = function(tagId, successFunction, errorFunction) {
+            this.executeRestApi(appParametersService.paths.api + "articles/get/" + tagId, successFunction, errorFunction);
         };
     
         this.addArticle = function(datas, successFunction, errorFunction) {

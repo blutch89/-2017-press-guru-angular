@@ -5,6 +5,8 @@ angular.module('pressGuruApp')
         
         // Variables
         $scope.articles = {};
+        $scope.tagId = undefined;
+        $scope.tagName = undefined;
     
         // Variables alerte
         $scope.alertMessage = "";
@@ -78,7 +80,7 @@ angular.module('pressGuruApp')
         // Recharge la page
         this.refreshPage = function() {
             // Paramètres
-            var categoryId = $routeParams.categoryId;
+            $scope.tagId = $routeParams.tagId;
             
             // Fonctions callback
             var successFunction = function successCallback(response) {
@@ -94,10 +96,23 @@ angular.module('pressGuruApp')
             };
             
             // Téléchargement des articles
-            if (categoryId == undefined) {  // Si on doit afficher tous les articles
-                apiService.getArticles(successFunction, errorFunction);
+            if ($scope.tagId == undefined) {  // Si on doit afficher tous les articles
+                apiService.getArticles(function successCallback(response) {
+                    if (response.data.success == true) {
+                        $scope.articles = response.data.articles;
+                    } else {
+                        $scope.createAlert("Une erreur est survenue lors du chargement de la page", "danger");
+                    }
+                }, errorFunction);
             } else {                        // Si on doit afficher les articles d'une catégorie
-                apiService.getArticlesFromCategory(categoryId, successFunction, errorFunction);
+                apiService.getArticlesFromTag($scope.tagId, function successCallback(response) {
+                    if (response.data.success == true) {
+                        $scope.articles = response.data.articles;
+                        $scope.tagName = response.data["tag-name"];
+                    } else {
+                        $scope.createAlert("Une erreur est survenue lors du chargement de la page", "danger");
+                    }
+                }, errorFunction);
             }
         };
     

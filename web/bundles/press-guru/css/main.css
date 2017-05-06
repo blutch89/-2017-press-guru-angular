@@ -3,6 +3,12 @@ body {
     font-size: 1.5em;
 }
 
+h1 {
+    font-size: 1.4em;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
 /* Header */
 header {
     margin-bottom: 40px;
