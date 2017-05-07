@@ -2,12 +2,16 @@ angular.module('pressGuruApp')
     .service("apiService", function($http, $location, appParametersService) {
     	apiService = this;
     
-        this.getArticles = function(successFunction, errorFunction) {
-            this.executeRestApi(appParametersService.paths.api + "articles/get/all", successFunction, errorFunction);
+        this.getArticles = function(sortParams, successFunction, errorFunction) {
+            var toAddInUrl = this.calculateSortParametersUrl(sortParams);
+            
+            this.executeRestApi(appParametersService.paths.api + "articles/get/all" + toAddInUrl, successFunction, errorFunction);
         };
     
-        this.getArticlesFromTag = function(tagId, successFunction, errorFunction) {
-            this.executeRestApi(appParametersService.paths.api + "articles/get/" + tagId, successFunction, errorFunction);
+        this.getArticlesFromTag = function(tagId, sortParams, successFunction, errorFunction) {
+            var toAddInUrl = this.calculateSortParametersUrl(sortParams);
+            
+            this.executeRestApi(appParametersService.paths.api + "articles/get/" + tagId + "/" + toAddInUrl, successFunction, errorFunction);
         };
     
         this.addArticle = function(datas, successFunction, errorFunction) {
@@ -54,5 +58,15 @@ angular.module('pressGuruApp')
                 data    : $.param(datas),
                 headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
             }).then(successFunction, errorFunction);
+        };
+    
+    
+        // Autres méthodes helper
+        this.calculateSortParametersUrl = function(sortParams) {
+            if (sortParams["sortBy"] !== undefined) {
+                return "?sortBy=" + sortParams["sortBy"] + "&sortDirection=" + sortParams["sortDirection"];
+            }
+            
+            return "";
         };
 });

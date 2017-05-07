@@ -5,8 +5,10 @@ angular.module('pressGuruApp')
         
         // Variables
         $scope.articles = {};
-        $scope.tagId = undefined;
-        $scope.tagName = undefined;
+        $scope.tagId = undefined;           // Détermine l'id du tag spécifié en paramètre
+        $scope.tagName = undefined;         // Détermine le titre du tag ou encore le titre de la page
+        $scope.sortBy = undefined;          // Détermine par quoi les articles seront triés
+        $scope.sortDirection = undefined;   // Détermine dans quel sens les articles seront triés (asc, desc)
     
         // Variables alerte
         $scope.alertMessage = "";
@@ -82,13 +84,9 @@ angular.module('pressGuruApp')
             // Paramètres
             $scope.tagId = $routeParams.tagId;
             
-            // Fonctions callback
-            var successFunction = function successCallback(response) {
-                if (response.data.success == true) {
-                    $scope.articles = response.data.articles;
-                } else {
-                    $scope.createAlert("Une erreur est survenue lors du chargement de la page", "danger");
-                }
+            var sortParams = {
+                sortBy: $routeParams.sortBy,
+                sortDirection: $routeParams.sortDirection
             };
             
             var errorFunction = function errorCallback(response) {
@@ -97,7 +95,7 @@ angular.module('pressGuruApp')
             
             // Téléchargement des articles
             if ($scope.tagId == undefined) {  // Si on doit afficher tous les articles
-                apiService.getArticles(function successCallback(response) {
+                apiService.getArticles(sortParams, function successCallback(response) {
                     if (response.data.success == true) {
                         $scope.articles = response.data.articles;
                     } else {
@@ -105,7 +103,7 @@ angular.module('pressGuruApp')
                     }
                 }, errorFunction);
             } else {                        // Si on doit afficher les articles d'une catégorie
-                apiService.getArticlesFromTag($scope.tagId, function successCallback(response) {
+                apiService.getArticlesFromTag($scope.tagId, sortParams, function successCallback(response) {
                     if (response.data.success == true) {
                         $scope.articles = response.data.articles;
                         $scope.tagName = response.data["tag-name"];

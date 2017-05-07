@@ -25,11 +25,15 @@ class ArticlesController extends Controller {
         ], 200);
     }
     
-    public function getFromTagAction($tagId) {
+    public function getFromTagAction(Request $request, $tagId) {
         $em = $this->getDoctrine()->getManager();
         $articlesRepository = $em->getRepository("PressBundle:Article");
         $tagsRepository = $em->getRepository("PressBundle:Tag");
         $user = $this->get('security.context')->getToken()->getUser();
+        
+        // Paramètres GET
+        $sortBy = ($request->query->get("sortBy") != null) ? $request->query->get("sortBy") : "date";
+        $sortDirection = ($request->query->get("sortDirection") != null) ? $request->query->get("sortDirection") : "desc";
         
         // Stock les articles du tag en paramètre
         $articles = $articlesRepository->getArticlesFromTag($tagId, $user->getId());
