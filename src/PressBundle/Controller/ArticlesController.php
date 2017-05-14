@@ -22,7 +22,7 @@ class ArticlesController extends Controller {
         $sortBy = $request->query->get("sortBy");
         $sortDirection = $request->query->get("sortDirection");
         $sortParameters = $sortParametersConverter->convertSortParameters($sortBy, $sortDirection);
-        
+
         $articles = $articlesRepository->getArticlesFromUser($sortParameters, $user->getId());
 
         return new JsonResponse([

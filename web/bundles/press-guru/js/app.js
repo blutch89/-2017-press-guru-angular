@@ -4,11 +4,13 @@ angular
         $routeProvider
             .when('/', {
                 templateUrl: 'bundles/press-guru/views/index.html',
-                controller: 'IndexController'
+                controller: 'IndexController',
+                reloadOnSearch: false
             })
             .when('/articles/tag/:tagId', {
                 templateUrl: 'bundles/press-guru/views/index.html',
-                controller: 'IndexController'
+                controller: 'IndexController',
+                reloadOnSearch: false
             })
             .when('/connection', {
                 templateUrl: 'bundles/press-guru/views/connection.html',

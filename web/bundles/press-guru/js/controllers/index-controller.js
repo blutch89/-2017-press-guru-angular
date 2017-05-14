@@ -1,21 +1,55 @@
 angular.module('pressGuruApp')
-    .controller('IndexController', function ($scope, $location, apiService, appParametersService, $routeParams) {
+    .controller('IndexController', function ($scope, $location, apiService, appParametersService, $routeParams, $location) {
         var indexController = this;
         appParametersService.currentController = this;
-        
+    
         // Variables
         $scope.articles = {};
-        $scope.tagId = undefined;           // Détermine l'id du tag spécifié en paramètre
-        $scope.tagName = undefined;         // Détermine le titre du tag ou encore le titre de la page
-        $scope.sortBy = undefined;          // Détermine par quoi les articles seront triés
-        $scope.sortDirection = undefined;   // Détermine dans quel sens les articles seront triés (asc, desc)
+        $scope.tagId = undefined;                   // Détermine l'id du tag spécifié en paramètre
+        $scope.tagName = undefined;                 // Détermine le titre du tag ou encore le titre de la page
+        $scope.sortValue = "1";                     // Détermine la valeur de la liste select dans la partie de tri
     
         // Variables alerte
         $scope.alertMessage = "";
         $scope.isAlertClosed = true;
         $scope.alertType = "";
     
-        // Fonctions    
+        // Fonctions
+        // Listener change pour le select de la partie tri
+        $scope.sortChange = function() {
+            var sortBy = undefined;
+            var sortDirection = undefined;
+            
+            switch ($scope.sortValue) {
+                case "0":
+                    sortBy = "date";
+                    sortDirection = "asc";
+                    break;
+                case "1":
+                    sortBy = "date";
+                    sortDirection = "desc";
+                    break;
+            }
+                                        
+            // Modifie l'url
+            $location.search("sortBy", sortBy);
+            $location.search("sortDirection", sortDirection);
+            
+            // Recharge la liste des vidéos
+            indexController.refreshPage();
+        };
+    
+        this.convertSortToInt = function() {
+            switch ($location.search()["sortDirection"]) {
+                case "asc":
+                    return "0";
+                case "desc":
+                    return "1";
+                default:
+                    return "1";
+           }
+        };
+        
         // Archive un article
         $scope.archiveArticle = function(articleId) {
             apiService.archiveArticle(articleId, function successCallback(response) {
@@ -85,8 +119,8 @@ angular.module('pressGuruApp')
             $scope.tagId = $routeParams.tagId;
             
             var sortParams = {
-                sortBy: $routeParams.sortBy,
-                sortDirection: $routeParams.sortDirection
+                sortBy: $location.search()["sortBy"],
+                sortDirection: $location.search()["sortDirection"]
             };
             
             var errorFunction = function errorCallback(response) {
@@ -114,5 +148,10 @@ angular.module('pressGuruApp')
             }
         };
     
-        this.refreshPage();
+        this.afterRendered = function() {
+            $scope.sortValue = indexController.convertSortToInt();
+            this.refreshPage();
+        };
+    
+        this.afterRendered();
     });

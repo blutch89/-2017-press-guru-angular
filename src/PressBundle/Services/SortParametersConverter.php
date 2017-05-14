@@ -28,7 +28,7 @@ class SortParametersConverter implements SortParametersConverterInterface {
                 $toReturn["sortDirection"] = "desc";
                 break;
             default:
-                $toReturn["sortDirection"] = "desc";
+                $toReturn["sortDirection"] = $sortDirection;
                 break;
         }
         
