@@ -9,6 +9,11 @@ angular.module('pressGuruApp')
         $scope.tagName = undefined;                 // Détermine le titre du tag ou encore le titre de la page
         $scope.sortValue = "1";                     // Détermine la valeur de la liste select dans la partie de tri
     
+        // Variables pagination
+        $scope.filteredArticles = [];
+        $scope.currentPage = 1;
+        $scope.numPerPage = 3;
+    
         // Variables alerte
         $scope.alertMessage = "";
         $scope.isAlertClosed = true;
@@ -39,6 +44,7 @@ angular.module('pressGuruApp')
             indexController.refreshPage();
         };
     
+        // Converti le tri stirng en int pour le select de la partie tri
         this.convertSortToInt = function() {
             switch ($location.search()["sortDirection"]) {
                 case "asc":
@@ -48,6 +54,18 @@ angular.module('pressGuruApp')
                 default:
                     return "1";
            }
+        };
+    
+        // Listener change pour la pagination
+        $scope.paginationChange = function() {
+            indexController.setFilteredArticlesFromPagination();
+        };
+    
+        this.setFilteredArticlesFromPagination = function() {
+            var begin = (($scope.currentPage - 1) * $scope.numPerPage);
+            var end = begin + $scope.numPerPage;
+            
+            $scope.filteredArticles = $scope.articles.slice(begin, end);
         };
         
         // Archive un article
@@ -132,6 +150,7 @@ angular.module('pressGuruApp')
                 apiService.getArticles(sortParams, function successCallback(response) {
                     if (response.data.success == true) {
                         $scope.articles = response.data.articles;
+                        indexController.setFilteredArticlesFromPagination();
                     } else {
                         $scope.createAlert("Une erreur est survenue lors du chargement de la page", "danger");
                     }
@@ -140,6 +159,7 @@ angular.module('pressGuruApp')
                 apiService.getArticlesFromTag($scope.tagId, sortParams, function successCallback(response) {
                     if (response.data.success == true) {
                         $scope.articles = response.data.articles;
+                        indexController.setFilteredArticlesFromPagination();
                         $scope.tagName = response.data["tag-name"];
                     } else {
                         $scope.createAlert("Une erreur est survenue lors du chargement de la page", "danger");
