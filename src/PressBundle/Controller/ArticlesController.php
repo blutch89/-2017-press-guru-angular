@@ -12,12 +12,18 @@ use PressBundle\Entity\Article;
 
 class ArticlesController extends Controller {
     
-    public function getAllAction() {
+    public function getAllAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $articlesRepository = $em->getRepository("PressBundle:Article");
         $user = $this->get('security.context')->getToken()->getUser();
+        $sortParametersConverter = $this->get("press.sort_parameters_converter");
         
-        $articles = $articlesRepository->getArticlesFromUser($user->getId());
+        // Paramètres GET
+        $sortBy = $request->query->get("sortBy");
+        $sortDirection = $request->query->get("sortDirection");
+        $sortParameters = $sortParametersConverter->convertSortParameters($sortBy, $sortDirection);
+        
+        $articles = $articlesRepository->getArticlesFromUser($sortParameters, $user->getId());
 
         return new JsonResponse([
             "success" => true,
@@ -30,13 +36,15 @@ class ArticlesController extends Controller {
         $articlesRepository = $em->getRepository("PressBundle:Article");
         $tagsRepository = $em->getRepository("PressBundle:Tag");
         $user = $this->get('security.context')->getToken()->getUser();
+        $sortParametersConverter = $this->get("press.sort_parameters_converter");
         
         // Paramètres GET
-        $sortBy = ($request->query->get("sortBy") != null) ? $request->query->get("sortBy") : "date";
-        $sortDirection = ($request->query->get("sortDirection") != null) ? $request->query->get("sortDirection") : "desc";
+        $sortBy = $request->query->get("sortBy");
+        $sortDirection = $request->query->get("sortDirection");
+        $sortParameters = $sortParametersConverter->convertSortParameters($sortBy, $sortDirection);
         
         // Stock les articles du tag en paramètre
-        $articles = $articlesRepository->getArticlesFromTag($tagId, $user->getId());
+        $articles = $articlesRepository->getArticlesFromTag($tagId, $sortParameters, $user->getId());
         
         // Stock le nom du tag d'après son id
         $tagName = $tagsRepository->find($tagId)->getName();

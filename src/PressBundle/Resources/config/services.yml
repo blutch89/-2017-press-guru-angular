@@ -11,3 +11,5 @@ services:
         
     press.site_extractor:
         class: PressBundle\Services\SiteExtractor
+    press.sort_parameters_converter:
+        class: PressBundle\Services\SortParametersConverter

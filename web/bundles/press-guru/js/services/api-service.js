@@ -11,7 +11,7 @@ angular.module('pressGuruApp')
         this.getArticlesFromTag = function(tagId, sortParams, successFunction, errorFunction) {
             var toAddInUrl = this.calculateSortParametersUrl(sortParams);
             
-            this.executeRestApi(appParametersService.paths.api + "articles/get/" + tagId + "/" + toAddInUrl, successFunction, errorFunction);
+            this.executeRestApi(appParametersService.paths.api + "articles/get/" + tagId + toAddInUrl, successFunction, errorFunction);
         };
     
         this.addArticle = function(datas, successFunction, errorFunction) {
