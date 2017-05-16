@@ -10,9 +10,9 @@ angular.module('pressGuruApp')
         $scope.sortValue = "1";                     // Détermine la valeur de la liste select dans la partie de tri
     
         // Variables pagination
-        $scope.filteredArticles = [];
-        $scope.currentPage = 1;
-        $scope.numPerPage = 3;
+        $scope.filteredArticles = [];               // Détermine les articles à afficher en utilisant la pagination
+        $scope.currentPage = 1;                     // Détermine la page actuel dans la pagination
+        $scope.numPerPage = 9;                      // Détermine combien d'articles sont affichés par page
     
         // Variables alerte
         $scope.alertMessage = "";
