@@ -25,6 +25,10 @@
     </div>
 </div>
 
+<div class="col-xs-12 col-sm-12" ng-show="articles[0] == null">
+    <p>Vous n'avez aucun article enregistré</p>
+</div>
+
 <div class="row">
     <div class="col-xs-12 col-md-6 col-lg-4 article-border-container" ng-repeat="(index, value) in filteredArticles">
         <div class="article-container">
@@ -45,11 +49,6 @@
         max-size="5" items-per-page="numPerPage" ng-change="paginationChange()"></ul>
     </div>
 </div>
-
-<div class="col-xs-12 col-sm-12" ng-show="articles[0] == null">
-    <p>Vous n'avez aucun article enregistré</p>
-</div>
-
 
 
 <!-- Dialog modification étiquettes -->

@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class ArchitectureController extends Controller {
     public function getMenuItemsAction() {
         $em = $this->getDoctrine()->getManager();
+        $articleRepository = $em->getRepository("PressBundle:Article");
         $tagRepository = $em->getRepository("PressBundle:Tag");
         $user = $this->get('security.context')->getToken()->getUser();
         $menuItems = array();
@@ -18,7 +19,7 @@ class ArchitectureController extends Controller {
         // Création du menu "tous les articles"
         $menuItems[] = [
             "text" => "Tous les articles",
-            "number" => 0,                  // TODO
+            "nbArticles" => $articleRepository->getCountArticlesFromUser($user->getId()),
             "link" => "/"
         ];
         
@@ -28,7 +29,7 @@ class ArchitectureController extends Controller {
         foreach ($firstTags as $tag) {
             $menuItems[] = [
                 "text" => $tag->getName(),
-                "number" => count($tag->getArticles()),                  // TODO
+                "nbArticles" => $articleRepository->getCountArticlesFromTag($tag->getId(), $user->getId()),
                 "link" => "/articles/tag/" . $tag->getId()
             ];
         }

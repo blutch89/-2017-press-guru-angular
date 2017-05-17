@@ -24,6 +24,14 @@ class ArticleRepository extends EntityRepository {
         return $query->getArrayResult();
     }
     
+    // TODO appeler la méthode getArticleFromUser et ensuite faire un count
+    public function getCountArticlesFromUser($userId) {
+        return count($this->getArticlesFromUser([
+            "sortBy" => "creationDate",
+            "sortDirection" => "asc"
+        ], $userId));
+    }
+    
     public function getArticlesFromTag($tagId, $sortParameters, $userId) {
         $query = $this->createQueryBuilder("a")
             ->leftJoin("a.owner", "o")
@@ -37,6 +45,13 @@ class ArticleRepository extends EntityRepository {
             ->getQuery();
 
         return $query->getArrayResult();
+    }
+    
+    public function getCountArticlesFromTag($tagId, $userId) {
+        return count($this->getArticlesFromTag($tagId, [
+            "sortBy" => "creationDate",
+            "sortDirection" => "asc"
+        ], $userId));
     }
     
 }
