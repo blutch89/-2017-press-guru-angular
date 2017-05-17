@@ -34,4 +34,24 @@ angular.module('pressGuruApp')
             
             return false;                              
         }
+        
+        // Charge les éléments du menus de la sidebar
+        this.loadMenuItems = function() {
+            apiService.getMenuItems(function successCallback(response) {
+                if (response.data.success == true) {
+                    // TODO
+                } else {
+                    // TODO Afficher une erreur
+                }
+            }, function errorCallback(response) {
+                // TODO Afficher une erreur
+            });
+        };
+    
+        // Appelé à la fin d'exécution de ce script (permet de prendre en compte les variables avant de lancer une fonction)
+        this.afterRendered = function() {
+            this.loadMenuItems();
+        };
+    
+        this.afterRendered();
     });

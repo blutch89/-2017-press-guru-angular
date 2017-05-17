@@ -19,4 +19,37 @@ class TagRepository extends EntityRepository
 
         return $query->getArrayResult();
     }
+    
+    public function getFirstTagsSorted($number, $userId) {
+        $query = $this->createQueryBuilder("t")
+            ->addSelect("a")
+            ->leftJoin("t.owner", "o")
+            ->leftJoin("t.articles", "a")
+            ->where("o.id = :userId")
+            ->orderBy("t.name", "ASC")
+//            ->setFirstResult(0)
+//            ->setMaxResults($number - 1)
+            ->setParameter("userId", $userId)
+            ->getQuery();
+
+        return $query->getResult();
+        
+        
+        
+        
+//        $query = $this->getEntityManager()->createQuery("SELECT t.id, t.name FROM PressBundle\Entity\Tag t LEFT JOIN PressBundle\Entity\Article a");
+//        
+//        return $query->getResult();
+        
+        
+        
+        
+//        $qb = $this->getEntityManager()->createQueryBuilder();
+//        $query = $qb->select("t.id", "t.name")
+//            ->from("PressBundle:Tag", "t")
+//            ->leftJoin("t.articles", "a", 'WITH', 'co.id = c.id')
+//            ->getQuery();
+//        
+//        return $query->getArrayResult();
+    }
 }

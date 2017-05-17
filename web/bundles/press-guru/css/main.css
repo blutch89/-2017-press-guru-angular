@@ -32,6 +32,11 @@ header {
     font-size: 1.4em;
 }
 
+/* Sidebar */
+#nav-right li a {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
 
 /* Page connexion */
 .connection-interior {

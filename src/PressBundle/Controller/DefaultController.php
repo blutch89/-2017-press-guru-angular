@@ -11,11 +11,4 @@ class DefaultController extends Controller
     {
         return $this->render('PressBundle:Default:index.html.twig');
     }
-    
-    // TODO: Supprimer cette fonction
-    public function testAction() {
-        return new JsonResponse([
-                'success' => true
-            ], 200);
-    }
 }

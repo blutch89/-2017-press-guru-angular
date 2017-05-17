@@ -150,7 +150,7 @@ class ArticlesController extends Controller {
             }
             
             // Charge toutes les étiquettes
-            $allTags = $tagsRepository->getAllTagsSorted();
+            $allTags = $tagsRepository->getAllTagsSorted();         // TODO Retourner uniquement les tags de l'utilisateur et non tous les tags ?
             $allTagsToReturn = array();
             
             foreach ($allTags as $tag) {
