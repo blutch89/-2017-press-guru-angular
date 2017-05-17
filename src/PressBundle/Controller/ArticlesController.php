@@ -132,6 +132,7 @@ class ArticlesController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $articleRepository = $this->getDoctrine()->getRepository("PressBundle:Article");
         $tagsRepository = $this->getDoctrine()->getRepository("PressBundle:Tag");
+        $user = $this->get('security.context')->getToken()->getUser();
         
         // Tests
         if ($articleId == null) {
@@ -150,7 +151,7 @@ class ArticlesController extends Controller {
             }
             
             // Charge toutes les étiquettes
-            $allTags = $tagsRepository->getAllTagsSorted();         // TODO Retourner uniquement les tags de l'utilisateur et non tous les tags ?
+            $allTags = $tagsRepository->getAllTagsSorted($user->getId());
             $allTagsToReturn = array();
             
             foreach ($allTags as $tag) {

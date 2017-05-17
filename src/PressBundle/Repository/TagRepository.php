@@ -12,9 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class TagRepository extends EntityRepository
 {
-    public function getAllTagsSorted() {
+    public function getAllTagsSorted($userId) {
         $query = $this->createQueryBuilder("t")
+            ->leftJoin("t.owner", "o")
             ->orderBy("t.name", "ASC")
+            ->where("o.id = :userId")
+            ->setParameter("userId", $userId)
             ->getQuery();
 
         return $query->getArrayResult();
