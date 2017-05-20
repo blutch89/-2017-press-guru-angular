@@ -145,8 +145,20 @@ angular.module('pressGuruApp')
                 $scope.createAlert("Une erreur est survenue lors du chargement de la page", "danger");
             };
             
+            
+            
             // Téléchargement des articles
-            if ($scope.tagId == undefined) {  // Si on doit afficher tous les articles
+            if ($location.path() == "/articles/archived") { // Si on doit afficher les articles archivés
+                apiService.getArchivedArticles(sortParams, function successCallback(response) {
+                    if (response.data.success == true) {
+                        $scope.articles = response.data.articles;
+                        indexController.setFilteredArticlesFromPagination();
+                        $scope.tagName = "Articles archivés";
+                    } else {
+                        $scope.createAlert("Une erreur est survenue lors du chargement de la page", "danger");
+                    }
+                }, errorFunction);
+            } else if ($scope.tagId == undefined) {         // Si on doit afficher tous les articles
                 apiService.getArticles(sortParams, function successCallback(response) {
                     if (response.data.success == true) {
                         $scope.articles = response.data.articles;
@@ -155,7 +167,7 @@ angular.module('pressGuruApp')
                         $scope.createAlert("Une erreur est survenue lors du chargement de la page", "danger");
                     }
                 }, errorFunction);
-            } else {                        // Si on doit afficher les articles d'une catégorie
+            } else {                                        // Si on doit afficher les articles d'une catégorie
                 apiService.getArticlesFromTag($scope.tagId, sortParams, function successCallback(response) {
                     if (response.data.success == true) {
                         $scope.articles = response.data.articles;

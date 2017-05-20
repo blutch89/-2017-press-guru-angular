@@ -62,10 +62,11 @@
                 <nav id="nav-right" class="col-xs-12 col-sm-3" ng-hide="checkIfMustBeHidden()">
                     <p class="nav-title">Articles</p>
                     <ul class="nav nav-pills nav-stacked smaller-nav side-nav">
-                        <li role="presentation"><a>Tous les articles (23)</a></li>
-                        <li role="presentation"><a>A lire plus tard (5)</a></li>
-                        <li role="presentation"><a>Articles intéressants (3)</a></li>
-                        <li role="presentation"><a>A partager (4)</a></li>
+                        <li role="presentation" ng-repeat="item in menuItems">
+                            <a ng-href="#!/{{ '{{ item[\'link\'] }}' }}">
+                                <span ng-bind="item['text'] + ' (' + item['nbArticles'] + ')'"></span>
+                            </a>
+                        </li>
                         <li role="presentation"><a>Gérer/afficher les étiquettes</a></li>
                     </ul>
                 </nav>

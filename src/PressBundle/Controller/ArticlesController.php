@@ -56,6 +56,25 @@ class ArticlesController extends Controller {
         ], 200);
     }
     
+    public function getArchivedAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $articlesRepository = $em->getRepository("PressBundle:Article");
+        $user = $this->get('security.context')->getToken()->getUser();
+        $sortParametersConverter = $this->get("press.sort_parameters_converter");
+        
+        // Paramètres GET
+        $sortBy = $request->query->get("sortBy");
+        $sortDirection = $request->query->get("sortDirection");
+        $sortParameters = $sortParametersConverter->convertSortParameters($sortBy, $sortDirection);
+
+        $articles = $articlesRepository->getArchivedArticlesFromUser($sortParameters, $user->getId());
+
+        return new JsonResponse([
+            "success" => true,
+            "articles" => $articles
+        ], 200);
+    }
+    
     public function addAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $siteExtractor = $this->get("press.site_extractor");

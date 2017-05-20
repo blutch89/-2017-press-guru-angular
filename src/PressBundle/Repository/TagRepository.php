@@ -25,9 +25,7 @@ class TagRepository extends EntityRepository
     
     public function getFirstTagsSorted($number, $userId) {
         $query = $this->createQueryBuilder("t")
-            ->addSelect("a")
             ->leftJoin("t.owner", "o")
-            ->leftJoin("t.articles", "a")
             ->where("o.id = :userId")
             ->orderBy("t.name", "ASC")
             ->setFirstResult(0)
@@ -35,6 +33,6 @@ class TagRepository extends EntityRepository
             ->setParameter("userId", $userId)
             ->getQuery();
 
-        return $query->getResult();
+        return $query->getArrayResult();
     }
 }

@@ -20,22 +20,30 @@ class ArchitectureController extends Controller {
         $menuItems[] = [
             "text" => "Tous les articles",
             "nbArticles" => $articleRepository->getCountArticlesFromUser($user->getId()),
-            "link" => "/"
+            "link" => ""
         ];
         
         // Création des items "tags"
         $firstTags = $tagRepository->getFirstTagsSorted($tagNumber, $user->getId());        
-        
+
         foreach ($firstTags as $tag) {
             $menuItems[] = [
-                "text" => $tag->getName(),
-                "nbArticles" => $articleRepository->getCountArticlesFromTag($tag->getId(), $user->getId()),
-                "link" => "/articles/tag/" . $tag->getId()
+                "text" => $tag["name"],
+                "nbArticles" => $articleRepository->getCountArticlesFromTag($tag["id"], $user->getId()),
+                "link" => "articles/tag/" . $tag["id"]
             ];
         }
         
-        return new JsonResponse($menuItems, 200);
-        
         // Création des items "archivés"
+        $menuItems[] = [
+            "text" => "Articles archivés",
+            "nbArticles" => $articleRepository->getCountArchivedArticlesFromUser($user->getId()),
+            "link" => "articles/archived"
+        ];
+        
+        return new JsonResponse([
+            "success" => true,
+            "menuItems" => $menuItems
+            ], 200);
     }
 }

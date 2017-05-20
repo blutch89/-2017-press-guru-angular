@@ -21,6 +21,13 @@ angular.module('pressGuruApp')
             this.executeRestApi(appParametersService.paths.api + "articles/get/" + tagId + toAddInUrl, successFunction, errorFunction);
         };
     
+        // Demande les articles archivés
+        this.getArchivedArticles = function(sortParams, successFunction, errorFunction) {
+            var toAddInUrl = this.calculateSortParametersUrl(sortParams);
+            
+            this.executeRestApi(appParametersService.paths.api + "articles/get/archived" + toAddInUrl, successFunction, errorFunction);
+        };
+    
         // Ajout un article
         this.addArticle = function(datas, successFunction, errorFunction) {
             this.executePostForm(appParametersService.paths.api + "articles/add", datas,

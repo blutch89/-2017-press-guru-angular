@@ -12,6 +12,11 @@ angular
                 controller: 'IndexController',
                 reloadOnSearch: false
             })
+            .when('/articles/archived', {
+                templateUrl: 'bundles/press-guru/views/index.html',
+                controller: 'IndexController',
+                reloadOnSearch: false
+            })
             .when('/connection', {
                 templateUrl: 'bundles/press-guru/views/connection.html',
                 controller: 'ConnectionController'

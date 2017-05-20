@@ -2,6 +2,9 @@ angular.module('pressGuruApp')
     .controller('MainController', function ($scope, $location, authentificationService, appParametersService, apiService) {
         mainController = this;
         $scope.appParametersService = appParametersService;
+    
+        // Variables
+        $scope.menuItems = {};
 
         $scope.isItConnectionPage = function() {
             return $location.path();
@@ -39,7 +42,7 @@ angular.module('pressGuruApp')
         this.loadMenuItems = function() {
             apiService.getMenuItems(function successCallback(response) {
                 if (response.data.success == true) {
-                    // TODO
+                    $scope.menuItems = response.data["menuItems"];
                 } else {
                     // TODO Afficher une erreur
                 }

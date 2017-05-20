@@ -24,9 +24,27 @@ class ArticleRepository extends EntityRepository {
         return $query->getArrayResult();
     }
     
-    // TODO appeler la méthode getArticleFromUser et ensuite faire un count
     public function getCountArticlesFromUser($userId) {
         return count($this->getArticlesFromUser([
+            "sortBy" => "creationDate",
+            "sortDirection" => "asc"
+        ], $userId));
+    }
+    
+    public function getArchivedArticlesFromUser($sortParameters, $userId) {
+        $query = $this->createQueryBuilder("a")
+            ->leftJoin("a.owner", "o")
+            ->where("o.id = :userId")
+            ->andWhere("a.archived = 1")
+            ->orderBy("a." . $sortParameters["sortBy"], $sortParameters["sortDirection"])
+            ->setParameter("userId", $userId)
+            ->getQuery();
+
+        return $query->getArrayResult();
+    }
+    
+    public function getCountArchivedArticlesFromUser($userId) {
+        return count($this->getArchivedArticlesFromUser([
             "sortBy" => "creationDate",
             "sortDirection" => "asc"
         ], $userId));

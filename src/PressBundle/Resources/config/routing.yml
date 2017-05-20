@@ -17,6 +17,10 @@ press_articles_get_tag:
     defaults: { _controller: PressBundle:Articles:getFromTag }
     requirements:
         tagId: \d+
+        
+press_articles_get_archived:
+    path:     /frontend-api/articles/get/archived
+    defaults: { _controller: PressBundle:Articles:getArchived }
     
 press_articles_add:
     path: /frontend-api/articles/add
