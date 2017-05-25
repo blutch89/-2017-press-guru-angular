@@ -5,6 +5,11 @@ angular.module('pressGuruApp')
     
         // Variables
         $scope.menuItems = {};
+        $scope.loadMenuItemsLoading = true;
+    
+        // Alerte
+        $scope.menuAlertMessage = "";
+        
 
         $scope.isItConnectionPage = function() {
             return $location.path();
@@ -39,21 +44,32 @@ angular.module('pressGuruApp')
         }
         
         // Charge les éléments du menus de la sidebar
-        this.loadMenuItems = function() {
+        $scope.loadMenuItems = function() {
+            $scope.menuAlertMessage = "";
+            $scope.loadMenuItemsLoading = true;
+            
             apiService.getMenuItems(function successCallback(response) {
                 if (response.data.success == true) {
                     $scope.menuItems = response.data["menuItems"];
+                    $scope.loadMenuItemsLoading = false;
                 } else {
-                    // TODO Afficher une erreur
+                    $scope.createAlert("Impossible de charger le menu");
+                    $scope.loadMenuItemsLoading = false;
                 }
             }, function errorCallback(response) {
-                // TODO Afficher une erreur
+                $scope.createAlert("Impossible de charger le menu");
+                $scope.loadMenuItemsLoading = false;
             });
+        };
+    
+        // Crée un message d'alerte
+        $scope.createAlert = function(message) {
+        	$scope.menuAlertMessage = message;
         };
     
         // Appelé à la fin d'exécution de ce script (permet de prendre en compte les variables avant de lancer une fonction)
         this.afterRendered = function() {
-            this.loadMenuItems();
+            $scope.loadMenuItems();
         };
     
         this.afterRendered();
