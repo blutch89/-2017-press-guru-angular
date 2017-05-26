@@ -1,5 +1,5 @@
 angular.module('pressGuruApp')
-    .controller('ConnectionController', function ($scope, $location, authentificationService, userService) {
+    .controller('ConnectionController', function ($scope, $location, authentificationService, userService, appParametersService, $window) {
         connectionController = this;
     
         // Variables propre au login et register
@@ -18,9 +18,10 @@ angular.module('pressGuruApp')
             authentificationService.loginRequest($scope.loginFormData, function successCalllback(response) {
                 if (response.data.success == true) {
                     userService.saveUser(response.data["user-id"], response.data["username"]);
-                    $scope.loginLoading = true;
+                    $scope.loginLoading = false;
                     
-                    $location.path("/");
+                    // Redirige sur la page principale en enlevant la dernière lettre au prefix
+                    $window.location.href = "../" + appParametersService.paths.prefix.substr(0, appParametersService.paths.prefix.length -1);
                 } else {
                     if (response.data.error == "Account disabled") {
                         $scope.loginErrorMsg = "L'utilisateur n'est pas encore activé.";
