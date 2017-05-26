@@ -1,19 +1,19 @@
 angular.module('pressGuruApp')
     .service("authentificationService", function ($http, $location, appParametersService) {    
         this.loginRequest = function (datas, successFunction, errorFunction) {
-            this.executePostForm(appParametersService.paths.prefix + "login_check", datas, successFunction, errorFunction);
+            this.executePostForm("../" + appParametersService.paths.prefix + "login_check", datas, successFunction, errorFunction);
         };
 
         this.registerRequest = function (datas, successFunction, errorFunction) {
-            this.executePostForm(appParametersService.paths.prefix + "register", datas, successFunction, errorFunction);
+            this.executePostForm("../" + appParametersService.paths.prefix + "register", datas, successFunction, errorFunction);
         };
     
         this.activeAccount = function (token, successFunction, errorFunction) {
-            this.executeRestApi(appParametersService.paths.prefix + "confirm/" + token, successFunction, errorFunction)
+            this.executeRestApi("../" + appParametersService.paths.prefix + "confirm/" + token, successFunction, errorFunction)
         };
     
         this.logoutRequest = function(successFunction, errorFunction) {
-        	this.executeRestApi(appParametersService.paths.prefix + "logout", successFunction, errorFunction);
+        	this.executeRestApi("../" + appParametersService.paths.prefix + "logout", successFunction, errorFunction);
         };
     
     

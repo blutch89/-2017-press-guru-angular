@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="pressGuruApp" ng-controller="MainController">
+<html ng-app="pressGuruApp">
 <head>
     <meta charset="UTF-8" />
 
@@ -17,111 +17,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/press-guru/css/main.css') }}" />
 </head>
 <body>
-    <div class="container-fluid">
-        <header>
-            <nav id="navbar-header" class="navbar navbar-default">
-                <div class="container">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#">Press Guru</a>
-                    </div>
-                    <div ng-hide="checkIfMustBeHidden()">
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">gigon.thomas.b@gmail.com <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a ng-click="logout()">Déconnexion</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+    {% block body %}
 
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-plus"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a data-toggle="modal" data-target="#add-article">Ajouter un article</a></li>
-                                        <li><a>Créer une étiquette</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </header>
-
-        <div class="container">
-            <div class="row">
-                <nav id="nav-right" class="col-xs-12 col-sm-3" ng-hide="checkIfMustBeHidden()">
-                    <loading value="loadMenuItemsLoading"></loading>
-                    <p class="nav-title">Articles</p>
-                    <div class="alert alert-danger" role="alert" ng-show="menuAlertMessage">
-                        <span ng-bind="menuAlertMessage"></span>
-                        <br />
-                        <button type="button" ng-click="loadMenuItems()">Recharger</button>
-                    </div>
-                    <ul class="nav nav-pills nav-stacked smaller-nav side-nav">
-                        <li role="presentation" ng-repeat="item in menuItems">
-                            <a ng-href="#!/{{ '{{ item[\'link\'] }}' }}">
-                                <span ng-bind="item['text'] + ' (' + item['nbArticles'] + ')'"></span>
-                            </a>
-                        </li>
-                        <li role="presentation"><a>Gérer/afficher les étiquettes</a></li>
-                    </ul>
-                </nav>
-                <div ng-view="" class="col-xs-12" ng-class="{'col-sm-9': !checkIfMustBeHidden(), 'col-sm-12': !checkIfMustBeHidden()}"></div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Dialog AddArticle -->
-    <div class="modal fade" id="add-article" tabindex="-1" role="dialog" aria-labelledby="add-article-label" ng-controller="AddArticleController">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="resetDatas()"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="add-article-label">Ajout d'article</h4>
-                </div>
-                <div class="modal-body">
-                    <div ng-show="!success">
-                        <loading value="addArticleLoading"></loading>
-                        <div class="alert alert-danger" role="alert" ng-show="addArticleErrorMsg">
-                            <p ng-bind="addArticleErrorMsg"></p>
-                        </div>
-                        <p>Entrer l'url de l'article dans ce champs pour l'ajouter</p>
-                        <form name="addArticleForm" novalidate>
-                            <fieldset ng-disabled="loading">
-                                <div class="form-group" ng-class="{'has-error': addArticleForm.url.$touched && addArticleForm.url.$invalid }">
-                                    <input name="url" type="url" class="form-control" placeholder="Url" required ng-model="addArticleDatas.url" />
-                                    <span id="url-help-block" class="help-block" ng-show="addArticleForm.url.$touched && addArticleForm.url.$invalid">
-                                        Ce champs est requis et doit être une url.
-                                    </span>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
-                    <div ng-show="success">
-                        <p class="confirm-text text-center">
-                            <span class="glyphicon glyphicon-ok text-success confirm-icon"></span><br />
-                            L'article a bien été ajouté
-                        </p>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="resetDatas()">Fermer</button>
-                    <button type="button" class="btn btn-primary" ng-click="processAddArticleForm()" ng-disabled="addArticleForm.$invalid || loading" ng-hide="success">Ajouter</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    {% endblock %}
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular-animate.js"></script>
@@ -132,7 +30,19 @@
 
     {% javascripts 'bundles/press-guru/js/library/ui-bootstrap-tpls-2.5.0.min.js'
         'bundles/press-guru/js/library/spin.min.js'
-        'bundles/press-guru/js/library/bootbox.min.js'
+        'bundles/press-guru/js/library/bootbox.min.js' %}
+    
+    <script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+    
+    
+    
+    {% block js %}
+    
+    {% endblock %}
+    
+    
+<!--
         'bundles/press-guru/js/app.js'
         'bundles/press-guru/js/services/app-parameters-service.js'
         'bundles/press-guru/js/services/authentification-service.js'
@@ -146,7 +56,7 @@
         'bundles/press-guru/js/controllers/index-controller.js'
         'bundles/press-guru/js/controllers/connection-controller.js'
         'bundles/press-guru/js/controllers/registration-confirmation-controller.js' %}
-	    <script src="{{ asset_url }}"></script>
-	{% endjavascripts %}
+-->
+	    
 </body>
 </html>

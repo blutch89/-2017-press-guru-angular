@@ -39,6 +39,10 @@ header {
 }
 
 /* Page connexion */
+.container-padding {
+    padding-top: 50px;
+}
+
 .connection-interior {
     width: 80%;
 }

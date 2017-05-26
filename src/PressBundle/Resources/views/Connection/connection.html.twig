@@ -1,0 +1,18 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+<div ng-view=""></div>
+{% endblock %}
+
+
+{% block js %}
+    {% javascripts 'bundles/press-guru/js/appConnection.js'
+        'bundles/press-guru/js/services/app-parameters-service.js'
+        'bundles/press-guru/js/services/authentification-service.js'
+        'bundles/press-guru/js/services/user-service.js'
+        'bundles/press-guru/js/directives/loading-directive.js'
+        'bundles/press-guru/js/controllers/connection-controller.js' %}
+    
+    <script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+{% endblock %}
