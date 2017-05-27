@@ -6,12 +6,13 @@
 
 
 {% block js %}
-    {% javascripts 'bundles/press-guru/js/appConnection.js'
+    {% javascripts 'bundles/press-guru/js/appAuthentication.js'
         'bundles/press-guru/js/services/app-parameters-service.js'
         'bundles/press-guru/js/services/authentification-service.js'
         'bundles/press-guru/js/services/user-service.js'
         'bundles/press-guru/js/directives/loading-directive.js'
-        'bundles/press-guru/js/controllers/connection-controller.js' %}
+        'bundles/press-guru/js/controllers/connection-controller.js'
+        'bundles/press-guru/js/controllers/registration-confirmation-controller.js' %}
     
     <script src="{{ asset_url }}"></script>
 	{% endjavascripts %}

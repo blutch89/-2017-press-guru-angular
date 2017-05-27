@@ -1,11 +1,12 @@
 press_homepage:
     path:     /
     defaults: { _controller: PressBundle:Default:index }
-    
-connection:
-    path: /connection
-    defaults: { _controller: PressBundle:Connection:connection }
-    
+
+# Authentication controller
+authentification:
+    path: /authentication
+    defaults: { _controller: PressBundle:Authentication:index }
+   
 # Architechture controller
 press_architechture_get_menu_items:
     path: /frontend-api/architecture/get-menu-items
