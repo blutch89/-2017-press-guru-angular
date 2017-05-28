@@ -14,4 +14,4 @@ parameters:
 #    Email de confirmation
     confirm_email.from: admin@localhost
     confirm_email.subject: Veuillez activer votre compte chez Press Guru
-    confirm_email.activation_link: http://localhost/press-guru/web/app_dev.php#!/registration-confirmation/
+    confirm_email.activation_link: http://localhost/press-guru/web/app_dev.php/authentication#!/registration-confirmation/
