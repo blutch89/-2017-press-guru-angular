@@ -150,7 +150,7 @@ angular.module('pressGuruApp')
             // Téléchargement des articles
             if ($location.path() == "/articles/archived") { // Si on doit afficher les articles archivés
                 apiService.getArchivedArticles(sortParams, function successCallback(response) {
-                    if (response.data.success == true) {
+                    if (response.data != undefined && response.data.success == true) {
                         $scope.articles = response.data.articles;
                         indexController.setFilteredArticlesFromPagination();
                         $scope.tagName = "Articles archivés";
@@ -160,7 +160,7 @@ angular.module('pressGuruApp')
                 }, errorFunction);
             } else if ($scope.tagId == undefined) {         // Si on doit afficher tous les articles
                 apiService.getArticles(sortParams, function successCallback(response) {
-                    if (response.data.success == true) {
+                    if (response.data != undefined && response.data.success == true) {
                         $scope.articles = response.data.articles;
                         indexController.setFilteredArticlesFromPagination();
                     } else {
@@ -169,7 +169,7 @@ angular.module('pressGuruApp')
                 }, errorFunction);
             } else {                                        // Si on doit afficher les articles d'une catégorie
                 apiService.getArticlesFromTag($scope.tagId, sortParams, function successCallback(response) {
-                    if (response.data.success == true) {
+                    if (response.data != undefined && response.data.success == true) {
                         $scope.articles = response.data.articles;
                         indexController.setFilteredArticlesFromPagination();
                         $scope.tagName = response.data["tag-name"];

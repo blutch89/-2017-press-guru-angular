@@ -3,7 +3,7 @@ press_homepage:
     defaults: { _controller: PressBundle:Default:index }
 
 # Authentication controller
-authentification:
+authentication:
     path: /authentication
     defaults: { _controller: PressBundle:Authentication:index }
    
