@@ -15,10 +15,4 @@ angular.module('pressGuruApp')
     
         // Variables partagées
         this.editLabelsDialogController = null;
-    
-        // Connexion pages
-        this.connectionPages = [
-            "/connection",
-            "/registration-confirmation"
-        ];
 });

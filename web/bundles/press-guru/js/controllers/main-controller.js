@@ -9,11 +9,7 @@ angular.module('pressGuruApp')
     
         // Alerte
         $scope.menuAlertMessage = "";
-        
-
-        $scope.isItConnectionPage = function() {
-            return $location.path();
-        };
+    
         
         // Déconnecte l'utilisateur
         $scope.logout = function() {
@@ -27,21 +23,6 @@ angular.module('pressGuruApp')
     			
     		});
     	};
-    
-        // Utile pour savoir si oui ou non on affiche les menus et les en-tête
-        $scope.checkIfMustBeHidden = function() {
-            var path = $location.path();
-            
-            for (var index in appParametersService.connectionPages) {
-                var url = appParametersService.connectionPages[index];                                                   
-                                                                   
-                if (path.substr(0, url.length) == url) {
-                    return true;
-                }
-            }
-            
-            return false;                              
-        }
         
         // Charge les éléments du menus de la sidebar
         $scope.loadMenuItems = function() {
