@@ -9,6 +9,7 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
+        // Si l'utilisateur est connecté
         if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
             return $this->render('PressBundle:Default:index.html.twig');
         } else {

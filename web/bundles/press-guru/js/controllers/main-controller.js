@@ -1,5 +1,5 @@
 angular.module('pressGuruApp')
-    .controller('MainController', function ($scope, $location, authentificationService, appParametersService, apiService) {
+    .controller('MainController', function ($scope, $location, authentificationService, appParametersService, apiService, $window) {
         mainController = this;
         $scope.appParametersService = appParametersService;
     
@@ -15,7 +15,7 @@ angular.module('pressGuruApp')
         $scope.logout = function() {
     		authentificationService.logoutRequest(function successCallback(response) {
     			if (response.data.success == true) {
-	    			$location.path("/connection");
+	    			$window.location.href = appParametersService.paths.prefix + "authentication#!/connection";
 	    		} else {
 
 	    		}

@@ -13,7 +13,7 @@ angular.module('pressGuruApp')
         };
     
         this.logoutRequest = function(successFunction, errorFunction) {
-        	this.executeRestApi("../" + appParametersService.paths.prefix + "logout", successFunction, errorFunction);
+        	this.executeRestApi(appParametersService.paths.prefix + "logout", successFunction, errorFunction);
         };
     
     
