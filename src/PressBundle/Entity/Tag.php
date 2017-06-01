@@ -54,20 +54,6 @@ class Tag
         $this->articles = new ArrayCollection();
     }
     
-    // Méthodes
-//    public function getNotArchivedArticles() {
-//        $toReturn = array();
-//        
-//        foreach ($this->articles as $article) {
-//            if (!$article->getArchived()) {
-//                $toReturn[] = $article;
-//            }
-//        }
-//        
-//        return $toReturn;
-//        
-//        return count($this->articles);
-//    }
     
     /**
      * Get id

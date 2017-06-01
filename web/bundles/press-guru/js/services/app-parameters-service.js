@@ -11,6 +11,7 @@ angular.module('pressGuruApp')
         this.paths = paths;
     
         // Contrôleurs
+        this.mainController = null;
         this.currentController = null;
     
         // Variables partagées

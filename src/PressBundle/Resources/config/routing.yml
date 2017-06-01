@@ -52,5 +52,10 @@ press_articles_delete:
     defaults: {_controller: PressBundle:Articles:delete }
     requirements:
         articleId: \d+
+        
+# Tags controller
+press_tags_add:
+    path: /frontend-api/tags/add
+    defaults: {_controller: PressBundle:Tags:add }
     
 

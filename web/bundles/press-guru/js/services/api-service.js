@@ -54,6 +54,12 @@ angular.module('pressGuruApp')
             this.executeRestApi(appParametersService.paths.api + "articles/delete/" + articleId, successFunction, errorFunction);
         };
     
+        // Ajout d'une étiquette
+        this.addTag = function(datas, successFunction, errorFunction) {
+            this.executePostForm(appParametersService.paths.api + "tags/add", datas,
+            	successFunction, errorFunction);
+        };
+    
         
 
 

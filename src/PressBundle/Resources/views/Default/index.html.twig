@@ -29,7 +29,7 @@
                                 <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-plus"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a data-toggle="modal" data-target="#add-article">Ajouter un article</a></li>
-                                    <li><a>Créer une étiquette</a></li>
+                                    <li><a data-toggle="modal" data-target="#add-tag">Créer une étiquette</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -65,7 +65,7 @@
                         </div>
                         <p>Entrer l'url de l'article dans ce champs pour l'ajouter</p>
                         <form name="addArticleForm" novalidate>
-                            <fieldset ng-disabled="loading">
+                            <fieldset ng-disabled="addArticleLoading">
                                 <div class="form-group" ng-class="{'has-error': addArticleForm.url.$touched && addArticleForm.url.$invalid }">
                                     <input name="url" type="url" class="form-control" placeholder="Url" required ng-model="addArticleDatas.url" />
                                     <span id="url-help-block" class="help-block" ng-show="addArticleForm.url.$touched && addArticleForm.url.$invalid">
@@ -84,7 +84,48 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="resetDatas()">Fermer</button>
-                    <button type="button" class="btn btn-primary" ng-click="processAddArticleForm()" ng-disabled="addArticleForm.$invalid || loading" ng-hide="success">Ajouter</button>
+                    <button type="button" class="btn btn-primary" ng-click="processAddArticleForm()" ng-disabled="addArticleForm.$invalid || addArticleLoading" ng-hide="success">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--     Dialog AddTag -->
+    <div class="modal fade" id="add-tag" tabindex="-1" role="dialog" aria-labelledby="add-tag-label" ng-controller="AddTagController">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="resetDatas()"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="add-tag-label">Ajout d'une étiquette</h4>
+                </div>
+                <div class="modal-body">
+                    <div ng-show="!success">
+                        <loading value="addTagLoading"></loading>
+                        <div class="alert alert-danger" role="alert" ng-show="addTagErrorMsg">
+                            <p ng-bind="addTagErrorMsg"></p>
+                        </div>
+                        <p>Entrer le nom de l'étiquette</p>
+                        <form name="addTagForm" novalidate>
+                            <fieldset ng-disabled="addTagLoading">
+                                <div class="form-group" ng-class="{'has-error': addTagForm.name.$touched && addTagForm.name.$invalid }">
+                                    <input name="name" type="text" class="form-control" placeholder="Nom" required ng-model="addTagDatas.name" />
+                                    <span id="name-help-block" class="help-block" ng-show="addTagForm.name.$touched && addTagForm.name.$invalid">
+                                        Ce champs est requis.
+                                    </span>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div ng-show="success">
+                        <p class="confirm-text text-center">
+                            <span class="glyphicon glyphicon-ok text-success confirm-icon"></span><br />
+                            L'étiquette a bien été ajoutée
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="resetDatas()">Fermer</button>
+                    <button type="button" class="btn btn-primary" ng-click="processAddTagForm()" ng-disabled="addTagForm.$invalid || addTagLoading" ng-hide="success">Ajouter</button>
                 </div>
             </div>
         </div>
@@ -104,6 +145,7 @@
         'bundles/press-guru/js/directives/loading-directive.js'
     	'bundles/press-guru/js/controllers/main-controller.js'
         'bundles/press-guru/js/controllers/add-article-controller.js'
+        'bundles/press-guru/js/controllers/add-tag-controller.js'
         'bundles/press-guru/js/controllers/edit-article-labels-controller.js'
         'bundles/press-guru/js/controllers/index-controller.js'
         'bundles/press-guru/js/controllers/connection-controller.js'

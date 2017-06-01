@@ -15,6 +15,7 @@ class ArchitectureController extends Controller {
         
         // Variables
         $tagNumber = 3;
+        $tagNumber++;       // Le nombre réel est tagNumber + 1
         
         // Création du menu "tous les articles"
         $menuItems[] = [

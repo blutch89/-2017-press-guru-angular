@@ -1,6 +1,7 @@
 angular.module('pressGuruApp')
     .controller('MainController', function ($scope, $location, authentificationService, appParametersService, apiService, $window) {
         mainController = this;
+        appParametersService.mainController = this;
         $scope.appParametersService = appParametersService;
     
         // Variables
@@ -41,6 +42,10 @@ angular.module('pressGuruApp')
                 $scope.createAlert("Impossible de charger le menu");
                 $scope.loadMenuItemsLoading = false;
             });
+        };
+    
+        this.loadMenuItems = function() {
+            $scope.loadMenuItems();
         };
     
         // Crée un message d'alerte
