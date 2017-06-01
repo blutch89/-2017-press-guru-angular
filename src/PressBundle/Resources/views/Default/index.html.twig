@@ -41,21 +41,8 @@
         <div class="container">
             <div class="row">
                 <nav id="nav-right" class="col-xs-12 col-sm-3">
-                    <loading value="loadMenuItemsLoading"></loading>
-                    <p class="nav-title">Articles</p>
-                    <div class="alert alert-danger" role="alert" ng-show="menuAlertMessage">
-                        <span ng-bind="menuAlertMessage"></span>
-                        <br />
-                        <button class="btn btn-defaut" type="button" ng-click="loadMenuItems()">Recharger</button>
-                    </div>
-                    <ul class="nav nav-pills nav-stacked smaller-nav side-nav">
-                        <li role="presentation" ng-repeat="item in menuItems">
-                            <a ng-href="#!/{{ '{{ item[\'link\'] }}' }}">
-                                <span ng-bind="item['text'] + ' (' + item['nbArticles'] + ')'"></span>
-                            </a>
-                        </li>
-                        <li role="presentation"><a>Gérer/afficher les étiquettes</a></li>
-                    </ul>
+                    <!-- Inclus cette vue afin de forcer le chargement d'angular avant de la charger -->
+                    <div ng-include="'bundles/press-guru/views/sidebar.html'"></div>
                 </nav>
                 <div ng-view="" class="col-xs-12 col-sm-9"></div>
             </div>
