@@ -11,22 +11,16 @@ use PressBundle\Entity\Tag;
 class TagsController extends Controller {
     
     public function getAllAction(Request $request) {
-//        $em = $this->getDoctrine()->getManager();
-//        $articlesRepository = $em->getRepository("PressBundle:Article");
-//        $user = $this->get('security.context')->getToken()->getUser();
-//        $sortParametersConverter = $this->get("press.sort_parameters_converter");
-//        
-//        // Paramètres GET
-//        $sortBy = $request->query->get("sortBy");
-//        $sortDirection = $request->query->get("sortDirection");
-//        $sortParameters = $sortParametersConverter->convertSortParameters($sortBy, $sortDirection);
-//
-//        $articles = $articlesRepository->getArticlesFromUser($sortParameters, $user->getId());
-//
-//        return new JsonResponse([
-//            "success" => true,
-//            "articles" => $articles
-//        ], 200);
+        $em = $this->getDoctrine()->getManager();
+        $tagsRepository = $em->getRepository("PressBundle:Tag");
+        $user = $this->get('security.context')->getToken()->getUser();
+
+        $tags = $tagsRepository->getAllTagsSorted($user->getId());
+
+        return new JsonResponse([
+            "success" => true,
+            "tags" => $tags
+        ], 200);
     }
     
     public function addAction(Request $request) {

@@ -41,7 +41,7 @@
         <div class="container">
             <div class="row">
                 <nav id="nav-right" class="col-xs-12 col-sm-3">
-                    <!-- Inclus cette vue afin de forcer le chargement d'angular avant de la charger -->
+                    <!-- Inclus cette vue afin de forcer le chargement d'angular avant de charger la vue -->
                     <div ng-include="'bundles/press-guru/views/sidebar.html'"></div>
                 </nav>
                 <div ng-view="" class="col-xs-12 col-sm-9"></div>
@@ -130,6 +130,38 @@
             </div>
         </div>
     </div>
+
+<!--     Dialog display tags -->
+    <div class="modal fade" id="display-tag" tabindex="-1" role="dialog" aria-labelledby="display-tag-label" ng-controller="DisplayTagsController">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="resetDatas()"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="display-tag-label">Liste des étiquettes</h4>
+                </div>
+                <div class="modal-body">
+                    <loading value="displayTagsLoading"></loading>
+                    <div class="alert alert-danger" role="alert" ng-show="displayTagsErrorMsg">
+                        <p ng-bind="displayTagsErrorMsg"></p>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <tr ng-repeat="tag in tags">
+                                <td ng-bind="tag['name']"></td>
+                                <td class="text-right">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="resetDatas()">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 
@@ -147,6 +179,7 @@
         'bundles/press-guru/js/controllers/add-article-controller.js'
         'bundles/press-guru/js/controllers/add-tag-controller.js'
         'bundles/press-guru/js/controllers/edit-article-labels-controller.js'
+        'bundles/press-guru/js/controllers/display-tags-controller.js'
         'bundles/press-guru/js/controllers/index-controller.js'
         'bundles/press-guru/js/controllers/connection-controller.js'
         'bundles/press-guru/js/controllers/registration-confirmation-controller.js' %}

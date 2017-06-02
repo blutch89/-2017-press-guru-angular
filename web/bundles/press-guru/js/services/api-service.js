@@ -60,6 +60,11 @@ angular.module('pressGuruApp')
             	successFunction, errorFunction);
         };
     
+        this.getTags = function(successFunction, errorFunction) {
+            this.executeRestApi(appParametersService.paths.api + "tags/get/all",
+            	successFunction, errorFunction);
+        };
+    
         
 
 

@@ -58,4 +58,8 @@ press_tags_add:
     path: /frontend-api/tags/add
     defaults: {_controller: PressBundle:Tags:add }
     
+press_tags_get:
+    path: /frontend-api/tags/get/all
+    defaults: {_controller: PressBundle:Tags:getAll }
+    
 

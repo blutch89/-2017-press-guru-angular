@@ -48,6 +48,12 @@ angular.module('pressGuruApp')
             $scope.loadMenuItems();
         };
     
+        // Affiche la fenêtre d'affichage des étiquettes
+        $scope.displayTagsDialog = function() {
+            $("#display-tag").modal("show");
+            appParametersService.displayTagsDialogController.loadDatas();
+        };
+    
         // Crée un message d'alerte
         $scope.createAlert = function(message) {
         	$scope.menuAlertMessage = message;

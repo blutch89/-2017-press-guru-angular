@@ -16,4 +16,5 @@ angular.module('pressGuruApp')
     
         // Variables partagées
         this.editLabelsDialogController = null;
+        this.displayTagsDialogController = null;
 });
