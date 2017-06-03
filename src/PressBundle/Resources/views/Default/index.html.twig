@@ -155,6 +155,9 @@
                             </tr>
                         </table>
                     </div>
+                    <div ng-show="tags[0] == null">
+                        <p>Vous n'avez aucune étiquette enregistrée</p>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="resetDatas()">Fermer</button>

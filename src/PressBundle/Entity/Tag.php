@@ -26,13 +26,13 @@ class Tag
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=30, unique=true)
-     * @Assert\NotBlank(message="L'étiquette doit être remplie et comprise entre 2 et 30 caractères")
+     * @ORM\Column(name="name", type="string", length=40, unique=true)
+     * @Assert\NotBlank(message="L'étiquette doit être remplie et comprise entre 2 et 40 caractères")
      * @Assert\Length(
      *      min = 2,
-     *      max = 30,
-     *      minMessage = "L'étiquette doit être remplie et comprise entre 2 et 30 caractères",
-     *      maxMessage = "L'étiquette doit être remplie et comprise entre 2 et 30 caractères"
+     *      max = 40,
+     *      minMessage = "L'étiquette doit être remplie et comprise entre 2 et 40 caractères",
+     *      maxMessage = "L'étiquette doit être remplie et comprise entre 2 et 40 caractères"
      * )
      */
     private $name;
