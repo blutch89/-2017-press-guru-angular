@@ -1,5 +1,5 @@
 angular.module('pressGuruApp')
-    .controller('DisplayTagsController', function ($scope, apiService, appParametersService) {
+    .controller('DisplayTagsController', function ($scope, apiService, appParametersService, $location) {
         var displayTagsController = this;
         appParametersService.displayTagsDialogController = this;
         
@@ -29,6 +29,12 @@ angular.module('pressGuruApp')
                 $scope.displayTagsLoading = false;
                 $scope.displayTagsErrorMsg = "Impossible de charger les informations de l'article";
             });
+        };
+    
+        // Redirige l'utilisateur sur le tag sélectionné et ferme le dialog
+        $scope.selectTag = function(tagId) {
+            $location.path("/articles/tag/" + tagId);
+            $("#display-tag").modal("hide");
         };
     
         // Reset

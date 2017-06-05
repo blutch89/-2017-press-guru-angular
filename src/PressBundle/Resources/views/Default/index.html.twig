@@ -147,7 +147,7 @@
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <tr ng-repeat="tag in tags">
-                                <td ng-bind="tag['name']"></td>
+                                <td><a ng-click="selectTag(tag['id'])" ng-bind="tag['name']"></a></td>
                                 <td class="text-right">
                                     <span class="glyphicon glyphicon-edit"></span>
                                     <span class="glyphicon glyphicon-trash"></span>
