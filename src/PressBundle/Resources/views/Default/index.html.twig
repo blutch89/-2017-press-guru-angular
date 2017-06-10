@@ -147,9 +147,11 @@
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <tr ng-repeat="tag in tags">
-                                <td><a ng-click="selectTag(tag['id'])" ng-bind="tag['name']"></a></td>
+                                <td>
+                                    <edit-tag is-edited="isTagIsCurrentlyEdited(tag['id'])" tag-id="tag['id']" old-name="tag['name']"><a ng-click="selectTag(tag['id'])" ng-bind="tag['name']"></a></edit-tag>
+                                </td>
                                 <td class="text-right">
-                                    <span class="glyphicon glyphicon-edit"></span>
+                                    <span class="glyphicon glyphicon-edit" ng-click="setCurrentEditedTag(tag['id'])"></span>
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </td>
                             </tr>
@@ -178,6 +180,7 @@
         'bundles/press-guru/js/services/api-service.js'
         'bundles/press-guru/js/services/user-service.js'
         'bundles/press-guru/js/directives/loading-directive.js'
+        'bundles/press-guru/js/directives/edit-tag-directive.js'
     	'bundles/press-guru/js/controllers/main-controller.js'
         'bundles/press-guru/js/controllers/add-article-controller.js'
         'bundles/press-guru/js/controllers/add-tag-controller.js'

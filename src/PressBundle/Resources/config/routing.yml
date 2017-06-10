@@ -62,4 +62,11 @@ press_tags_get:
     path: /frontend-api/tags/get/all
     defaults: {_controller: PressBundle:Tags:getAll }
     
+press_tags_edit:
+    path: /frontend-api/tags/edit/{tagId}/{newName}
+    defaults: {_controller: PressBundle:Tags:edit }
+    requirements:
+        tagId: \d+
+        newName: \w+
+    
 

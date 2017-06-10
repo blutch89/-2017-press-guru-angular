@@ -59,6 +59,34 @@ class TagsController extends Controller {
         }
     }
     
+    public function editAction(Request $request, $tagId, $newName) {
+        $em = $this->getDoctrine()->getManager();
+        $tagRepository = $this->getDoctrine()->getRepository("PressBundle:Tag");
+        $user = $this->get('security.context')->getToken()->getUser();
+        $validator = $this->get('validator');
+        
+        try {
+            // Modification de l'étiquette
+            $tag = $tagRepository->find($tagId);
+            $tag->setName($newName);
+            
+            // Validations
+            $validationErrors = $validator->validate($tag);
+            
+            if (count($validationErrors) > 0) {
+                return $this->sendErrorMessage($validationErrors[0]->getMessage());
+            }
+            
+            // Sauvegarde
+            $em->persist($tag);
+            $em->flush();
+            
+            return new JsonResponse(["success" => true], 200);
+        } catch (\Exception $e) {
+            return $this->sendErrorMessage("Une erreur inconnue s'est produite.");
+        }
+    }
+    
     public function deleteAction($articleId) {
 //        $em = $this->getDoctrine()->getManager();
 //        $articleRepository = $this->getDoctrine()->getRepository("PressBundle:Article");

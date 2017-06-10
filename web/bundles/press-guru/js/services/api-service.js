@@ -60,8 +60,15 @@ angular.module('pressGuruApp')
             	successFunction, errorFunction);
         };
     
+        // Demande toutes les étiquettes
         this.getTags = function(successFunction, errorFunction) {
             this.executeRestApi(appParametersService.paths.api + "tags/get/all",
+            	successFunction, errorFunction);
+        };
+    
+        // Modifie l'étiquette
+        this.editTag = function(tagId, newName, successFunction, errorFunction) {
+            this.executeRestApi(appParametersService.paths.api + "tags/edit/" + tagId + "/" + newName,
             	successFunction, errorFunction);
         };
     
