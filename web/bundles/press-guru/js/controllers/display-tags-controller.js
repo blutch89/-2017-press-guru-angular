@@ -7,7 +7,12 @@ angular.module('pressGuruApp')
         $scope.displayTagsLoading = true;
         $scope.tags = {};
         $scope.displayTagsErrorMsg = "";
+    
+        // Variables modification du titre d'une étiquette
         $scope.currentEditedTag = 0;
+        $scope.editTagNewNames = [];    // Il y a un bug si tous les input (tag in tags) référencent la même variable. Alors j'utilise un array
+        $scope.editTagLoading = false;
+        $scope.editTagErrorMsg = "";
         
     
         // Charge les informations du dialog (toutes les étiquettes)
@@ -30,11 +35,6 @@ angular.module('pressGuruApp')
             });
         };
     
-        // Appelle loadDatas
-        $scope.loadDatas = function() {
-            displayTagsController.loadDatas();
-        };
-    
         // Redirige l'utilisateur sur le tag sélectionné et ferme le dialog
         $scope.selectTag = function(tagId) {
             $location.path("/articles/tag/" + tagId);
@@ -42,8 +42,9 @@ angular.module('pressGuruApp')
         };
     
         // Définit quelle étiquette est en train d'être modifiée
-        $scope.setCurrentEditedTag = function(tagId) {
+        $scope.setCurrentEditedTag = function(tagId, tagName) {
             $scope.currentEditedTag = tagId;
+            $scope.editTagNewNames[tagId] = tagName;
         };
     
         // Est-ce que l'étiquette en paramètre est celle qui est en train d'être modifiée ?
@@ -55,8 +56,37 @@ angular.module('pressGuruApp')
             return false;
         };
     
+        // Modifie l'étiquette
+        $scope.processEditTag = function(tagId) {
+            $scope.editTagLoading = true;
+            $scope.editTagErrorMsg = "";
+
+            apiService.editTag(tagId, $scope.editTagNewNames[tagId], function successCallback(response) {
+                if (response.data.success == true) {
+                    $scope.resetCurrentEditedTag();
+                    displayTagsController.loadDatas();
+
+                    $scope.editTagLoading = false;
+                } else {
+                    $scope.editTagLoading = false;
+                    $scope.editTagErrorMsg = response.data.error
+                }
+            }, function errorCallback(response) {
+                $scope.editTagLoading = false;
+                $scope.editTagErrorMsg = "Impossible de modfier l'étiquette";
+            });
+        };
+    
         $scope.resetCurrentEditedTag = function() {
             $scope.currentEditedTag = 0;
+            $scope.editTagNewNames = [];
+            $scope.editTagErrorMsg = "";
+        };
+    
+        $scope.deleteTag = function(tagId) {
+            bootbox.confirm("Voulez-vous vraiment supprimer cette étiquette ?", function(result) {
+                console.log("ok");
+            });
         };
     
         // Reset

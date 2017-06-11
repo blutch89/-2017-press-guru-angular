@@ -148,11 +148,30 @@
                         <table class="table table-striped">
                             <tr ng-repeat="tag in tags">
                                 <td>
-                                    <edit-tag is-edited="isTagIsCurrentlyEdited(tag['id'])" tag-id="tag['id']" old-name="tag['name']"><a ng-click="selectTag(tag['id'])" ng-bind="tag['name']"></a></edit-tag>
+                                    <a ng-hide="isTagIsCurrentlyEdited(tag['id'])" ng-click="selectTag(tag['id'])" ng-bind="tag['name']"></a>
+                                    
+                                    <div ng-show="isTagIsCurrentlyEdited(tag['id'])">
+                                        <form name="tagEdition" class="form-inline" novalidate>
+                                            <fieldset ng-disabled="editTagLoading">
+                                                <loading value="editTagLoading"></loading>
+                                                <div class="form-group" ng-class="{'has-error': tagEdition.name.$touched && tagEdition.name.$invalid }">
+                                                    <input type="text" name="name" class="form-control"
+                                                        required ng-minlength="2" ng-maxlength="40" ng-model="editTagNewNames[tag['id']]" />
+                                                </div>
+                                                <input type="submit" name="submit" value="Modifier" class="btn btn-primary" ng-disabled="tagEdition.$invalid" ng-click="processEditTag(tag['id'])" />
+                                                <button class="btn btn-default" ng-click="resetCurrentEditedTag()">Annuler</button>
+                                                <br />
+                                                <p class="text-danger" ng-show="tagEdition.name.$touched && tagEdition.name.$invalid && !editTagErrorMsg">
+                                                    Ce champs est requis et doit être compris entre 2 et 40 caractères.
+                                                </p>
+                                                <p class="text-danger" ng-show="editTagErrorMsg" ng-bind="editTagErrorMsg"></p>
+                                            </fieldset>
+                                        </form>
+                                    </div>
                                 </td>
                                 <td class="text-right">
-                                    <span class="glyphicon glyphicon-edit" ng-click="setCurrentEditedTag(tag['id'])"></span>
-                                    <span class="glyphicon glyphicon-trash"></span>
+                                    <span class="glyphicon glyphicon-edit" ng-click="setCurrentEditedTag(tag['id'], tag['name'])"></span>
+                                    <span class="glyphicon glyphicon-trash" ng-click="deleteTag(tag['id'])"></span>
                                 </td>
                             </tr>
                         </table>
@@ -180,7 +199,6 @@
         'bundles/press-guru/js/services/api-service.js'
         'bundles/press-guru/js/services/user-service.js'
         'bundles/press-guru/js/directives/loading-directive.js'
-        'bundles/press-guru/js/directives/edit-tag-directive.js'
     	'bundles/press-guru/js/controllers/main-controller.js'
         'bundles/press-guru/js/controllers/add-article-controller.js'
         'bundles/press-guru/js/controllers/add-tag-controller.js'

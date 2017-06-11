@@ -67,6 +67,5 @@ press_tags_edit:
     defaults: {_controller: PressBundle:Tags:edit }
     requirements:
         tagId: \d+
-        newName: \w+
     
 
