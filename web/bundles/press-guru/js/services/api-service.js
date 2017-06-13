@@ -72,6 +72,12 @@ angular.module('pressGuruApp')
             	successFunction, errorFunction);
         };
     
+        // Modifie l'étiquette
+        this.deleteTag = function(tagId, successFunction, errorFunction) {
+            this.executeRestApi(appParametersService.paths.api + "tags/delete/" + tagId,
+            	successFunction, errorFunction);
+        };
+    
         
 
 

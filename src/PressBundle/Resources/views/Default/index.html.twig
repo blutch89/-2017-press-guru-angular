@@ -141,8 +141,9 @@
                 </div>
                 <div class="modal-body">
                     <loading value="displayTagsLoading"></loading>
-                    <div class="alert alert-danger" role="alert" ng-show="displayTagsErrorMsg">
-                        <p ng-bind="displayTagsErrorMsg"></p>
+                    <div class="alert alert-dismissable alert-{{ '{{ alertType }}' }}" role="alert" ng-show="displayTagsErrorMsg" ng-hide="isAlertClosed">
+                        <button type="button" class="close" ng-click="closeAlertMessage()">&times;</button>
+                        <p ng-bind="alertMessage"></p>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped">

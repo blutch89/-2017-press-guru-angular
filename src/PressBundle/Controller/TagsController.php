@@ -87,27 +87,27 @@ class TagsController extends Controller {
         }
     }
     
-    public function deleteAction($articleId) {
-//        $em = $this->getDoctrine()->getManager();
-//        $articleRepository = $this->getDoctrine()->getRepository("PressBundle:Article");
-//        
-//        // Tests
-//        if ($articleId == null) {
-//            return $this->sendErrorMessage("Impossible de supprimer l'article");
-//        }
-//        
-//        try {
-//            // Archive l'article
-//            $article = $articleRepository->find($articleId);
-//            $em->remove($article);
-//            
-//            // Sauvegarde
-//            $em->flush();
-//            
-//            return new JsonResponse(["success" => true], 200);
-//        } catch (\Exception $e) {
-//            return $this->sendErrorMessage("Impossible d'archiver l'article");
-//        }
+    public function deleteAction($tagId) {
+        $em = $this->getDoctrine()->getManager();
+        $tagRepository = $this->getDoctrine()->getRepository("PressBundle:Tag");
+        
+        // Tests
+        if ($tagId == null) {
+            return $this->sendErrorMessage("Impossible de supprimer l'étiquette");
+        }
+        
+        try {
+            // Supprime l'étiquette
+            $tag = $tagRepository->find($tagId);
+            $em->remove($tag);
+            
+            // Sauvegarde
+            $em->flush();
+            
+            return new JsonResponse(["success" => true], 200);
+        } catch (\Exception $e) {
+            return $this->sendErrorMessage("Impossible de supprimer l'étiquette");
+        }
     }
     
     private function sendErrorMessage($errorMessage) {

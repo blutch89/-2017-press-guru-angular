@@ -12,7 +12,11 @@ angular.module('pressGuruApp')
         $scope.currentEditedTag = 0;
         $scope.editTagNewNames = [];    // Il y a un bug si tous les input (tag in tags) référencent la même variable. Alors j'utilise un array
         $scope.editTagLoading = false;
-        $scope.editTagErrorMsg = "";
+        
+        // Variables liées aux messages d'erreurs
+        $scope.alertMessage = "";
+        $scope.isAlertClosed = true;
+        $scope.alertType = "";
         
     
         // Charge les informations du dialog (toutes les étiquettes)
@@ -27,11 +31,11 @@ angular.module('pressGuruApp')
                     $scope.displayTagsLoading = false;
                 } else {
                     $scope.displayTagsLoading = false;
-                    $scope.displayTagsErrorMsg = response.data.error
+                    $scope.createAlert(response.data.error, "danger");
                 }
             }, function errorCallback(response) {
                 $scope.displayTagsLoading = false;
-                $scope.displayTagsErrorMsg = "Impossible de charger les informations de l'article";
+                $scope.createAlert("Impossible de charger les étiquettes", "danger");
             });
         };
     
@@ -59,7 +63,7 @@ angular.module('pressGuruApp')
         // Modifie l'étiquette
         $scope.processEditTag = function(tagId) {
             $scope.editTagLoading = true;
-            $scope.editTagErrorMsg = "";
+            $scope.alertMessage = "";
 
             apiService.editTag(tagId, $scope.editTagNewNames[tagId], function successCallback(response) {
                 if (response.data.success == true) {
@@ -69,24 +73,61 @@ angular.module('pressGuruApp')
                     $scope.editTagLoading = false;
                 } else {
                     $scope.editTagLoading = false;
-                    $scope.editTagErrorMsg = response.data.error
+                    $scope.createAlert(response.data.error, "danger");
                 }
             }, function errorCallback(response) {
                 $scope.editTagLoading = false;
-                $scope.editTagErrorMsg = "Impossible de modfier l'étiquette";
+                $scope.createAlert("Impossible de modfier l'étiquette", "danger");
             });
         };
     
         $scope.resetCurrentEditedTag = function() {
             $scope.currentEditedTag = 0;
             $scope.editTagNewNames = [];
-            $scope.editTagErrorMsg = "";
+            $scope.alertMessage = "";
         };
     
         $scope.deleteTag = function(tagId) {
-            bootbox.confirm("Voulez-vous vraiment supprimer cette étiquette ?", function(result) {
-                console.log("ok");
-            });
+            bootbox.confirm({
+                message: "Êtes-vous vraiment sûr de vouloir supprimer cette étiquette ?",
+                buttons: {
+                    cancel: {
+                        label: 'Non',
+                        className: 'btn-default'
+                    },
+                    confirm: {
+                        label: 'Oui',
+                        className: 'btn-primary'
+                    }
+                },
+                callback: function(result) {
+                    if (result === true) {
+                        apiService.deleteTag(tagId, function successCallback(response) {
+                            if (response.data.success == true) {
+                                displayTagsController.loadDatas();
+                                
+                                $scope.createAlert("Etiquette supprimée", "success");
+                            } else {
+                                $scope.createAlert("Impossible de supprimer l'étiquette", "danger");
+                            }
+                        }, function errorCallback(response) {
+                            $scope.createAlert("Impossible de supprime l'étiquette", "danger");
+                        });
+                }
+            }});
+        };
+    
+        // Crée un message d'alerte
+        $scope.createAlert = function(message, alertType) {
+        	$scope.alertMessage = message;
+        	$scope.isAlertClosed = false;
+            $scope.alertType = alertType;
+        };
+    
+        // Ferme le message d'alerte
+        $scope.closeAlertMessage = function() {
+            $scope.alertMessage = "";
+        	$scope.isAlertClosed = true;
         };
     
         // Reset

@@ -67,5 +67,11 @@ press_tags_edit:
     defaults: {_controller: PressBundle:Tags:edit }
     requirements:
         tagId: \d+
+        
+press_tags_delete:
+    path: /frontend-api/tags/delete/{tagId}
+    defaults: {_controller: PressBundle:Tags:delete }
+    requirements:
+        tagId: \d+
     
 
