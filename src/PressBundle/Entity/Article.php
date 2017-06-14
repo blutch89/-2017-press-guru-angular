@@ -87,7 +87,7 @@ class Article
     private $tags;
     
     /**
-     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="articles")
      * @ORM\JoinColumn(name="owner", referencedColumnName="id", nullable=true)
      */
     private $owner;
