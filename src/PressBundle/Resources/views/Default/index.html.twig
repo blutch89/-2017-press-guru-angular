@@ -108,9 +108,10 @@
                         <form name="addTagForm" novalidate>
                             <fieldset ng-disabled="addTagLoading">
                                 <div class="form-group" ng-class="{'has-error': addTagForm.name.$touched && addTagForm.name.$invalid }">
-                                    <input name="name" type="text" class="form-control" placeholder="Nom" required ng-model="addTagDatas.name" />
+                                    <input name="name" type="text" class="form-control" placeholder="Nom" required
+                                           ng-model="addTagDatas.name" ng-minlength="2" ng-maxlength="40" />
                                     <span id="name-help-block" class="help-block" ng-show="addTagForm.name.$touched && addTagForm.name.$invalid">
-                                        Ce champs est requis.
+                                        Ce champs est requis et doit être compris entre 2 et 40 caractères.
                                     </span>
                                 </div>
                             </fieldset>
