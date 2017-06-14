@@ -18,8 +18,18 @@ angular.module('pressGuruApp')
                     $scope.addArticleLoading = false;
                     $scope.success = true;
                     
+                    // TEST OBSERVER
+                    $scope.$emit("eventtest", {});
+                    
+                    
+                    
+                    
                     // Refresh la page en cours
-                    appParametersService.currentController.refreshPage();
+//                    appParametersService.currentController.refreshPage();
+                    
+                    
+                    
+                    
                 } else {
                     $scope.addArticleErrorMsg = response.data.error;
                     $scope.addArticleLoading = false;

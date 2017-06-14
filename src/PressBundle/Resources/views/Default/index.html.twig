@@ -47,143 +47,144 @@
                 <div ng-view="" class="col-xs-12 col-sm-9"></div>
             </div>
         </div>
-    </div>
+    
     
 <!--     Dialog AddArticle -->
-    <div class="modal fade" id="add-article" tabindex="-1" role="dialog" aria-labelledby="add-article-label" ng-controller="AddArticleController">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="resetDatas()"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="add-article-label">Ajout d'article</h4>
-                </div>
-                <div class="modal-body">
-                    <div ng-show="!success">
-                        <loading value="addArticleLoading"></loading>
-                        <div class="alert alert-danger" role="alert" ng-show="addArticleErrorMsg">
-                            <p ng-bind="addArticleErrorMsg"></p>
-                        </div>
-                        <p>Entrer l'url de l'article dans ce champs pour l'ajouter</p>
-                        <form name="addArticleForm" novalidate>
-                            <fieldset ng-disabled="addArticleLoading">
-                                <div class="form-group" ng-class="{'has-error': addArticleForm.url.$touched && addArticleForm.url.$invalid }">
-                                    <input name="url" type="url" class="form-control" placeholder="Url" required ng-model="addArticleDatas.url" />
-                                    <span id="url-help-block" class="help-block" ng-show="addArticleForm.url.$touched && addArticleForm.url.$invalid">
-                                        Ce champs est requis et doit être une url.
-                                    </span>
-                                </div>
-                            </fieldset>
-                        </form>
+        <div class="modal fade" id="add-article" tabindex="-1" role="dialog" aria-labelledby="add-article-label" ng-controller="AddArticleController">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="resetDatas()"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="add-article-label">Ajout d'article</h4>
                     </div>
-                    <div ng-show="success">
-                        <p class="confirm-text text-center">
-                            <span class="glyphicon glyphicon-ok text-success confirm-icon"></span><br />
-                            L'article a bien été ajouté
-                        </p>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="resetDatas()">Fermer</button>
-                    <button type="button" class="btn btn-primary" ng-click="processAddArticleForm()" ng-disabled="addArticleForm.$invalid || addArticleLoading" ng-hide="success">Ajouter</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-<!--     Dialog AddTag -->
-    <div class="modal fade" id="add-tag" tabindex="-1" role="dialog" aria-labelledby="add-tag-label" ng-controller="AddTagController">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="resetDatas()"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="add-tag-label">Ajout d'une étiquette</h4>
-                </div>
-                <div class="modal-body">
-                    <div ng-show="!success">
-                        <loading value="addTagLoading"></loading>
-                        <div class="alert alert-danger" role="alert" ng-show="addTagErrorMsg">
-                            <p ng-bind="addTagErrorMsg"></p>
-                        </div>
-                        <p>Entrer le nom de l'étiquette</p>
-                        <form name="addTagForm" novalidate>
-                            <fieldset ng-disabled="addTagLoading">
-                                <div class="form-group" ng-class="{'has-error': addTagForm.name.$touched && addTagForm.name.$invalid }">
-                                    <input name="name" type="text" class="form-control" placeholder="Nom" required
-                                           ng-model="addTagDatas.name" ng-minlength="2" ng-maxlength="40" />
-                                    <span id="name-help-block" class="help-block" ng-show="addTagForm.name.$touched && addTagForm.name.$invalid">
-                                        Ce champs est requis et doit être compris entre 2 et 40 caractères.
-                                    </span>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
-                    <div ng-show="success">
-                        <p class="confirm-text text-center">
-                            <span class="glyphicon glyphicon-ok text-success confirm-icon"></span><br />
-                            L'étiquette a bien été ajoutée
-                        </p>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="resetDatas()">Fermer</button>
-                    <button type="button" class="btn btn-primary" ng-click="processAddTagForm()" ng-disabled="addTagForm.$invalid || addTagLoading" ng-hide="success">Ajouter</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-<!--     Dialog display tags -->
-    <div class="modal fade" id="display-tag" tabindex="-1" role="dialog" aria-labelledby="display-tag-label" ng-controller="DisplayTagsController">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="resetDatas()"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="display-tag-label">Liste des étiquettes</h4>
-                </div>
-                <div class="modal-body">
-                    <loading value="displayTagsLoading"></loading>
-                    <div class="alert alert-dismissable alert-{{ '{{ alertType }}' }}" role="alert" ng-show="displayTagsErrorMsg" ng-hide="isAlertClosed">
-                        <button type="button" class="close" ng-click="closeAlertMessage()">&times;</button>
-                        <p ng-bind="alertMessage"></p>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <tr ng-repeat="tag in tags">
-                                <td>
-                                    <a ng-hide="isTagIsCurrentlyEdited(tag['id'])" ng-click="selectTag(tag['id'])" ng-bind="tag['name']"></a>
-                                    
-                                    <div ng-show="isTagIsCurrentlyEdited(tag['id'])">
-                                        <form name="tagEdition" class="form-inline" novalidate>
-                                            <fieldset ng-disabled="editTagLoading">
-                                                <loading value="editTagLoading"></loading>
-                                                <div class="form-group" ng-class="{'has-error': tagEdition.name.$touched && tagEdition.name.$invalid }">
-                                                    <input type="text" name="name" class="form-control"
-                                                        required ng-minlength="2" ng-maxlength="40" ng-model="editTagNewNames[tag['id']]" />
-                                                </div>
-                                                <input type="submit" name="submit" value="Modifier" class="btn btn-primary" ng-disabled="tagEdition.$invalid" ng-click="processEditTag(tag['id'])" />
-                                                <button class="btn btn-default" ng-click="resetCurrentEditedTag()">Annuler</button>
-                                                <br />
-                                                <p class="text-danger" ng-show="tagEdition.name.$touched && tagEdition.name.$invalid && !editTagErrorMsg">
-                                                    Ce champs est requis et doit être compris entre 2 et 40 caractères.
-                                                </p>
-                                                <p class="text-danger" ng-show="editTagErrorMsg" ng-bind="editTagErrorMsg"></p>
-                                            </fieldset>
-                                        </form>
+                    <div class="modal-body">
+                        <div ng-show="!success">
+                            <loading value="addArticleLoading"></loading>
+                            <div class="alert alert-danger" role="alert" ng-show="addArticleErrorMsg">
+                                <p ng-bind="addArticleErrorMsg"></p>
+                            </div>
+                            <p>Entrer l'url de l'article dans ce champs pour l'ajouter</p>
+                            <form name="addArticleForm" novalidate>
+                                <fieldset ng-disabled="addArticleLoading">
+                                    <div class="form-group" ng-class="{'has-error': addArticleForm.url.$touched && addArticleForm.url.$invalid }">
+                                        <input name="url" type="url" class="form-control" placeholder="Url" required ng-model="addArticleDatas.url" />
+                                        <span id="url-help-block" class="help-block" ng-show="addArticleForm.url.$touched && addArticleForm.url.$invalid">
+                                            Ce champs est requis et doit être une url.
+                                        </span>
                                     </div>
-                                </td>
-                                <td class="text-right">
-                                    <span class="glyphicon glyphicon-edit" ng-click="setCurrentEditedTag(tag['id'], tag['name'])"></span>
-                                    <span class="glyphicon glyphicon-trash" ng-click="deleteTag(tag['id'])"></span>
-                                </td>
-                            </tr>
-                        </table>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div ng-show="success">
+                            <p class="confirm-text text-center">
+                                <span class="glyphicon glyphicon-ok text-success confirm-icon"></span><br />
+                                L'article a bien été ajouté
+                            </p>
+                        </div>
                     </div>
-                    <div ng-show="tags[0] == null">
-                        <p>Vous n'avez aucune étiquette enregistrée</p>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="resetDatas()">Fermer</button>
+                        <button type="button" class="btn btn-primary" ng-click="processAddArticleForm()" ng-disabled="addArticleForm.$invalid || addArticleLoading" ng-hide="success">Ajouter</button>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="resetDatas()">Fermer</button>
+            </div>
+        </div>
+
+    <!--     Dialog AddTag -->
+        <div class="modal fade" id="add-tag" tabindex="-1" role="dialog" aria-labelledby="add-tag-label" ng-controller="AddTagController">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="resetDatas()"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="add-tag-label">Ajout d'une étiquette</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div ng-show="!success">
+                            <loading value="addTagLoading"></loading>
+                            <div class="alert alert-danger" role="alert" ng-show="addTagErrorMsg">
+                                <p ng-bind="addTagErrorMsg"></p>
+                            </div>
+                            <p>Entrer le nom de l'étiquette</p>
+                            <form name="addTagForm" novalidate>
+                                <fieldset ng-disabled="addTagLoading">
+                                    <div class="form-group" ng-class="{'has-error': addTagForm.name.$touched && addTagForm.name.$invalid }">
+                                        <input name="name" type="text" class="form-control" placeholder="Nom" required
+                                               ng-model="addTagDatas.name" ng-minlength="2" ng-maxlength="40" />
+                                        <span id="name-help-block" class="help-block" ng-show="addTagForm.name.$touched && addTagForm.name.$invalid">
+                                            Ce champs est requis et doit être compris entre 2 et 40 caractères.
+                                        </span>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div ng-show="success">
+                            <p class="confirm-text text-center">
+                                <span class="glyphicon glyphicon-ok text-success confirm-icon"></span><br />
+                                L'étiquette a bien été ajoutée
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="resetDatas()">Fermer</button>
+                        <button type="button" class="btn btn-primary" ng-click="processAddTagForm()" ng-disabled="addTagForm.$invalid || addTagLoading" ng-hide="success">Ajouter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!--     Dialog display tags -->
+        <div class="modal fade" id="display-tag" tabindex="-1" role="dialog" aria-labelledby="display-tag-label" ng-controller="DisplayTagsController">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="resetDatas()"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="display-tag-label">Liste des étiquettes</h4>
+                    </div>
+                    <div class="modal-body">
+                        <loading value="displayTagsLoading"></loading>
+                        <div class="alert alert-dismissable alert-{{ '{{ alertType }}' }}" role="alert" ng-show="displayTagsErrorMsg" ng-hide="isAlertClosed">
+                            <button type="button" class="close" ng-click="closeAlertMessage()">&times;</button>
+                            <p ng-bind="alertMessage"></p>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <tr ng-repeat="tag in tags">
+                                    <td>
+                                        <a ng-hide="isTagIsCurrentlyEdited(tag['id'])" ng-click="selectTag(tag['id'])" ng-bind="tag['name']"></a>
+
+                                        <div ng-show="isTagIsCurrentlyEdited(tag['id'])">
+                                            <form name="tagEdition" class="form-inline" novalidate>
+                                                <fieldset ng-disabled="editTagLoading">
+                                                    <loading value="editTagLoading"></loading>
+                                                    <div class="form-group" ng-class="{'has-error': tagEdition.name.$touched && tagEdition.name.$invalid }">
+                                                        <input type="text" name="name" class="form-control"
+                                                            required ng-minlength="2" ng-maxlength="40" ng-model="editTagNewNames[tag['id']]" />
+                                                    </div>
+                                                    <input type="submit" name="submit" value="Modifier" class="btn btn-primary" ng-disabled="tagEdition.$invalid" ng-click="processEditTag(tag['id'])" />
+                                                    <button class="btn btn-default" ng-click="resetCurrentEditedTag()">Annuler</button>
+                                                    <br />
+                                                    <p class="text-danger" ng-show="tagEdition.name.$touched && tagEdition.name.$invalid && !editTagErrorMsg">
+                                                        Ce champs est requis et doit être compris entre 2 et 40 caractères.
+                                                    </p>
+                                                    <p class="text-danger" ng-show="editTagErrorMsg" ng-bind="editTagErrorMsg"></p>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </td>
+                                    <td class="text-right">
+                                        <span class="glyphicon glyphicon-edit" ng-click="setCurrentEditedTag(tag['id'], tag['name'])"></span>
+                                        <span class="glyphicon glyphicon-trash" ng-click="deleteTag(tag['id'])"></span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div ng-show="tags[0] == null">
+                            <p>Vous n'avez aucune étiquette enregistrée</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="resetDatas()">Fermer</button>
+                    </div>
                 </div>
             </div>
         </div>

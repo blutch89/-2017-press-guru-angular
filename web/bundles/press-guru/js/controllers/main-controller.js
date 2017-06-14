@@ -59,6 +59,15 @@ angular.module('pressGuruApp')
         	$scope.menuAlertMessage = message;
         };
     
+    
+        // !!! TEST OBSERVER
+        $scope.$on("eventtest", function() {
+            console.log("test");
+            $scope.$broadcast("eventtest", {});
+        });
+    
+    
+    
         // Appelé à la fin d'exécution de ce script (permet de prendre en compte les variables avant de lancer une fonction)
         this.afterRendered = function() {
             $scope.loadMenuItems();

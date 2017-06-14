@@ -181,6 +181,15 @@ angular.module('pressGuruApp')
             }
         };
     
+    
+    
+        // !!! TEST OBSERVER
+        $scope.$on("eventtest", function() {
+            console.log("recharge des vidéos");
+        });
+    
+    
+    
         // Appelé à la fin d'exécution de ce script (permet de prendre en compte les variables avant de lancer une fonction)
         this.afterRendered = function() {
             $scope.sortValue = indexController.convertSortToInt();
