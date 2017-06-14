@@ -61,6 +61,7 @@ angular.module('pressGuruApp')
             indexController.setFilteredArticlesFromPagination();
         };
     
+        // Filtre la collection d'articles en une nouvelle filtrée
         this.setFilteredArticlesFromPagination = function() {
             var begin = (($scope.currentPage - 1) * $scope.numPerPage);
             var end = begin + $scope.numPerPage;
