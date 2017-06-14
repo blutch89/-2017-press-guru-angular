@@ -15,7 +15,7 @@ class ArticlesController extends Controller {
     public function getAllAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $articlesRepository = $em->getRepository("PressBundle:Article");
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         $sortParametersConverter = $this->get("press.sort_parameters_converter");
         
         // Paramètres GET
@@ -35,7 +35,7 @@ class ArticlesController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $articlesRepository = $em->getRepository("PressBundle:Article");
         $tagsRepository = $em->getRepository("PressBundle:Tag");
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         $sortParametersConverter = $this->get("press.sort_parameters_converter");
         
         // Paramètres GET
@@ -59,7 +59,7 @@ class ArticlesController extends Controller {
     public function getArchivedAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $articlesRepository = $em->getRepository("PressBundle:Article");
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         $sortParametersConverter = $this->get("press.sort_parameters_converter");
         
         // Paramètres GET
@@ -78,7 +78,7 @@ class ArticlesController extends Controller {
     public function addAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $siteExtractor = $this->get("press.site_extractor");
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         $validator = $this->get('validator');
         
         // Paramètres de requête
@@ -151,7 +151,7 @@ class ArticlesController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $articleRepository = $this->getDoctrine()->getRepository("PressBundle:Article");
         $tagsRepository = $this->getDoctrine()->getRepository("PressBundle:Tag");
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         
         // Tests
         if ($articleId == null) {

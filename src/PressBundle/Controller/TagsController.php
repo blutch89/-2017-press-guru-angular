@@ -13,7 +13,7 @@ class TagsController extends Controller {
     public function getAllAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $tagsRepository = $em->getRepository("PressBundle:Tag");
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $tags = $tagsRepository->getAllTagsSorted($user->getId());
 
@@ -25,7 +25,7 @@ class TagsController extends Controller {
     
     public function addAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         $validator = $this->get('validator');
         
         // Paramètres de requête
@@ -62,7 +62,7 @@ class TagsController extends Controller {
     public function editAction(Request $request, $tagId, $newName) {
         $em = $this->getDoctrine()->getManager();
         $tagRepository = $this->getDoctrine()->getRepository("PressBundle:Tag");
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         $validator = $this->get('validator');
         
         try {

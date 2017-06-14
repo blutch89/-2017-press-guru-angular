@@ -10,7 +10,7 @@ class ArchitectureController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $articleRepository = $em->getRepository("PressBundle:Article");
         $tagRepository = $em->getRepository("PressBundle:Tag");
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         $menuItems = array();
         
         // Variables
