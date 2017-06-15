@@ -1,5 +1,5 @@
 <loading value="loadMenuItemsLoading"></loading>
-<p class="nav-title">Articles</p>
+<p class="nav-title">Menu</p>
 <div class="alert alert-danger" role="alert" ng-show="menuAlertMessage">
     <span ng-bind="menuAlertMessage"></span>
     <br />
@@ -8,6 +8,7 @@
 <ul class="nav nav-pills nav-stacked smaller-nav side-nav">
     <li role="presentation" ng-repeat="item in menuItems">
         <a ng-href="#!/{{ item['link'] }}">
+            <span class="glyphicon glyphicon-{{ item['icon'] }}" ng-show="item['icon']"></span>
             <span ng-bind="item['text'] + ' (' + item['nbArticles'] + ')'"></span>
         </a>
     </li>

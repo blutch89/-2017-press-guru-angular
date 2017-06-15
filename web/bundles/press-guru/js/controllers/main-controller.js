@@ -1,5 +1,5 @@
 angular.module('pressGuruApp')
-    .controller('MainController', function ($scope, $location, authentificationService, appParametersService, apiService, $window) {
+    .controller('MainController', function ($scope, $location, authentificationService, appParametersService, apiService, $window, userService) {
         mainController = this;
         appParametersService.mainController = this;
         $scope.appParametersService = appParametersService;
@@ -11,7 +11,11 @@ angular.module('pressGuruApp')
         // Alerte
         $scope.menuAlertMessage = "";
     
-        
+        // Inscrit le nom de l'utilisateur dans le header
+        $scope.getUsername = function() {
+            return userService.getUsername();
+        };        
+    
         // Déconnecte l'utilisateur
         $scope.logout = function() {
     		authentificationService.logoutRequest(function successCallback(response) {

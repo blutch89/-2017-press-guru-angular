@@ -30,6 +30,7 @@ class ArchitectureController extends Controller {
         foreach ($firstTags as $tag) {
             $menuItems[] = [
                 "text" => $tag["name"],
+                "icon" => "tag",
                 "nbArticles" => $articleRepository->getCountArticlesFromTag($tag["id"], $user->getId()),
                 "link" => "articles/tag/" . $tag["id"]
             ];
