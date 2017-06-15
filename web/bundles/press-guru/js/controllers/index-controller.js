@@ -1,5 +1,5 @@
 angular.module('pressGuruApp')
-    .controller('IndexController', function ($scope, $location, apiService, appParametersService, $routeParams, $location) {
+    .controller('IndexController', function ($scope, $location, apiService, appParametersService, $routeParams, $location, $rootScope) {
         var indexController = this;
         appParametersService.currentController = this;
     
@@ -74,6 +74,10 @@ angular.module('pressGuruApp')
             apiService.archiveArticle(articleId, function successCallback(response) {
                 if (response.data.success == true) {
                     indexController.refreshPage();
+                    
+                    // Lance un évènement depuis le rootScope pour mettre à jour les données de la page
+                    $rootScope.$broadcast("markArticleAsRead");
+                    
                     $scope.createAlert("Article archivé", "success");
                 } else {
                     $scope.createAlert("Impossible d'archiver l'article", "danger");
@@ -102,6 +106,10 @@ angular.module('pressGuruApp')
                         apiService.removeArticle(articleId, function successCallback(response) {
                             if (response.data.success == true) {
                                 indexController.refreshPage();
+                                
+                                // Lance un évènement depuis le rootScope pour mettre à jour les données de la page
+                                $rootScope.$broadcast("deleteArticle");                                
+                                
                                 $scope.createAlert("Article supprimé", "success");
                             } else {
                                 $scope.createAlert("Impossible de supprimer l'article", "danger");
@@ -183,11 +191,10 @@ angular.module('pressGuruApp')
     
     
     
-        // !!! TEST OBSERVER
-        $scope.$on("eventtest", function() {
-            console.log("recharge des vidéos");
+        // Met à jour la liste des articles quand cet évènement se produit
+        $scope.$on("addArticle", function() {
+            indexController.refreshPage();
         });
-    
     
     
         // Appelé à la fin d'exécution de ce script (permet de prendre en compte les variables avant de lancer une fonction)

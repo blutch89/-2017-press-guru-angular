@@ -1,5 +1,5 @@
 angular.module('pressGuruApp')
-    .controller('AddTagController', function ($scope, apiService, appParametersService) {
+    .controller('AddTagController', function ($scope, apiService, appParametersService, $rootScope) {
         addTagController = this;
     
         // Variables liées à l'ajout du tag
@@ -15,11 +15,11 @@ angular.module('pressGuruApp')
             
             apiService.addTag($scope.addTagDatas, function successCallback(response) {
                 if (response.data.success == true) {
+                    // Lance un évènement depuis le rootScope pour mettre à jour les données de la page
+                    $rootScope.$broadcast("addTag");
+                    
                     $scope.addTagLoading = false;
                     $scope.success = true;
-                    
-                    // Refresh la page en cours
-                    appParametersService.mainController.loadMenuItems();
                 } else {
                     $scope.addTagErrorMsg = response.data.error;
                     $scope.addTagLoading = false;

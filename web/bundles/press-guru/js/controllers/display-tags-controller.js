@@ -1,5 +1,5 @@
 angular.module('pressGuruApp')
-    .controller('DisplayTagsController', function ($scope, apiService, appParametersService, $location) {
+    .controller('DisplayTagsController', function ($scope, apiService, appParametersService, $location, $rootScope) {
         var displayTagsController = this;
         appParametersService.displayTagsDialogController = this;
         
@@ -69,8 +69,12 @@ angular.module('pressGuruApp')
                 if (response.data.success == true) {
                     $scope.resetCurrentEditedTag();
                     displayTagsController.loadDatas();
+                    
+                    // Lance un évènement depuis le rootScope pour mettre à jour les données de la page
+                    $rootScope.$broadcast("editTag");
 
                     $scope.editTagLoading = false;
+                    $scope.createAlert("Etiquette modifiée", "success");
                 } else {
                     $scope.editTagLoading = false;
                     $scope.createAlert(response.data.error, "danger");
@@ -106,6 +110,9 @@ angular.module('pressGuruApp')
                             if (response.data.success == true) {
                                 displayTagsController.loadDatas();
                                 
+                                // Lance un évènement depuis le rootScope pour mettre à jour les données de la page
+                                $rootScope.$broadcast("deleteTag");
+                                
                                 $scope.createAlert("Etiquette supprimée", "success");
                             } else {
                                 $scope.createAlert("Impossible de supprimer l'étiquette", "danger");
@@ -133,7 +140,8 @@ angular.module('pressGuruApp')
         // Reset
         $scope.resetDatas = function() {
             $scope.tags = {};
-            $scope.editLabelsErrorMsg = "";
+            $scope.alertMessage = "";
+            $scope.isAlertClosed = true;
             $scope.editLabelsLoading = false;
             $scope.currentEditedTag = 0;
         };

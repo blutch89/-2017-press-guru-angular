@@ -60,11 +60,44 @@ angular.module('pressGuruApp')
         };
     
     
-        // !!! TEST OBSERVER
-        $scope.$on("eventtest", function() {
-            console.log("test");
-            $scope.$broadcast("eventtest", {});
+    
+    
+        // Met à jour la liste des menus quand cet évènement se produit
+        $scope.$on("addArticle", function() {
+            $scope.loadMenuItems();
         });
+    
+        // Met à jour la liste des menus quand cet évènement se produit
+        $scope.$on("markArticleAsRead", function() {
+            $scope.loadMenuItems();
+        });
+    
+        // Met à jour la liste des menus quand cet évènement se produit
+        $scope.$on("editArticleTags", function() {
+            $scope.loadMenuItems();
+        });
+        
+        // Met à jour la liste des menus quand cet évènement se produit
+        $scope.$on("deleteArticle", function() {
+            $scope.loadMenuItems();
+        });
+    
+        // Met à jour la liste des menus quand cet évènement se produit
+        $scope.$on("addTag", function() {
+            $scope.loadMenuItems();
+        });
+    
+        // Met à jour la liste des menus quand cet évènement se produit
+        $scope.$on("editTag", function() {
+            $scope.loadMenuItems();
+        });
+    
+        // Met à jour la liste des menus quand cet évènement se produit
+        $scope.$on("deleteTag", function() {
+            $scope.loadMenuItems();
+        });
+    
+    
     
     
     

@@ -1,5 +1,5 @@
 angular.module('pressGuruApp')
-    .controller('EditArticleLabelsController', function ($scope, apiService, appParametersService) {
+    .controller('EditArticleLabelsController', function ($scope, apiService, appParametersService, $rootScope) {
         var editArticleLabelsController = this;
         appParametersService.editLabelsDialogController = this;
         
@@ -40,6 +40,9 @@ angular.module('pressGuruApp')
             
             apiService.editArticleLabels($scope.articleId, $scope.articleLabels, function successCallback(response) {
                 if (response.data.success == true) {
+                    // Lance un évènement depuis le rootScope pour mettre à jour les données de la page
+                    $rootScope.$broadcast("editArticleTags");
+                    
                     $scope.success = true;
                     $scope.editLabelsLoading = false;
                 } else {

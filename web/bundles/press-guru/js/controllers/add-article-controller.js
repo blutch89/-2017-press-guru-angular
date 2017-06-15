@@ -1,5 +1,5 @@
 angular.module('pressGuruApp')
-    .controller('AddArticleController', function ($scope, apiService, appParametersService) {
+    .controller('AddArticleController', function ($scope, apiService, appParametersService, $rootScope) {
         addArticleController = this;
     
         // Variables liées à l'ajout d'articles
@@ -18,18 +18,8 @@ angular.module('pressGuruApp')
                     $scope.addArticleLoading = false;
                     $scope.success = true;
                     
-                    // TEST OBSERVER
-                    $scope.$emit("eventtest", {});
-                    
-                    
-                    
-                    
-                    // Refresh la page en cours
-//                    appParametersService.currentController.refreshPage();
-                    
-                    
-                    
-                    
+                    // Lance un évènement depuis le rootScope pour mettre à jour les données de la page
+                    $rootScope.$broadcast("addArticle", {});
                 } else {
                     $scope.addArticleErrorMsg = response.data.error;
                     $scope.addArticleLoading = false;
