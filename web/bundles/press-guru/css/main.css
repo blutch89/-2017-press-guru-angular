@@ -9,6 +9,12 @@ h1 {
     margin-bottom: 20px;
 }
 
+.hr-divider {
+    margin: 0;
+    margin-left: 15px;
+    border: 1px solid #E7E7E7;
+}
+
 /* Header */
 header {
     margin-bottom: 40px;
@@ -55,6 +61,11 @@ header {
 
 .connection-submit {
     width: 100%;
+}
+
+/* Menu mobile */
+.mobile-menu a {
+    color: rgb(51, 122, 183) !important;
 }
 
 /* Page registration confirmation */
