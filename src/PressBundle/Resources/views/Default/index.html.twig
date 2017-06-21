@@ -32,11 +32,11 @@
 
         <div class="container">
             <div class="row">
-                <nav id="nav-right" class="col-xs-12 col-sm-3 hidden-xs">
+                <nav id="nav-right" class="col-xs-12 col-sm-5 col-md-4 col-lg-3 hidden-xs">
                     <!-- Inclus cette vue afin de forcer le chargement d'angular avant de charger la vue -->
                     <div ng-include="'bundles/press-guru/views/sidebar.html'"></div>
                 </nav>
-                <div ng-view="" class="col-xs-12 col-sm-9"></div>
+                <div ng-view="" class="col-xs-12 col-sm-7 col-md-8 col-lg-9"></div>
             </div>
         </div>
     
@@ -103,7 +103,7 @@
                                         <input name="name" type="text" class="form-control" placeholder="Nom" required
                                                ng-model="addTagDatas.name" ng-minlength="2" ng-maxlength="40" />
                                         <span id="name-help-block" class="help-block" ng-show="addTagForm.name.$touched && addTagForm.name.$invalid">
-                                            Ce champs est requis et doit être compris entre 2 et 40 caractères.
+                                            Ce champs est requis et doit être compris entre 2 et 25 caractères.
                                         </span>
                                     </div>
                                 </fieldset>
@@ -156,7 +156,7 @@
                                                     <button class="btn btn-default" ng-click="resetCurrentEditedTag()">Annuler</button>
                                                     <br />
                                                     <p class="text-danger" ng-show="tagEdition.name.$touched && tagEdition.name.$invalid && !editTagErrorMsg">
-                                                        Ce champs est requis et doit être compris entre 2 et 40 caractères.
+                                                        Ce champs est requis et doit être compris entre 2 et 25 caractères.
                                                     </p>
                                                     <p class="text-danger" ng-show="editTagErrorMsg" ng-bind="editTagErrorMsg"></p>
                                                 </fieldset>

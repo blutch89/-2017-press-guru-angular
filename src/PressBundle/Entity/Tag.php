@@ -30,9 +30,9 @@ class Tag
      * @Assert\NotBlank(message="L'étiquette doit être remplie et comprise entre 2 et 40 caractères")
      * @Assert\Length(
      *      min = 2,
-     *      max = 40,
-     *      minMessage = "L'étiquette doit être remplie et comprise entre 2 et 40 caractères",
-     *      maxMessage = "L'étiquette doit être remplie et comprise entre 2 et 40 caractères"
+     *      max = 25,
+     *      minMessage = "L'étiquette doit être remplie et comprise entre 2 et 25 caractères",
+     *      maxMessage = "L'étiquette doit être remplie et comprise entre 2 et 25 caractères"
      * )
      */
     private $name;
