@@ -41,5 +41,9 @@
     
     {% endblock %}
     
+    <script>
+        angular.module('pressGuruApp').constant("csrftoken", "{{ csrf_token('') }}");
+    </script>
+    
 </body>
 </html>

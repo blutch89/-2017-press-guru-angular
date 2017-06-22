@@ -1,5 +1,5 @@
 angular.module('pressGuruApp')
-    .service("apiService", function($http, $location, appParametersService) {
+    .service("apiService", function($http, $location, appParametersService, csrftoken) {
     	apiService = this;
     
         // Demande la liste des éléments du menu latéral
@@ -89,7 +89,8 @@ angular.module('pressGuruApp')
         this.executeRestApi = function(url, successFunction, errorFunction) {
             $http({
                 method: "GET",
-                url: url
+                url: url,
+                headers: {"csrftoken": csrftoken}       // Ajout du token CSRF pour sécuriser l'appel à l'API
             }).then(successFunction, errorFunction);
         };
 
@@ -99,7 +100,10 @@ angular.module('pressGuruApp')
                 method  : 'POST',
                 url     : url,
                 data    : $.param(datas),
-                headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+                headers : {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'csrftoken': csrftoken              // Ajout du token CSRF pour sécuriser l'appel à l'API
+                }
             }).then(successFunction, errorFunction);
         };
     

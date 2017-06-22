@@ -3,7 +3,7 @@ angular.module('pressGuruApp')
         mainController = this;
         appParametersService.mainController = this;
         $scope.appParametersService = appParametersService;
-    
+
         // Variables
         $scope.menuItems = {};
         $scope.loadMenuItemsLoading = true;
