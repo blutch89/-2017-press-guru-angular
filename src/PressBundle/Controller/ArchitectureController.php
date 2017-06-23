@@ -3,10 +3,11 @@
 namespace PressBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ArchitectureController extends Controller {
-    public function getMenuItemsAction() {
+    public function getMenuItemsAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $articleRepository = $em->getRepository("PressBundle:Article");
         $tagRepository = $em->getRepository("PressBundle:Tag");

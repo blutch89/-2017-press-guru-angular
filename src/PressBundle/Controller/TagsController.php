@@ -14,6 +14,11 @@ class TagsController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $tagsRepository = $em->getRepository("PressBundle:Tag");
         $user = $this->get('security.token_storage')->getToken()->getUser();
+        
+        // Check CSRF
+        if (!$this->isCsrfTokenValid('', $request->headers->get("csrftoken"))) {
+            return $this->sendErrorMessage("Une erreur inconnue s'est produite.");
+        }
 
         $tags = $tagsRepository->getAllTagsSorted($user->getId());
 
@@ -27,6 +32,11 @@ class TagsController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $validator = $this->get('validator');
+        
+        // Check CSRF
+        if (!$this->isCsrfTokenValid('', $request->headers->get("csrftoken"))) {
+            return $this->sendErrorMessage("Une erreur inconnue s'est produite.");
+        }
         
         // Paramètres de requête
         $name = $request->request->get("name");
@@ -65,6 +75,11 @@ class TagsController extends Controller {
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $validator = $this->get('validator');
         
+        // Check CSRF
+        if (!$this->isCsrfTokenValid('', $request->headers->get("csrftoken"))) {
+            return $this->sendErrorMessage("Une erreur inconnue s'est produite.");
+        }
+        
         try {
             // Modification de l'étiquette
             $tag = $tagRepository->find($tagId);
@@ -87,9 +102,14 @@ class TagsController extends Controller {
         }
     }
     
-    public function deleteAction($tagId) {
+    public function deleteAction(Request $request, $tagId) {
         $em = $this->getDoctrine()->getManager();
         $tagRepository = $this->getDoctrine()->getRepository("PressBundle:Tag");
+        
+        // Check CSRF
+        if (!$this->isCsrfTokenValid('', $request->headers->get("csrftoken"))) {
+            return $this->sendErrorMessage("Une erreur inconnue s'est produite.");
+        }
         
         // Tests
         if ($tagId == null) {
