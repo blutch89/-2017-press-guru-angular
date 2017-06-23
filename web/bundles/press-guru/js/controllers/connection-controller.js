@@ -1,5 +1,5 @@
 angular.module('pressGuruApp')
-    .controller('ConnectionController', function ($scope, $location, authentificationService, userService, appParametersService, $window) {
+    .controller('ConnectionController', function ($scope, $location, authentificationService, userService, appParametersService, $window, csrftoken) {
         connectionController = this;
     
         // Variables propre au login et register
@@ -10,6 +10,7 @@ angular.module('pressGuruApp')
         $scope.registrationFormData = {};
         $scope.registrationErrorMsg = "";
         $scope.confirmationSended = false;
+        $scope.csrftoken = csrftoken;
     
         // Fonction permettant de loguer un utilisateur
         $scope.processLoginForm = function() {

@@ -23,6 +23,9 @@ security:
                 login_path: fos_user_security_login
                 check_path: fos_user_security_check
                 require_previous_session: false
+                csrf_token_generator: security.csrf.token_manager
+                csrf_parameter: csrftoken
+                csrf_token_id: 
             logout:
                 path:       fos_user_security_logout
                 target:     /

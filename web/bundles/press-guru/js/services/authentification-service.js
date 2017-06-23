@@ -1,5 +1,5 @@
 angular.module('pressGuruApp')
-    .service("authentificationService", function ($http, $location, appParametersService) {    
+    .service("authentificationService", function ($http, $location, appParametersService, csrftoken) {    
         this.loginRequest = function (datas, successFunction, errorFunction) {
             this.executePostForm("../" + appParametersService.paths.prefix + "login_check", datas, successFunction, errorFunction);
         };
@@ -28,6 +28,8 @@ angular.module('pressGuruApp')
     
         // Permet d'exéuter une requête post de formulaire
         this.executePostForm = function (url, datas, successFunction, errorFunction) {
+            datas["csrftoken"] = csrftoken;      // Ajout du token CSRF pour sécuriser l'appel à l'API
+            
             $http({
                 method  : 'POST',
                 url     : url,
