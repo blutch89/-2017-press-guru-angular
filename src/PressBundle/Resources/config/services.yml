@@ -1,5 +1,5 @@
 services:
-#Login, inscription et logout
+    # Login, inscription et logout
     ucs.security.authentication_success_handler:
         class: PressBundle\Handler\AuthenticationSuccessHandler
     ucs.security.authentication_failure_handler:
@@ -9,6 +9,18 @@ services:
     ucs.security.logout_success_handler:
         class: PressBundle\Handler\LogoutSuccessHandler
         
+    # Common Tasks For Controllers
+    press.common_tasks_for_controllers_listener:
+        class: PressBundle\Services\CommonTasksForControllers\CommonTasksForControllersListener
+        arguments: [@press.check_csrf_processor]
+        tags:
+            - { name: kernel.event_listener, event: press.common_tasks_for_controllers, method: doCommonTasks }
+        
+    press.check_csrf_processor:
+        class: PressBundle\Services\CommonTasksForControllers\CheckCSRFProcessor
+        arguments: [@security.csrf.token_manager]
+        
+    # Services
     press.site_extractor:
         class: PressBundle\Services\SiteExtractor
     press.sort_parameters_converter:

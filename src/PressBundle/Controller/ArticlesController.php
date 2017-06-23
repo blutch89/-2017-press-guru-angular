@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use PressBundle\Services\SiteExtractor;
 use PressBundle\Services\SiteExtractorInterface;
 use PressBundle\Entity\Article;
+use PressBundle\Services\CommonTasksForControllers\CommonTasksForControllersEvent;
 
 class ArticlesController extends Controller {
     
@@ -83,6 +84,12 @@ class ArticlesController extends Controller {
         
         // Paramètres de requête
         $url = $request->request->get("url");
+        $csrfToken = $request->headers->get("csrftoken");
+        
+        // Check CSRF
+        if (!$this->isCsrfTokenValid('', $csrfToken)) {
+            return $this->sendErrorMessage("Une erreur inconnue s'est produite.");
+        }
         
         // Tests
         if ($url == null) {
