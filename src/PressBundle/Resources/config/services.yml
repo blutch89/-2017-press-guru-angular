@@ -9,7 +9,12 @@ services:
     ucs.security.logout_success_handler:
         class: PressBundle\Handler\LogoutSuccessHandler
         
-    # Services    
+    # Services
+    press.check_csrf_listener:
+        class: PressBundle\Services\CheckCSRFListener
+        arguments: [@security.csrf.token_manager]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
     press.site_extractor:
         class: PressBundle\Services\SiteExtractor
     press.sort_parameters_converter:

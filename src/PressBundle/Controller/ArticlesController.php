@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use PressBundle\Services\AppParameters;
 use PressBundle\Services\SiteExtractor;
 use PressBundle\Services\SiteExtractorInterface;
 use PressBundle\Entity\Article;
@@ -18,11 +19,6 @@ class ArticlesController extends Controller {
         $articlesRepository = $em->getRepository("PressBundle:Article");
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $sortParametersConverter = $this->get("press.sort_parameters_converter");
-        
-        // Check CSRF
-        if (!$this->isCsrfTokenValid('', $request->headers->get("csrftoken"))) {
-            return $this->sendErrorMessage("Une erreur inconnue s'est produite.");
-        }
         
         // Paramètres GET
         $sortBy = $request->query->get("sortBy");
@@ -43,11 +39,6 @@ class ArticlesController extends Controller {
         $tagsRepository = $em->getRepository("PressBundle:Tag");
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $sortParametersConverter = $this->get("press.sort_parameters_converter");
-        
-        // Check CSRF
-        if (!$this->isCsrfTokenValid('', $request->headers->get("csrftoken"))) {
-            return $this->sendErrorMessage("Une erreur inconnue s'est produite.");
-        }
         
         // Paramètres GET
         $sortBy = $request->query->get("sortBy");
@@ -73,11 +64,6 @@ class ArticlesController extends Controller {
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $sortParametersConverter = $this->get("press.sort_parameters_converter");
         
-        // Check CSRF
-        if (!$this->isCsrfTokenValid('', $request->headers->get("csrftoken"))) {
-            return $this->sendErrorMessage("Une erreur inconnue s'est produite.");
-        }
-        
         // Paramètres GET
         $sortBy = $request->query->get("sortBy");
         $sortDirection = $request->query->get("sortDirection");
@@ -96,11 +82,6 @@ class ArticlesController extends Controller {
         $siteExtractor = $this->get("press.site_extractor");
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $validator = $this->get('validator');
-        
-        // Check CSRF
-        if (!$this->isCsrfTokenValid('', $request->headers->get("csrftoken"))) {
-            return $this->sendErrorMessage("Une erreur inconnue s'est produite.");
-        }
         
         // Paramètres de requête
         $url = $request->request->get("url");
@@ -149,11 +130,6 @@ class ArticlesController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $articleRepository = $this->getDoctrine()->getRepository("PressBundle:Article");
         
-        // Check CSRF
-        if (!$this->isCsrfTokenValid('', $request->headers->get("csrftoken"))) {
-            return $this->sendErrorMessage("Une erreur inconnue s'est produite.");
-        }
-        
         // Tests
         if ($articleId == null) {
             return $this->sendErrorMessage("Impossible d'archiver l'article");
@@ -178,11 +154,6 @@ class ArticlesController extends Controller {
         $articleRepository = $this->getDoctrine()->getRepository("PressBundle:Article");
         $tagsRepository = $this->getDoctrine()->getRepository("PressBundle:Tag");
         $user = $this->get('security.token_storage')->getToken()->getUser();
-        
-        // Check CSRF
-        if (!$this->isCsrfTokenValid('', $request->headers->get("csrftoken"))) {
-            return $this->sendErrorMessage("Une erreur inconnue s'est produite.");
-        }
         
         // Tests
         if ($articleId == null) {
@@ -222,11 +193,6 @@ class ArticlesController extends Controller {
         $articleRepository = $this->getDoctrine()->getRepository("PressBundle:Article");
         $tagsRepository = $this->getDoctrine()->getRepository("PressBundle:Tag");
         
-        // Check CSRF
-        if (!$this->isCsrfTokenValid('', $request->headers->get("csrftoken"))) {
-            return $this->sendErrorMessage("Une erreur inconnue s'est produite.");
-        }
-        
         // Paramètres de requête
         $articleId = $request->request->get("article-id");
         $articleLabels = $request->request->get("article-labels");
@@ -264,11 +230,6 @@ class ArticlesController extends Controller {
     public function deleteAction(Request $request, $articleId) {
         $em = $this->getDoctrine()->getManager();
         $articleRepository = $this->getDoctrine()->getRepository("PressBundle:Article");
-        
-        // Check CSRF
-        if (!$this->isCsrfTokenValid('', $request->headers->get("csrftoken"))) {
-            return $this->sendErrorMessage("Une erreur inconnue s'est produite.");
-        }
         
         // Tests
         if ($articleId == null) {
