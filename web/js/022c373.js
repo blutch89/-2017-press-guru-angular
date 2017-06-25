@@ -1,13 +1,16 @@
 angular
     .module('pressGuruApp', ['ngRoute', 'ui.bootstrap'])
     .config(["$routeProvider", "$httpProvider", function ($routeProvider, $httpProvider) {
+        var preprefix = "";
+//        var preprefix = "../";  // Voir dans le service appParametersService l'utilité. Commenter en mode production
+        
         $routeProvider
             .when('/connection', {
-                templateUrl: '../bundles/press-guru/views/connection.html',
+                templateUrl: preprefix + 'bundles/press-guru/views/connection.html',
                 controller: 'ConnectionController'
             })
             .when('/registration-confirmation/:token', {
-                templateUrl: '../bundles/press-guru/views/registration-confirmation.html',
+                templateUrl: preprefix + 'bundles/press-guru/views/registration-confirmation.html',
                 controller: 'RegistrationConfirmationController'
             })
             .otherwise({
@@ -22,6 +25,11 @@ angular.module('pressGuruApp')
         var paths = {};
         paths.prefix = "";
 //        paths.prefix = "app_dev.php/";
+    
+        // Preprefix = variable utilisée pour utiliser le bon path sur la page authentification. "" pour mode prod et "../" pour mode dev
+        // Ne pas oublier de modifier également dans le fichier appAuthentication la variable preprefix
+        paths.preprefix = "";
+//        paths.preprefix = "../";
         paths.webResources = "bundles/press-guru/";
         paths.api = paths.prefix + "frontend-api/";
 
@@ -38,15 +46,15 @@ angular.module('pressGuruApp')
 angular.module('pressGuruApp')
     .service("authentificationService", function ($http, $location, appParametersService, csrftoken) {    
         this.loginRequest = function (datas, successFunction, errorFunction) {
-            this.executePostForm("../" + appParametersService.paths.prefix + "login_check", datas, successFunction, errorFunction);
+            this.executePostForm(appParametersService.paths.preprefix + appParametersService.paths.prefix + "login_check", datas, successFunction, errorFunction);
         };
 
         this.registerRequest = function (datas, successFunction, errorFunction) {
-            this.executePostForm("../" + appParametersService.paths.prefix + "register", datas, successFunction, errorFunction);
+            this.executePostForm(appParametersService.paths.preprefix + appParametersService.paths.prefix + "register", datas, successFunction, errorFunction);
         };
     
         this.activeAccount = function (token, successFunction, errorFunction) {
-            this.executeRestApi("../" + appParametersService.paths.prefix + "confirm/" + token, successFunction, errorFunction)
+            this.executeRestApi(appParametersService.paths.preprefix + appParametersService.paths.prefix + "confirm/" + token, successFunction, errorFunction)
         };
     
         this.logoutRequest = function(successFunction, errorFunction) {
@@ -130,7 +138,7 @@ angular.module('pressGuruApp')
                     $scope.loginLoading = false;
                     
                     // Redirige sur la page principale en enlevant la dernière lettre au prefix
-                    $window.location.href = "../" + appParametersService.paths.prefix.substr(0, appParametersService.paths.prefix.length -1);
+                    $window.location.href = appParametersService.paths.preprefix + appParametersService.paths.prefix.substr(0, appParametersService.paths.prefix.length -1);
                 } else {
                     if (response.data.error == "Account disabled") {
                         $scope.loginErrorMsg = "L'utilisateur n'est pas encore activé.";

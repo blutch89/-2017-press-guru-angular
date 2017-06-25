@@ -22,7 +22,7 @@ angular.module('pressGuruApp')
                     $scope.loginLoading = false;
                     
                     // Redirige sur la page principale en enlevant la dernière lettre au prefix
-                    $window.location.href = "../" + appParametersService.paths.prefix.substr(0, appParametersService.paths.prefix.length -1);
+                    $window.location.href = appParametersService.paths.preprefix + appParametersService.paths.prefix.substr(0, appParametersService.paths.prefix.length -1);
                 } else {
                     if (response.data.error == "Account disabled") {
                         $scope.loginErrorMsg = "L'utilisateur n'est pas encore activé.";
