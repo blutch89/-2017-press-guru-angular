@@ -89,7 +89,7 @@ abstract class AbstractRememberMeServices implements RememberMeServicesInterface
      */
     public function getKey()
     {
-        @trigger_error(__method__.'() is deprecated since version 2.8 and will be removed in 3.0. Use getSecret() instead.', E_USER_DEPRECATED);
+        @trigger_error(__METHOD__.'() is deprecated since version 2.8 and will be removed in 3.0. Use getSecret() instead.', E_USER_DEPRECATED);
 
         return $this->getSecret();
     }
@@ -329,6 +329,6 @@ abstract class AbstractRememberMeServices implements RememberMeServicesInterface
             $this->logger->debug('Did not send remember-me cookie.', array('parameter' => $this->options['remember_me_parameter']));
         }
 
-        return $parameter === 'true' || $parameter === 'on' || $parameter === '1' || $parameter === 'yes';
+        return $parameter === 'true' || $parameter === 'on' || $parameter === '1' || $parameter === 'yes' || $parameter === true;
     }
 }

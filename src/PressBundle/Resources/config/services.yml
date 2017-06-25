@@ -12,7 +12,7 @@ services:
     # Services
     press.check_csrf_listener:
         class: PressBundle\Services\CheckCSRFListener
-        arguments: [@security.csrf.token_manager]
+        arguments: ["@security.csrf.token_manager"]
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
     press.site_extractor:

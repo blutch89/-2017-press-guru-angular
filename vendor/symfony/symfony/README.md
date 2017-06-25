@@ -28,7 +28,7 @@ Community
 ---------
 
 * [Join the Symfony Community][11] and meet other members at the [Symfony events][12].
-* [Get Symfony support][13] on StackOverflow, Slack, IRC, etc.
+* [Get Symfony support][13] on Stack Overflow, Slack, IRC, etc.
 * Follow us on [GitHub][14], [Twitter][15] and [Facebook][16].
 
 Contributing
@@ -46,7 +46,7 @@ If you discover a security vulnerability within Symfony, please follow our
 About Us
 --------
 
-Symfony development is sponsored by [SensioLabs][21], lead by the
+Symfony development is sponsored by [SensioLabs][21], led by the
 [Symfony Core Team][22] and supported by [Symfony contributors][19].
 
 [1]: https://symfony.com

@@ -31,7 +31,7 @@ security:
                 target:     /
                 success_handler: ucs.security.logout_success_handler
             remember_me:
-                key: %secret%
+                secret: %secret%
         default:
             anonymous: ~
             provider: main
