@@ -23,12 +23,15 @@ class SortParametersConverter implements SortParametersConverterInterface {
         }
         
         // Convertion pour $sortDirection
-        switch ($sortDirection) {
+        switch (strtolower($sortDirection)) {
             case null:
                 $toReturn["sortDirection"] = "desc";
                 break;
-            default:
-                $toReturn["sortDirection"] = $sortDirection;
+            case "asc":                 // Permet d'éviter les failles XSS en ne réutilisant pas la valeur de la variable
+                $toReturn["sortDirection"] = "asc";
+                break;
+            case "desc":                // Permet d'éviter les failles XSS en ne réutilisant pas la valeur de la variable
+                $toReturn["sortDirection"] = "desc";
                 break;
         }
         

@@ -101,7 +101,7 @@
                                 <fieldset ng-disabled="addTagLoading">
                                     <div class="form-group" ng-class="{'has-error': addTagForm.name.$touched && addTagForm.name.$invalid }">
                                         <input name="name" type="text" class="form-control" placeholder="Nom" required
-                                               ng-model="addTagDatas.name" ng-minlength="2" ng-maxlength="40" />
+                                               ng-model="addTagDatas.name" ng-minlength="2" ng-maxlength="25" />
                                         <span id="name-help-block" class="help-block" ng-show="addTagForm.name.$touched && addTagForm.name.$invalid">
                                             Ce champs est requis et doit être compris entre 2 et 25 caractères.
                                         </span>
@@ -150,7 +150,7 @@
                                                     <loading value="editTagLoading"></loading>
                                                     <div class="form-group" ng-class="{'has-error': tagEdition.name.$touched && tagEdition.name.$invalid }">
                                                         <input type="text" name="name" class="form-control"
-                                                            required ng-minlength="2" ng-maxlength="40" ng-model="editTagNewNames[tag['id']]" />
+                                                            required ng-minlength="2" ng-maxlength="25" ng-model="editTagNewNames[tag['id']]" />
                                                     </div>
                                                     <input type="submit" name="submit" value="Modifier" class="btn btn-primary" ng-disabled="tagEdition.$invalid" ng-click="processEditTag(tag['id'])" />
                                                     <button class="btn btn-default" ng-click="resetCurrentEditedTag()">Annuler</button>

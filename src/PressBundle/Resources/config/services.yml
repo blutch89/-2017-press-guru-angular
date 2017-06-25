@@ -19,3 +19,5 @@ services:
         class: PressBundle\Services\SiteExtractor
     press.sort_parameters_converter:
         class: PressBundle\Services\SortParametersConverter
+    press.security_utils:
+        class: PressBundle\Services\SecurityUtils

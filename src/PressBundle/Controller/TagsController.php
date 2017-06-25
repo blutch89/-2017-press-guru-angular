@@ -27,9 +27,13 @@ class TagsController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $validator = $this->get('validator');
+        $securityUtils = $this->get("press.security_utils");
         
         // Paramètres de requête
         $name = $request->request->get("name");
+        
+        // Sécurisation des paramètres
+        $name = $securityUtils->secureParameter($name);
         
         // Tests
         if ($name == null) {
@@ -64,6 +68,10 @@ class TagsController extends Controller {
         $tagRepository = $this->getDoctrine()->getRepository("PressBundle:Tag");
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $validator = $this->get('validator');
+        $securityUtils = $this->get("press.security_utils");
+        
+        // Sécurisation des paramètres
+        $newName = $securityUtils->secureParameter($newName);
         
         try {
             // Modification de l'étiquette
