@@ -1,0 +1,138 @@
+body {
+    background-color: #F4F4F6;
+    font-size: 1.4em;
+}
+
+h1 {
+    font-size: 1.4em;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+.hr-divider {
+    margin: 0;
+    margin-left: 15px;
+    border: 1px solid #E7E7E7;
+}
+
+/* Header */
+header {
+    margin-bottom: 40px;
+}
+
+#navbar-header {
+    background-color: #F4F4F6;
+}
+
+/* Barre de menu latéral */
+.smaller-nav li {
+    height: 25px;
+}
+
+.side-nav {
+    margin-bottom: 40px;
+}
+
+.nav-title {
+    margin-bottom: 0px;
+    font-size: 1.4em;
+}
+
+/* Sidebar */
+#nav-right li a {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 0px;
+}
+
+/* Page connexion */
+.connection-interior {
+    width: 80%;
+}
+
+.connection-title {
+    font-size: 2em;
+    text-align: center;
+}
+
+.connection-separator {
+    background-color: #DDD;
+}
+
+.connection-submit {
+    width: 100%;
+}
+
+/* Menu mobile */
+.mobile-menu a {
+    color: rgb(51, 122, 183) !important;
+}
+
+/* Page registration confirmation */
+.confirm-text {
+    font-size: 1.2em;
+}
+
+.confirm-icon {
+    font-size: 6em;
+}
+
+/* Page index */
+.article-border-container {
+    height: 300px;          /* TODO: Trouver un moyen de gérer mieux ça */
+    margin-bottom: 20px;
+}
+
+.article-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    background-color: #ffffff;
+    border: 1px solid #E7E7E7;
+    margin-right: 1.5%;
+}
+
+.article-title {
+    font-size: 1.2em;
+    padding: 4%;
+}
+
+.article-title a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.article-image {
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    height: 100%;   /* La hauteur est réglée au final par flex */ 
+    overflow: hidden;
+}
+
+.article-footer {
+    padding: 4%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.article-domain-name {
+    font-size: 0.8em;
+    color: #777;
+    margin: 0px;
+}
+
+.article-favicon {
+    width: 20px;
+}
+
+.article-actions {
+    color: #777;
+}
+
+@media (min-width: 1400px) {
+    .container {
+        width: 1400px;
+    }
+}

@@ -78,5 +78,6 @@ fos_user:
 assetic:
     debug:          '%kernel.debug%'
     use_controller: '%kernel.debug%'
+    java: C:\Program Files\Java\jre1.8.0_131\bin\java.exe
     filters:
         cssrewrite: ~
