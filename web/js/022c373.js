@@ -137,8 +137,11 @@ angular.module('pressGuruApp')
                     userService.saveUser(response.data["user-id"], response.data["username"]);
                     $scope.loginLoading = false;
                     
-                    // Redirige sur la page principale en enlevant la dernière lettre au prefix
-                    $window.location.href = appParametersService.paths.preprefix + appParametersService.paths.prefix.substr(0, appParametersService.paths.prefix.length -1);
+                    // Redirige sur la page principale en calculant le nouveau chemin
+                    var newUrl = $window.location.pathname;
+                    newUrl = newUrl.substr(0, newUrl.lastIndexOf("/"));
+                    
+                    $window.location.pathname = newUrl;
                 } else {
                     if (response.data.error == "Account disabled") {
                         $scope.loginErrorMsg = "L'utilisateur n'est pas encore activé.";
