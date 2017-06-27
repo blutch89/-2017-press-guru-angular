@@ -4,13 +4,11 @@ angular.module('pressGuruApp')
 
         // Paths
         var paths = {};
-        paths.prefix = "";
-//        paths.prefix = "app_dev.php/";
     
-        // Preprefix = variable utilisée pour utiliser le bon path sur la page authentification. "" pour mode prod et "../" pour mode dev
-        // Ne pas oublier de modifier également dans le fichier appAuthentication la variable preprefix
-        paths.preprefix = "";
-//        paths.preprefix = "../";
+        // Variables définies dans le script preAngular.js. Sert à avoir les bons chemins pour l'application qu'on soit en mode prod ou en dev
+        paths.prefix = prefix;          
+        paths.preprefix = preprefix;    
+    
         paths.webResources = "bundles/press-guru/";
         paths.api = paths.prefix + "frontend-api/";
 
