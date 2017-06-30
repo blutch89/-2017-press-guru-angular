@@ -8,10 +8,10 @@ parameters:
     mailer_transport: smtp
     mailer_host: smtp.gmail.com
     mailer_user: gigon.thomas.send@gmail.com
-    mailer_password: Lopaq0254
-    secret: ThisTokenIsNotSoSecretChangeIt
+    mailer_password: motDePasseCompteMail
+    secret: CestUnSuperSecretTresSecret
     
 #    Email de confirmation
-    confirm_email.from: admin@localhost
+    confirm_email.from: admin@press-guru
     confirm_email.subject: Veuillez activer votre compte chez Press Guru
-    confirm_email.activation_link: http://localhost/press-guru/web/app_dev.php/authentication#!/registration-confirmation/
+    confirm_email.activation_link: http://localhost/press-guru/web/authentication#!/registration-confirmation/

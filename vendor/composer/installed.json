@@ -17,7 +17,7 @@
         "require": {
             "php": ">=5.3.2"
         },
-        "time": "2014-09-09 13:34:57",
+        "time": "2014-09-09T13:34:57+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -73,7 +73,7 @@
         "require-dev": {
             "phpunit/phpunit": "4.*"
         },
-        "time": "2014-11-20 16:49:30",
+        "time": "2014-11-20T16:49:30+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -117,7 +117,7 @@
         "require": {
             "php": ">=5.3.0"
         },
-        "time": "2016-10-10 12:19:37",
+        "time": "2016-10-10T12:19:37+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -169,7 +169,7 @@
         "require-dev": {
             "phpunit/phpunit": "4.*"
         },
-        "time": "2015-11-06 14:35:42",
+        "time": "2015-11-06T14:35:42+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -238,7 +238,7 @@
         "require-dev": {
             "phpunit/phpunit": "3.7.*"
         },
-        "time": "2014-01-12 16:20:24",
+        "time": "2014-01-12T16:20:24+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -309,7 +309,7 @@
         "suggest": {
             "symfony/security-acl": "For using this bundle to cache ACLs"
         },
-        "time": "2016-01-26 17:28:51",
+        "time": "2016-01-26T17:28:51+00:00",
         "type": "symfony-bundle",
         "extra": {
             "branch-alias": {
@@ -385,7 +385,7 @@
         "suggest": {
             "symfony/console": "For helpful console commands such as SQL execution and import of files."
         },
-        "time": "2017-02-08 12:53:47",
+        "time": "2017-02-08T12:53:47+00:00",
         "bin": [
             "bin/doctrine-dbal"
         ],
@@ -456,7 +456,7 @@
             "phpspec/prophecy-phpunit": "~1.0",
             "symfony/filesystem": "~2.2"
         },
-        "time": "2015-11-10 17:04:01",
+        "time": "2015-11-10T17:04:01+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -518,7 +518,7 @@
             "symfony/validator": "If you want to use the configurator",
             "symfony/yaml": "If you want to use  the configurator"
         },
-        "time": "2017-01-04 13:34:44",
+        "time": "2017-01-04T13:34:44+00:00",
         "type": "symfony-bundle",
         "extra": {
             "branch-alias": {
@@ -591,7 +591,7 @@
             "ptachoire/cssembed": "Assetic provides the integration with phpcssembed to embed data uris",
             "twig/twig": "Assetic provides the integration with the Twig templating engine"
         },
-        "time": "2016-11-11 18:43:20",
+        "time": "2016-11-11T18:43:20+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -666,7 +666,7 @@
             "kriswallsmith/spork": "to be able to dump assets in parallel",
             "symfony/twig-bundle": "to use the Twig integration"
         },
-        "time": "2016-11-22 11:42:57",
+        "time": "2016-11-22T11:42:57+00:00",
         "type": "symfony-bundle",
         "extra": {
             "branch-alias": {
@@ -719,7 +719,7 @@
             "php": ">=5.3.2",
             "symfony/doctrine-bridge": "~2.3|~3.0"
         },
-        "time": "2015-11-04 21:23:23",
+        "time": "2015-11-04T21:23:23+00:00",
         "type": "symfony-bundle",
         "extra": {
             "branch-alias": {
@@ -789,7 +789,7 @@
         "suggest": {
             "willdurand/propel-typehintable-behavior": "Needed when using the propel implementation"
         },
-        "time": "2016-08-12 09:53:32",
+        "time": "2016-08-12T09:53:32+00:00",
         "type": "symfony-bundle",
         "extra": {
             "branch-alias": {
@@ -847,7 +847,7 @@
         "suggest": {
             "ext-mbstring": "For best performance"
         },
-        "time": "2017-06-09 14:24:12",
+        "time": "2017-06-09T14:24:12+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -910,7 +910,7 @@
             "symfony/debug": "~2.7",
             "symfony/phpunit-bridge": "~3.3@dev"
         },
-        "time": "2017-06-07 18:45:17",
+        "time": "2017-06-07T18:45:17+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1048,7 +1048,7 @@
             "sensio/framework-extra-bundle": "^3.0.2",
             "symfony/phpunit-bridge": "~3.2"
         },
-        "time": "2017-06-07 20:12:45",
+        "time": "2017-06-07T20:12:45+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1111,7 +1111,7 @@
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2017-06-09 08:25:21",
+        "time": "2017-06-09T08:25:21+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1171,7 +1171,7 @@
         "suggest": {
             "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
         },
-        "time": "2017-03-13 16:27:32",
+        "time": "2017-03-13T16:27:32+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -1216,7 +1216,7 @@
             "paragonie/random_compat": "~1.0|~2.0",
             "php": ">=5.3.3"
         },
-        "time": "2017-06-09 14:24:12",
+        "time": "2017-06-09T14:24:12+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1277,7 +1277,7 @@
             "php": ">=5.3.3",
             "symfony/polyfill-util": "~1.0"
         },
-        "time": "2017-06-09 08:25:21",
+        "time": "2017-06-09T08:25:21+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1335,7 +1335,7 @@
             "ircmaxell/password-compat": "~1.0",
             "php": ">=5.3.3"
         },
-        "time": "2017-06-09 08:25:21",
+        "time": "2017-06-09T08:25:21+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1392,7 +1392,7 @@
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2017-06-09 08:25:21",
+        "time": "2017-06-09T08:25:21+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1456,7 +1456,7 @@
         "suggest": {
             "ext-intl": "For best performance"
         },
-        "time": "2017-06-09 08:25:21",
+        "time": "2017-06-09T08:25:21+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1512,7 +1512,7 @@
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2017-06-09 08:25:21",
+        "time": "2017-06-09T08:25:21+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1592,7 +1592,7 @@
             "symfony/psr-http-message-bridge": "To use the PSR-7 converters",
             "symfony/security-bundle": ""
         },
-        "time": "2017-05-11 17:01:57",
+        "time": "2017-05-11T17:01:57+00:00",
         "type": "symfony-bundle",
         "extra": {
             "branch-alias": {
@@ -1669,7 +1669,7 @@
             "ruflin/elastica": "Allow sending log messages to an Elastic Search server",
             "sentry/sentry": "Allow sending log messages to a Sentry server"
         },
-        "time": "2017-06-19 01:22:40",
+        "time": "2017-06-19T01:22:40+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1729,7 +1729,7 @@
             "symfony/console": "~2.3|~3.0",
             "symfony/yaml": "~2.3|~3.0"
         },
-        "time": "2017-03-26 11:55:59",
+        "time": "2017-03-26T11:55:59+00:00",
         "type": "symfony-bundle",
         "extra": {
             "branch-alias": {
@@ -1785,7 +1785,7 @@
             "mockery/mockery": "~0.9.1",
             "symfony/phpunit-bridge": "~3.2"
         },
-        "time": "2017-05-01 15:54:03",
+        "time": "2017-05-01T15:54:03+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1850,7 +1850,7 @@
         "suggest": {
             "psr/log": "Allows logging"
         },
-        "time": "2017-05-22 04:58:24",
+        "time": "2017-05-22T04:58:24+00:00",
         "type": "symfony-bundle",
         "extra": {
             "branch-alias": {
@@ -1908,7 +1908,7 @@
             "symfony/filesystem": "~2.7|~3.0",
             "symfony/phpunit-bridge": "^3.3"
         },
-        "time": "2017-03-15 01:02:10",
+        "time": "2017-03-15T01:02:10+00:00",
         "type": "symfony-bundle",
         "extra": {
             "branch-alias": {
@@ -1960,7 +1960,7 @@
         "suggest": {
             "symfony/debug": "For tracking deprecated interfaces usages at runtime with DebugClassLoader"
         },
-        "time": "2017-05-21 09:46:38",
+        "time": "2017-05-21T09:46:38+00:00",
         "type": "symfony-bridge",
         "extra": {
             "branch-alias": {
@@ -2014,7 +2014,7 @@
         "require": {
             "symfony/console": "~2.0|~3.0"
         },
-        "time": "2017-03-29 09:29:53",
+        "time": "2017-03-29T09:29:53+00:00",
         "bin": [
             "security-checker"
         ],
@@ -2072,7 +2072,7 @@
             "symfony/class-loader": "For using the ACL generateSql script",
             "symfony/finder": "For using the ACL generateSql script"
         },
-        "time": "2015-12-28 09:39:46",
+        "time": "2015-12-28T09:39:46+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2127,7 +2127,7 @@
             "doctrine/coding-standard": "~0.1@dev",
             "phpunit/phpunit": "^5.7"
         },
-        "time": "2017-01-03 10:49:41",
+        "time": "2017-01-03T10:49:41+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2200,7 +2200,7 @@
             "predis/predis": "~1.0",
             "satooshi/php-coveralls": "~0.6"
         },
-        "time": "2016-10-29 11:16:17",
+        "time": "2016-10-29T11:16:17+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2269,7 +2269,7 @@
             "doctrine/cache": "1.*",
             "phpunit/phpunit": "^5.7"
         },
-        "time": "2017-02-24 16:22:25",
+        "time": "2017-02-24T16:22:25+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2342,7 +2342,7 @@
         "require-dev": {
             "phpunit/phpunit": "^5.4.6"
         },
-        "time": "2017-01-13 14:02:13",
+        "time": "2017-01-13T14:02:13+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2430,7 +2430,7 @@
             "doctrine/orm": "The Doctrine ORM integration is optional in the bundle.",
             "symfony/web-profiler-bundle": "To use the data collector."
         },
-        "time": "2017-05-18 08:15:18",
+        "time": "2017-05-18T08:15:18+00:00",
         "type": "symfony-bundle",
         "extra": {
             "branch-alias": {
@@ -2499,7 +2499,7 @@
             "phpunit/phpunit": "~4.0",
             "squizlabs/php_codesniffer": "~2.0"
         },
-        "time": "2015-06-14 21:17:01",
+        "time": "2015-06-14T21:17:01+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2562,7 +2562,7 @@
         "suggest": {
             "symfony/yaml": "If you want to use YAML Metadata Mapping Driver"
         },
-        "time": "2016-12-18 15:42:34",
+        "time": "2016-12-18T15:42:34+00:00",
         "bin": [
             "bin/doctrine",
             "bin/doctrine.php"
@@ -2640,7 +2640,7 @@
             "doctrine/orm": "For loading ORM fixtures",
             "doctrine/phpcr-odm": "For loading PHPCR ODM fixtures"
         },
-        "time": "2016-09-20 10:07:57",
+        "time": "2016-09-20T10:07:57+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2699,7 +2699,7 @@
             "symfony/finder": "^2.7",
             "symfony/templating": "^3.2"
         },
-        "time": "2017-02-22 13:12:30",
+        "time": "2017-02-22T13:12:30+00:00",
         "type": "symfony-bundle",
         "installation-source": "source",
         "autoload": {
